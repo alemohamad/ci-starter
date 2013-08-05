@@ -48,7 +48,7 @@ define('ADMIN_CLIENT',      'Ale Mohamad');
 
 ### /assets/data/base.sql
 
-Run the SQL command to create the settings table. Rename the 'project_settings' table name for the propper one (it has to be '<prefix>_settings').
+Run the SQL command to create the settings table. Rename the 'project_settings' table name for the proper one (it has to be '< prefix >_settings').
 
 ```sql
 CREATE TABLE IF NOT EXISTS `project_settings` (
