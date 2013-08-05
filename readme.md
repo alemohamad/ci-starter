@@ -37,6 +37,33 @@ $db['default']['dbprefix'] = 'prefix_';
 
 **Note:** If not using a database, you must remove the configuration from the **/application/config/autoload.php** file.
 
+### /application/config/constants.php
+
+Modify the constants for the Admin.
+
+```php
+define('ADMIN_PROJECT',     'Project Name');  
+define('ADMIN_CLIENT',      'Ale Mohamad');
+```
+
+### /assets/data/base.sql
+
+Run the SQL command to create the settings table. Rename the 'project_settings' table name for the propper one (it has to be '<prefix>_settings').
+
+```sql
+CREATE TABLE IF NOT EXISTS `project_settings` (
+  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user` VARCHAR(255) DEFAULT NULL,
+  `password` VARCHAR(255) DEFAULT NULL,
+  `name` VARCHAR(255) DEFAULT NULL,
+  `email` VARCHAR(255) DEFAULT NULL,
+  `visible` tinyint(1) DEFAULT 1,
+  `created_at` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+```
+
 ## What you will find in this starter kit?
 
 * [CodeIgniter v2.1.4](http://ellislab.com/codeigniter) (EllisLab)
