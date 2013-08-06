@@ -82,4 +82,4 @@ CREATE TABLE IF NOT EXISTS `project_settings` (
 
 You can reach me at [http://alemohamad.com/](http://alemohamad.com/) if you want to work with me or talk about this project.
 
-<img src="http://codeigniter.alemohamad.com/images/logo2012am.png" style="display: block; margin: 0 auto;">
+![Ale Mohamad](http://codeigniter.alemohamad.com/images/logo2012am.png)
