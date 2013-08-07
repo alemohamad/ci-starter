@@ -7,13 +7,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Le styles -->
-        <link href="<?php echo site_url('bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet">
-        <link href="<?php echo site_url('bootstrap/css/bootstrap-responsive.min.css'); ?>" rel="stylesheet">
-        <link href="<?php echo site_url('bootstrap/js/google-code-prettify/prettify.css'); ?>" rel="stylesheet">
-        <link href="<?php echo site_url('bootstrap/css/ui-lightness/jquery-ui-1.8.23.custom.css'); ?>" rel="stylesheet">
-        <link href="<?php echo site_url('bootstrap/css/styles.css'); ?>" rel="stylesheet">
+        <link href="<?php echo site_url('assets/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet">
+        <link href="<?php echo site_url('assets/bootstrap/css/bootstrap-responsive.min.css'); ?>" rel="stylesheet">
+        <link href="<?php echo site_url('assets/bootstrap/js/google-code-prettify/prettify.css'); ?>" rel="stylesheet">
+        <link href="<?php echo site_url('assets/bootstrap/css/ui-lightness/jquery-ui-1.8.23.custom.css'); ?>" rel="stylesheet">
+        <link href="<?php echo site_url('assets/bootstrap/css/styles.css'); ?>" rel="stylesheet">
         <style type="text/css">
-        #status { background-image:url(<?php echo site_url('bootstrap/img/loader-b.gif'); ?>); }
+        #status { background-image:url(<?php echo site_url('assets/bootstrap/img/loader-b.gif'); ?>); }
         </style>
 
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -22,20 +22,20 @@
         <![endif]-->
 
         <!-- Le fav and touch icons -->
-        <link rel="shortcut icon" href="<?php echo site_url('bootstrap/img/favicon.ico'); ?>">
+        <link rel="shortcut icon" href="<?php echo site_url('assets/bootstrap/img/favicon.ico'); ?>">
 
         <!-- Le tablesorter javascript -->
-        <script src="<?php echo site_url('bootstrap/js/jquery-1.7.2.min.js'); ?>"></script>
-        <script src="<?php echo site_url('bootstrap/js/jquery-ui-1.8.23.custom.min.js'); ?>"></script>
-        <script src="<?php echo site_url('bootstrap/js/jquery.tablesorter.js'); ?>"></script>
-        <script src="<?php echo site_url('bootstrap/js/jquery.tablesorter.widgets.min.js'); ?>"></script>
-        <script src="<?php echo site_url('bootstrap/js/jquery.tablesorter.filter.js'); ?>"></script>
-        <script src="<?php echo site_url('bootstrap/js/jquery.tablesorter.pager.js'); ?>"></script>
+        <script src="<?php echo site_url('assets/bootstrap/js/jquery-1.7.2.min.js'); ?>"></script>
+        <script src="<?php echo site_url('assets/bootstrap/js/jquery-ui-1.8.23.custom.min.js'); ?>"></script>
+        <script src="<?php echo site_url('assets/bootstrap/js/jquery.tablesorter.js'); ?>"></script>
+        <script src="<?php echo site_url('assets/bootstrap/js/jquery.tablesorter.widgets.min.js'); ?>"></script>
+        <script src="<?php echo site_url('assets/bootstrap/js/jquery.tablesorter.filter.js'); ?>"></script>
+        <script src="<?php echo site_url('assets/bootstrap/js/jquery.tablesorter.pager.js'); ?>"></script>
 
         <!-- Le wysiwyg bootstrap editor -->
-        <script src="<?php echo site_url('bootstrap/editor/wysihtml5-0.3.0.js'); ?>"></script>
-        <script src="<?php echo site_url('bootstrap/editor/bootstrap-wysihtml5.js'); ?>"></script>
-        <link rel="stylesheet" type="text/css" href="<?php echo site_url('bootstrap/editor/bootstrap-wysihtml5.css'); ?>"></link>
+        <script src="<?php echo site_url('assets/bootstrap/editor/wysihtml5-0.3.0.js'); ?>"></script>
+        <script src="<?php echo site_url('assets/bootstrap/editor/bootstrap-wysihtml5.js'); ?>"></script>
+        <link rel="stylesheet" type="text/css" href="<?php echo site_url('assets/bootstrap/editor/bootstrap-wysihtml5.css'); ?>"></link>
     </head>
 
     <body>
@@ -92,8 +92,8 @@
         <!-- Le javascript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="<?php echo site_url('bootstrap/js/google-code-prettify/prettify.js'); ?>"></script>
-        <script src="<?php echo site_url('bootstrap/js/bootstrap.min.js'); ?>"></script>
+        <script src="<?php echo site_url('assets/bootstrap/js/google-code-prettify/prettify.js'); ?>"></script>
+        <script src="<?php echo site_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
 
         <!-- Preloader -->
         <script type="text/javascript">

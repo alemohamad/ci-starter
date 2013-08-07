@@ -46,9 +46,9 @@
                         </td>
                         <td>
                             <?php if($item->visible): ?>
-                            <a class="btn btn-small btn-warning state-button" href="<?php echo site_url('admin/' . $file . '/state/' . $item->id); ?>" rel="tooltip" data-title="Hide item"><i class="icon-eye-open icon-white"></i><img src="<?php echo site_url('bootstrap/img/load-btn.gif'); ?>" alt="" style="display: none;"></a>
+                            <a class="btn btn-small btn-warning state-button" href="<?php echo site_url('admin/' . $file . '/state/' . $item->id); ?>" rel="tooltip" data-title="Hide item"><i class="icon-eye-open icon-white"></i><img src="<?php echo site_url('asstes/bootstrap/img/load-btn.gif'); ?>" alt="" style="display: none;"></a>
                             <?php else: ?>
-                            <a class="btn btn-small state-button" href="<?php echo site_url('admin/' . $file . '/state/' . $item->id); ?>" rel="tooltip" data-title="Show item"><i class="icon-eye-open"></i><img src="<?php echo site_url('bootstrap/img/load-btn.gif'); ?>" alt="" style="display: none;"></a>
+                            <a class="btn btn-small state-button" href="<?php echo site_url('admin/' . $file . '/state/' . $item->id); ?>" rel="tooltip" data-title="Show item"><i class="icon-eye-open"></i><img src="<?php echo site_url('assets/bootstrap/img/load-btn.gif'); ?>" alt="" style="display: none;"></a>
                             <?php endif; ?>
                             <a class="btn btn-small btn-primary edit-btn" type="button" rel="tooltip" data-title="Edit item" href="<?php echo site_url('admin/' . $file . '/edit/' . $item->id); ?>" data-target="#editModal" data-toggle="modal"><i class="icon-pencil icon-white"></i></a>
                             <a class="btn btn-small btn-danger delete-btn" type="button" rel="tooltip" data-title="Delete item" href="<?php echo site_url('admin/' . $file . '/delete/' . $item->id); ?>" data-target="#deleteModal" data-toggle="modal"><i class="icon-trash icon-white"></i></a>
@@ -88,7 +88,7 @@
         <h3 id="myModalLabel">Create item</h3>
     </div>
     <div class="modal-body">
-        <p><img src="<?php echo site_url("bootstrap/img/loader.gif"); ?>"> Loading...</p>
+        <p><img src="<?php echo site_url("assets/bootstrap/img/loader.gif"); ?>"> Loading...</p>
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal">Cancel</button>
@@ -102,7 +102,7 @@
         <h3 id="myModalLabel">Edit item</h3>
     </div>
     <div class="modal-body">
-        <p><img src="<?php echo site_url("bootstrap/img/loader.gif"); ?>"> Loading...</p>
+        <p><img src="<?php echo site_url("assets/bootstrap/img/loader.gif"); ?>"> Loading...</p>
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal">Cancel</button>
@@ -116,7 +116,7 @@
         <h3 id="myModalLabel">Delete item</h3>
     </div>
     <div class="modal-body">
-        <p><img src="<?php echo site_url("bootstrap/img/loader.gif"); ?>"> Loading...</p>
+        <p><img src="<?php echo site_url("assets/bootstrap/img/loader.gif"); ?>"> Loading...</p>
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal">Cancel</button>
@@ -124,7 +124,7 @@
     </div>
 </div>
 
-<script src="<?php echo site_url('bootstrap/js/list-app.js'); ?>"></script>
+<script src="<?php echo site_url('assets/bootstrap/js/list-app.js'); ?>"></script>
 <script>
 $(document).ready(function(){
   $('#main')
