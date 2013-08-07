@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `project_settings` (
 * [Image_moo](http://www.matmoo.com/digital-dribble/codeigniter/image_moo/) (Image manipulation library)
 * [Google Analytics Api library](https://github.com/chonthu/Codeigniter-Google-Analytics-Class) (Nithin Meppurathu)
 * [Gravatar library](https://github.com/rsmarshall/Codeigniter-Gravatar) (Ryan Marshall)
-* am_helper (custom helper)
+* [Formulize](https://github.com/alemohamad/ci-formulize) (Ale Mohamad)
 * [Bootstrap v2.3.2](http://getbootstrap.com/2.3.2/) (Mark Otto + jacob)
 
 ## About me

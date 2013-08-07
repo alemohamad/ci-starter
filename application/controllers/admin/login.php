@@ -11,7 +11,7 @@ class Login extends MY_Controller
             redirect(site_url('admin'));
         }
 
-        if ($this->input->post('user')) {
+        if ($this->input->post('submit')) {
             $user = $this->input->post('user');
             $pass = $this->input->post('password');
 

@@ -16,7 +16,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputUser">Username</label>
                     <div class="controls">
-                        <input type="text" name="user" id="inputUser" placeholder="Username">
+                        <input type="text" name="user" id="inputUser" placeholder="Username" autofocus>
                     </div>
                 </div>
                 <div class="control-group">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="control-group">
                     <div class="controls">
-                        <button type="submit" class="btn btn-success"><i class="icon-chevron-right icon-white"></i> Log in</button>
+                        <button type="submit" name="submit" class="btn btn-success"><i class="icon-chevron-right icon-white"></i> Log in</button>
                     </div>
                 </div>
             </form>

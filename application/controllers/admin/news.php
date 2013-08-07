@@ -38,6 +38,7 @@ class News extends MY_Controller
             $info['title'] = $this->input->post('title');
             $info['text'] = $this->input->post('text');
             $info['date'] = $this->input->post('date');
+            $info['display'] = $this->input->post('display');
             $info['slug'] = slugify($info['title']);
             $info['created_at'] = date("Y-m-d H:i:s");
 
@@ -81,6 +82,7 @@ class News extends MY_Controller
 
         $this->data['title'] = $this->title;
         $this->data['file'] = $this->file;
+        $this->load->library('formulize');
     }
 
     public function edit($id)
@@ -94,6 +96,7 @@ class News extends MY_Controller
             $info['title'] = $this->input->post('title');
             $info['text'] = $this->input->post('text');
             $info['date'] = $this->input->post('date');
+            $info['display'] = $this->input->post('display');
             $info['slug'] = slugify($info['title']);
 
             /* FILE UPLOAD PICTURE */
@@ -139,6 +142,7 @@ class News extends MY_Controller
         $this->data['title'] = $this->title;
         $this->data['file'] = $this->file;
         $this->data['item'] = $this->news->get($id);
+        $this->load->library('formulize');
     }
 
     public function delete($id)
@@ -182,9 +186,9 @@ class News extends MY_Controller
         $this->view = FALSE;
 
         $items = $this->news->get_all();
-        $content = "ID;Title;Text;Date;Picture;Type;Visible;Created;Updated\r\n";
+        $content = "ID;Title;Text;Date;Picture;Display;Visible;Created;Updated\r\n";
         foreach ($items as $item) {
-            $content .= "{$item->id};{$item->title};{$item->text};{$item->date};{$item->picture};{$item->type};{$item->visible};{$item->created_at};{$item->updated_at}\r\n";
+            $content .= "{$item->id};{$item->title};{$item->text};{$item->date};{$item->picture};{$item->display};{$item->visible};{$item->created_at};{$item->updated_at}\r\n";
         }
         $filename = date('YmdHis') . "_export_" . $this->file . ".csv";
 
