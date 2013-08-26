@@ -8,7 +8,7 @@ class Login extends MY_Controller
     public function index()
     {
         if ($this->session->userdata('logged_in') == TRUE) {
-            redirect(site_url('admin'));
+            redirect('admin', 'refresh');
         }
 
         if ($this->input->post('submit')) {
@@ -19,9 +19,10 @@ class Login extends MY_Controller
                 $data['logged_in'] = true;
 
                 $this->session->set_userdata($data);
-                redirect(base_url() . 'admin');
+                redirect('admin', 'refresh');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Ouch!</strong> The username or password are incorrect. Review the data and try again.</div>');
+                redirect('admin/login', 'refresh');
             }
         }
 
@@ -35,7 +36,7 @@ class Login extends MY_Controller
             'logged_in' => false
         );
         $this->session->set_userdata($data);
-        redirect(base_url() . 'admin/login');
+        redirect('admin/login', 'refresh');
     }
 
 }
