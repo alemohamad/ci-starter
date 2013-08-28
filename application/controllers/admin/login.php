@@ -16,9 +16,14 @@ class Login extends MY_Controller
             $pass = $this->input->post('password');
 
             if ( $data = $this->settings->as_array()->get_by(array('user' => $user, 'password' => $pass)) ) {
-                $data['logged_in'] = true;
+                $user = $data;
 
+                $data['logged_in'] = true;
                 $this->session->set_userdata($data);
+
+                $user['last_login'] = date("Y-m-d H:i:s");
+                $this->settings->update($user['id'], $user);
+
                 redirect('admin', 'refresh');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Ouch!</strong> The username or password are incorrect. Review the data and try again.</div>');

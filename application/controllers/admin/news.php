@@ -33,7 +33,7 @@ class News extends MY_Controller
         $this->layout = FALSE;
         $this->view = 'admin/news/form.php';
 
-        if ($this->input->post('title')) {
+        if ($this->input->post('form_submit')) {
             $info = array();
             $info['title'] = $this->input->post('title');
             $info['text'] = $this->input->post('text');
@@ -185,19 +185,38 @@ class News extends MY_Controller
         $this->layout = FALSE;
         $this->view = FALSE;
 
+        $this->load->helper('export_csv');
+
+        $fields = array(
+            'id' => 'ID',
+            'title' => 'Title',
+            'text' => 'Text',
+            'date' => 'Date',
+            'picture' => 'Picture',
+            'display' => 'Display',
+            'visible' => 'Visible',
+            'created' => 'Created',
+            'updated' => 'Updated'
+        );
+
         $items = $this->news->get_all();
-        $content = "ID;Title;Text;Date;Picture;Display;Visible;Created;Updated\r\n";
+
+        $query = array();
         foreach ($items as $item) {
-            $content .= "{$item->id};{$item->title};{$item->text};{$item->date};{$item->picture};{$item->display};{$item->visible};{$item->created_at};{$item->updated_at}\r\n";
+            $query[] = array(
+                'id' => $item->id,
+                'title' => $item->title,
+                'text' => $item->text,
+                'date' => $item->date,
+                'picture' => $item->picture,
+                'display' => $item->display,
+                'visible' => $item->visible,
+                'created' => $item->created_at,
+                'updated' => $item->updated_at
+            );
         }
-        $filename = date('YmdHis') . "_export_" . $this->file . ".csv";
 
-        header("Content-type: application/csv");
-        header("Content-Disposition: attachment; filename={$filename}");
-        header("Content-Length: " . strlen($content));
-        header("Pragma: no-cache");
-
-        echo $content;
+        echo arrayToCSV($query, $fields, $this->file);
     }
 
 }

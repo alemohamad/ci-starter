@@ -26,5 +26,6 @@ echo $this->formulize->create('Display', 'display', 'checkbox', $var)->render();
   <?php if(isset($item->id)): ?>
   <input name="id" type="hidden" value="<?php echo $item->id; ?>">
   <?php endif; ?>
+  <input name="form_submit" type="hidden" value="1">
 
 </form>

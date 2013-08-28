@@ -39,6 +39,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 define('ADMIN_PROJECT',		'Project Name');
 define('ADMIN_CLIENT',		'Ale Mohamad');
+define('ADMIN_MULTIUSER',	FALSE);
 
 
 /* End of file constants.php */

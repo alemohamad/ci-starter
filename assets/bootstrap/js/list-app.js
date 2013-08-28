@@ -20,12 +20,12 @@ $(document).ready(function(){
   });
   $('.edit-btn').live('click', function() {
     var url = $(this).attr('href');
-    $('#editModal .modal-body').html('<p><img src="../assets/bootstrap/img/loader.gif"> Loading...</p>');
+    $('#editModal .modal-body').html('<p><img src="' + base_url + 'assets/bootstrap/img/loader.gif"> Loading...</p>');
     $('#editModal .modal-body').load(url);
   });
   $('.delete-btn').live('click', function() {
     var url = $(this).attr('href');
-    $('#deleteModal .modal-body').html('<p><img src="../assets/bootstrap/img/loader.gif"> Loading...</p>');
+    $('#deleteModal .modal-body').html('<p><img src="' + base_url + 'assets/bootstrap/img/loader.gif"> Loading...</p>');
     $('#deleteModal .modal-body').load(url);
   });
 });

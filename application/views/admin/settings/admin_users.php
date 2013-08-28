@@ -13,23 +13,22 @@
 
             <form class="form-search" style="float: right;" onsubmit="return false;">
               <div class="input-append">
-                <input type="text" class="search-query" placeholder="Filter by #, Title and Date" id="filter-box">
+                <input type="text" class="search-query" placeholder="Filter by #, Name, User and Email" id="filter-box">
                 <button type="button" class="btn" id="filter-clear-button">Reset filter</button>
               </div>
             </form>
 
             <p>
                 <button class="btn" type="button" href="<?php echo site_url('admin/' . $file . '/create'); ?>" data-target="#createModal" data-toggle="modal"><i class="icon-plus-sign"></i> Create item</button>
-                <a class="btn btn-success" href="<?php echo site_url('admin/' . $file . '/export'); ?>"><i class="icon-file icon-white"></i> Export CSV file</a>
             </p>
 
             <table class="table table-striped table-hover tablesorter" id="main">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Title</th>
-                        <th>Date</th>
-                        <th>Picture</th>
+                        <th>User</th>
+                        <th>Name</th>
+                        <th>Email</th>
                         <th style="width: 120px;">Actions</th>
                     </tr>
                 </thead>
@@ -37,13 +36,9 @@
                     <?php foreach($items as $item): ?>
                     <tr>
                         <td><?php echo $item->id; ?></td>
-                        <td><a href="<?php echo site_url('news/article/' . $item->slug); ?>" target="_blank"><?php echo $item->title; ?></a></td>
-                        <td><?php echo $item->date; ?></td>
-                        <td>
-                            <?php if(!empty($item->picture)): ?>
-                            <a href="<?php echo site_url('assets/uploads/' . $item->picture . '_l.jpg'); ?>" rel="popover" data-content="<img src='<?php echo site_url('assets/uploads/' . $item->picture . '_s.jpg'); ?>'>" data-title="Photo preview" target="_blank"><i class="icon-picture"></i></a>
-                            <?php endif; ?>
-                        </td>
+                        <td><?php echo $item->user; ?></td>
+                        <td><?php echo $item->name; ?></td>
+                        <td><?php echo $item->email; ?></td>
                         <td>
                             <?php if($item->visible): ?>
                             <a class="btn btn-small btn-warning state-button" href="<?php echo site_url('admin/' . $file . '/state/' . $item->id); ?>" rel="tooltip" data-title="Hide item"><i class="icon-eye-open icon-white"></i><img src="<?php echo site_url('asstes/bootstrap/img/load-btn.gif'); ?>" alt="" style="display: none;"></a>
@@ -131,12 +126,12 @@ var base_url = '<?php echo site_url('/'); ?>';
 <script>
 $(document).ready(function(){
   $('#main')
-    .tablesorter({sortReset: true, sortRestart: true, headers:{ 3:{sorter:false}, 4:{sorter:false} } })
+    .tablesorter({sortReset: true, sortRestart: true, headers:{ 4:{sorter:false} } })
     <?php if(!empty($items)):?>
     // list unsorted columns
     .tablesorterPager({container: $("#pager")})
     <?php endif; ?>
-    .tablesorterFilter({filterContainer: "#filter-box", filterClearContainer: "#filter-clear-button", filterColumns: [0, 1, 2], filterCaseSensitive: false});
+    .tablesorterFilter({filterContainer: "#filter-box", filterClearContainer: "#filter-clear-button", filterColumns: [0, 1, 2, 4], filterCaseSensitive: false});
     // list columns that will be filtered
 
   $('.state-button').live('click', function(e) {
