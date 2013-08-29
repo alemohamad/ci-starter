@@ -96,6 +96,10 @@
             <hr>
 
             <footer>
+                <?php if ($this->session->userdata('logged_in') == TRUE): ?>
+                    <?php $this->load->helper('date'); ?>
+                    <p class="pull-right"><small><b>Last login:</b> <?php echo unix_to_human(strtotime($this->session->userdata('last_login'))); ?></small></p>
+                <?php endif; ?>
                 <p>&copy; <?php echo ADMIN_CLIENT; ?> <?php echo date('Y'); ?></p>
             </footer>
 
