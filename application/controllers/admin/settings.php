@@ -19,7 +19,7 @@ class Settings extends MY_Controller
 
     public function index()
     {
-        if($this->session->userdata('user') != 'admin' || !ADMIN_USERS) {
+        if($this->session->userdata('user') != 'admin' || !ADMIN_MULTIUSER) {
             redirect(base_url() . 'admin/' . $this->file . '/profile');
         }
 
