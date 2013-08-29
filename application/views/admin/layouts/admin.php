@@ -65,9 +65,9 @@
                             <li class="dropdown">
                                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo $this->gravatar->get_gravatar($this->session->userdata('email'), NULL, 20); ?>" class="gravatar" style="margin-right: 5px;" alt="Profile picture"> Logged in as <?php echo $this->session->userdata('name'); ?> <b class="caret"></b></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="<?php echo site_url('admin/settings'); ?>"><i class="icon-user"></i> User info</a></li>
-                                    <?php if($this->session->userdata('user') == 'admin' && ADMIN_MULTIUSER): ?>
-                                    <li><a href="<?php echo site_url('admin/settings/admin-users'); ?>"><i class="icon-th-list"></i> Manage users</a></li>
+                                    <li><a href="<?php echo site_url('admin/settings/profile'); ?>"><i class="icon-user"></i> User info</a></li>
+                                    <?php if($this->session->userdata('user') == 'admin' && ADMIN_USERS): ?>
+                                    <li><a href="<?php echo site_url('admin/settings'); ?>"><i class="icon-th-list"></i> Manage users</a></li>
                                     <?php endif; ?>
                                     <li><a href="<?php echo site_url('admin/analytics'); ?>"><i class="icon-signal"></i> Google Analytics</a></li>
                                     <li><a href="<?php echo site_url('/'); ?>" target="_blank"><i class="icon-home"></i> Go to website</a></li>
