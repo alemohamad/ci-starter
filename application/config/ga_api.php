@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-$config['profile_id']	= '3432423424'; // GA profile id
+$config['profile_id']	= '1234567890'; // GA profile id
 $config['email']		= 'example@gmail.com'; // GA Account mail
 $config['password']		= 'password'; // GA Account password
 
