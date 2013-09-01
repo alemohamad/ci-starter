@@ -41,7 +41,7 @@
                         <td><?php echo $item->date; ?></td>
                         <td>
                             <?php if(!empty($item->picture)): ?>
-                            <a href="<?php echo site_url('assets/uploads/' . $item->picture . '_l.jpg'); ?>" rel="popover" data-content="<img src='<?php echo site_url('assets/uploads/' . $item->picture . '_s.jpg'); ?>'>" data-title="Photo preview" target="_blank"><i class="icon-picture"></i></a>
+                            <a href="<?php echo site_url('assets/uploads/' . $item->picture . '_l.jpg'); ?>" rel="popover" data-html="true" data-content="<img src='<?php echo site_url('assets/uploads/' . $item->picture . '_s.jpg'); ?>'>" data-title="Photo preview" target="_blank"><i class="icon-picture"></i></a>
                             <?php endif; ?>
                         </td>
                         <td>
