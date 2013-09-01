@@ -152,7 +152,7 @@ class Settings extends MY_Controller
             $this->session->set_userdata($data);
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Success!</h4>The item was updated without problems.</div>');
-            redirect(base_url() . 'admin/' . $this->file);
+            redirect(base_url() . 'admin/' . $this->file . '/profile');
         }
 
         redirect(base_url() . 'admin/' . $this->file . '/profile');
