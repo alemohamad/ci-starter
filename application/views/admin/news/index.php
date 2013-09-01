@@ -13,7 +13,7 @@
 
             <form class="form-search" style="float: right;" onsubmit="return false;">
               <div class="input-append">
-                <input type="text" class="search-query" placeholder="Filter by #, Title and Date" id="filter-box">
+                <input type="text" class="search-query" placeholder="Filter" id="filter-box">
                 <button type="button" class="btn" id="filter-clear-button">Reset filter</button>
               </div>
             </form>
