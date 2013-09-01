@@ -21,6 +21,14 @@ echo $this->formulize->create('Picture', 'picture', 'file', $var)->render();
 
 $var = isset($item->display) ? $item->display : '';
 echo $this->formulize->create('Display', 'display', 'checkbox', $var)->render();
+
+$elements = array(
+    'sports'     => 'Sports',
+    'technology' => 'Technology',
+    'fashion'    => 'Fashion'
+);
+$var = isset($item->type) ? $item->type : '';
+echo $this->formulize->create('Type', 'type', 'select', $var, $elements)->render();
 ?>
 
   <?php if(isset($item->id)): ?>

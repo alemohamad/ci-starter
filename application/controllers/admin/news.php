@@ -39,6 +39,7 @@ class News extends MY_Controller
             $info['text'] = $this->input->post('text');
             $info['date'] = $this->input->post('date');
             $info['display'] = $this->input->post('display');
+            $info['type'] = $this->input->post('type');
             $info['slug'] = slugify($info['title']);
             $info['created_at'] = date("Y-m-d H:i:s");
 
@@ -97,6 +98,7 @@ class News extends MY_Controller
             $info['text'] = $this->input->post('text');
             $info['date'] = $this->input->post('date');
             $info['display'] = $this->input->post('display');
+            $info['type'] = $this->input->post('type');
             $info['slug'] = slugify($info['title']);
 
             /* FILE UPLOAD PICTURE */

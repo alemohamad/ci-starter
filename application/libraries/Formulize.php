@@ -3,7 +3,7 @@
  * Formulize class for ci-formulize library.
  *
  * @author Ale Mohamad <hello@alemohamad.com>
- * @version 1.0
+ * @version 1.1
  * @link http://github.com/alemohamad/ci-formulize
  * @license http://opensource.org/licenses/mit-license.php MIT License
  */
@@ -19,19 +19,21 @@ class Formulize
      *
      * @param string $name
      * @param string $varname
-     * @param string $type (options: txt, html, date, file, checkbox)
+     * @param string $type (options: txt, html, date, file, checkbox, select)
      * @param string $value (optional)
+     * @param array $select_elements (optional)
      *
      * @return object
      */
-    public function create($name, $varname, $type = 'txt', $value = '')
+    public function create($name, $varname, $type = 'txt', $value = '', $select_elements = array())
     {
         $this->item = array(
-            'name'    => $name,
-            'varname' => $varname,
-            'type'    => $type,
-            'value'   => $value,
-            'focus'   => ''
+            'name'     => $name,
+            'varname'  => $varname,
+            'type'     => $type,
+            'value'    => $value,
+            'focus'    => '',
+            'elements' => $select_elements
         );
 
         if($this->first) {
