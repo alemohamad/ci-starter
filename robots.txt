@@ -3,4 +3,4 @@ disallow: /admin/
 disallow: /system/
 disallow: /application/
 
-Sitemap: https://alemohamad.com/sitemap.xml
+Sitemap: http://website.com/sitemap.xml

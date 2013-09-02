@@ -11,6 +11,8 @@ class Slug
 {
 
     private $CI;
+    private $latin = array('á', 'é', 'í', 'ó', 'ú', 'ñ', 'ç', 'ü', 'à', 'è', 'ì', 'ò', 'ù', 'Á', 'É', 'Í', 'Ó', 'Ú', 'Ñ', 'Ç', 'Ü', 'À', 'È', 'Ì', 'Ò', 'Ù');
+    private $plain = array('a', 'e', 'i', 'o', 'u', 'n', 'c', 'u', 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U', 'N', 'C', 'U', 'A', 'E', 'I', 'O', 'U');
 
     /*
      * Constructor
@@ -32,8 +34,10 @@ class Slug
      */
     public function create_unique_slug($string, $table)
     {
+        //Change the latin characters to plain characters
+        $slug = str_replace($this->latin, $this->plain, $string);
         //Creates a human-friendly URL string with dashes
-        $slug = url_title($string);
+        $slug = url_title($slug);
         //Make the string lowercase
         $slug = strtolower($slug);
         //Set the initial counter to append at the end of the string (if duplicate)
