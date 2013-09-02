@@ -40,7 +40,8 @@ class News extends MY_Controller
             $info['date'] = $this->input->post('date');
             $info['display'] = $this->input->post('display');
             $info['type'] = $this->input->post('type');
-            $info['slug'] = slugify($info['title']);
+            $this->load->library('Slug');
+            $info['slug'] = $this->slug->create_unique_slug($info['title'], 'news');
             $info['created_at'] = date("Y-m-d H:i:s");
 
             /* FILE UPLOAD PICTURE */
@@ -99,7 +100,8 @@ class News extends MY_Controller
             $info['date'] = $this->input->post('date');
             $info['display'] = $this->input->post('display');
             $info['type'] = $this->input->post('type');
-            $info['slug'] = slugify($info['title']);
+            $this->load->library('Slug');
+            $info['slug'] = $this->slug->create_unique_slug($info['title'], 'news');
 
             /* FILE UPLOAD PICTURE */
             $this->load->library('upload');
