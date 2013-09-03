@@ -78,6 +78,7 @@ CREATE TABLE IF NOT EXISTS `project_settings` (
 * [Google Analytics Api library](https://github.com/chonthu/Codeigniter-Google-Analytics-Class) (Nithin Meppurathu)
 * [Gravatar library](https://github.com/rsmarshall/Codeigniter-Gravatar) (Ryan Marshall)
 * [Formulize](https://github.com/alemohamad/ci-formulize) (Ale Mohamad)
+* [ci-slug](https://github.com/alemohamad/ci-slug) (Ale Mohamad)
 * [ci-csv](https://github.com/alemohamad/ci-csv) (Ale Mohamad)
 * [Bootstrap v2.3.2](http://getbootstrap.com/2.3.2/) (Mark Otto + jacob)
 
