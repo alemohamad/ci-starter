@@ -29,6 +29,14 @@ $elements = array(
 );
 $var = isset($item->type) ? $item->type : '';
 echo $this->formulize->create('Type', 'type', 'select', $var, $elements)->render();
+
+$elements = array(
+    'sports'     => 'Sports',
+    'technology' => 'Technology',
+    'fashion'    => 'Fashion'
+);
+$var = isset($item->type) ? $item->type : '';
+echo $this->formulize->create('Type', 'type', 'list', $var, $elements)->render();
 ?>
 
   <?php if(isset($item->id)): ?>
