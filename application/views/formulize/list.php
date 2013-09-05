@@ -3,7 +3,7 @@
   <label class="control-label" for="<?php echo $item['varname']; ?>-list"><?php echo $item['name']; ?></label>
   <div class="controls">
     <?php if(count($item['elements'])): ?>
-    <select class="input-xlarge" id="<?php echo $item['varname']; ?>-list" name="<?php echo $item['varname']; ?>" size="6" multiple>
+    <select class="input-xlarge" id="<?php echo $item['varname']; ?>-list" name="<?php echo $item['varname']; ?>[]" size="6" multiple>
         <option value="0">None</option>
       <?php foreach($item['elements'] as $value => $element): ?>
         <option value="<?php echo $value; ?>" <?php echo (strpos($item['value'], $value) !== FALSE) ? 'selected' : ''; ?>><?php echo $element; ?></option>
