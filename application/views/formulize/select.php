@@ -10,7 +10,7 @@
       <?php endforeach; ?>
     </select>
     <?php else: ?>
-    <span class="help-inline">There's no items to select.</span>
+    <span class="help-inline">There's no items to choose.</span>
     <?php endif; ?>
   </div>
 </div>
