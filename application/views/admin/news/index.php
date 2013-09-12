@@ -134,7 +134,7 @@ $(document).ready(function(){
     .tablesorter({sortReset: true, sortRestart: true, headers:{ 3:{sorter:false}, 4:{sorter:false} } })
     <?php if(!empty($items)):?>
     // list unsorted columns
-    .tablesorterPager({container: $("#pager")})
+    .tablesorterPager({container: $("#pager"), size: <?php echo $this->session->userdata('pagination'); ?>})
     <?php endif; ?>
     .tablesorterFilter({filterContainer: "#filter-box", filterClearContainer: "#filter-clear-button", filterColumns: [0, 1, 2], filterCaseSensitive: false});
     // list columns that will be filtered
@@ -172,6 +172,25 @@ $(document).ready(function(){
             element.find('i').show();
             element.find('img').hide();
             element.tooltip('show');
+        }
+    });
+  });
+
+  $('.pagesize').val(<?php echo $this->session->userdata('pagination'); ?>);
+
+  $('.pagesize').on('change', function(e) {
+    var element = $(this).val();
+    $.ajax('<?php echo site_url('admin/settings/change_pagination'); ?>', {
+        dataType: 'json',
+        type: 'post',
+        data: { 'pagination': element },
+        cache: false,
+        timeout: 8000,
+        error: function(result) {
+            // error
+        },
+        success: function(result) {
+            // success
         }
     });
   });

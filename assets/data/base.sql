@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS `project_settings` (
   `password` VARCHAR(255) DEFAULT NULL,
   `name` VARCHAR(255) DEFAULT NULL,
   `email` VARCHAR(255) DEFAULT NULL,
+  `pagination` int(11) DEFAULT 10,
   `visible` tinyint(1) DEFAULT 1,
   `last_login` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created_at` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
