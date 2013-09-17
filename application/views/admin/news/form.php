@@ -37,6 +37,9 @@ $elements = array(
 );
 $var = isset($item->type) ? $item->type : '';
 echo $this->formulize->create('Type', 'type', 'list', $var, $elements)->render();
+
+$var = isset($item->tags) ? $item->tags : '';
+echo $this->formulize->create('Tags', 'tags', 'tags', $var)->render();
 ?>
 
   <?php if(isset($item->id)): ?>

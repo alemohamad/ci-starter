@@ -80,6 +80,7 @@ CREATE TABLE IF NOT EXISTS `project_settings` (
 * [Formulize](https://github.com/alemohamad/ci-formulize) (Ale Mohamad)
 * [ci-slug](https://github.com/alemohamad/ci-slug) (Ale Mohamad)
 * [ci-csv](https://github.com/alemohamad/ci-csv) (Ale Mohamad)
+* [Tags Manager v3.0](https://github.com/max-favilli/tagmanager) (Max Favilli)
 * [Bootstrap v2.3.2](http://getbootstrap.com/2.3.2/) (Mark Otto + jacob)
 
 ## About me

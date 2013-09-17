@@ -19,7 +19,7 @@ class Formulize
      *
      * @param string $name
      * @param string $varname
-     * @param string $type (options: txt, html, date, file, checkbox, select, list)
+     * @param string $type (options: txt, html, date, file, checkbox, select, list, tags)
      * @param string $value (optional)
      * @param array $select_elements (optional)
      *

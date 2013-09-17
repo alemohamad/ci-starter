@@ -35,7 +35,11 @@
         <!-- Le wysiwyg bootstrap editor -->
         <script src="<?php echo site_url('assets/bootstrap/editor/wysihtml5-0.3.0.js'); ?>"></script>
         <script src="<?php echo site_url('assets/bootstrap/editor/bootstrap-wysihtml5.js'); ?>"></script>
-        <link rel="stylesheet" type="text/css" href="<?php echo site_url('assets/bootstrap/editor/bootstrap-wysihtml5.css'); ?>"></link>
+        <link href="<?php echo site_url('assets/bootstrap/editor/bootstrap-wysihtml5.css'); ?>" rel="stylesheet"></link>
+
+        <!-- Le tag manager -->
+        <script src="<?php echo site_url('assets/bootstrap/tagmanager/tagmanager.js'); ?>"></script>
+        <link href="<?php echo site_url('assets/bootstrap/tagmanager/tagmanager.css'); ?>" rel="stylesheet"></link>
     </head>
 
     <body>
