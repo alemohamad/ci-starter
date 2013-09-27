@@ -22,6 +22,7 @@ class Formulize
      * @param string $type (options: txt, html, date, file, checkbox, select, list, tags)
      * @param string $value (optional)
      * @param array $select_elements (optional)
+     * Note: The $select_elements param can also be used to pass 'formats' and 'size' values to the 'file' type.
      *
      * @return object
      */

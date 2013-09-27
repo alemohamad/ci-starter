@@ -17,7 +17,8 @@ $var = isset($item->date) ? $item->date : '';
 echo $this->formulize->create('Date', 'date', 'date', $var)->render();
 
 $var = isset($item->picture) ? $item->picture : '';
-echo $this->formulize->create('Picture', 'picture', 'file', $var)->render();
+$options = array('formats' => 'JPG, PNG', 'size' => '2 MB');
+echo $this->formulize->create('Picture', 'picture', 'file', $var, $options)->render();
 
 $var = isset($item->display) ? $item->display : '';
 echo $this->formulize->create('Display', 'display', 'checkbox', $var)->render();

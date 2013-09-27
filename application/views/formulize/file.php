@@ -4,5 +4,6 @@
   <div class="controls">
     <input type="file" class="input-xlarge" id="<?php echo $item['varname']; ?>" name="<?php echo $item['varname']; ?>">
     <input name="prev_<?php echo $item['varname']; ?>" type="hidden" value="<?php echo $item['value']; ?>">
+    <span class="help-block"><small><b>Formats:</b> <?php echo $item['elements']['formats']; ?>. <b>Max size:</b> <?php echo $item['elements']['size']; ?>.</small></span>
   </div>
 </div>
