@@ -3,7 +3,7 @@
  * Formulize class for ci-formulize library.
  *
  * @author Ale Mohamad <hello@alemohamad.com>
- * @version 1.1
+ * @version 1.2
  * @link http://github.com/alemohamad/ci-formulize
  * @license http://opensource.org/licenses/mit-license.php MIT License
  */
@@ -19,7 +19,7 @@ class Formulize
      *
      * @param string $name
      * @param string $varname
-     * @param string $type (options: txt, html, date, file, checkbox, select, list, tags)
+     * @param string $type (options: txt, html, date, file, checkbox, select, list, tags, number, email)
      * @param string $value (optional)
      * @param array $select_elements (optional)
      * Note: The $select_elements param can also be used to pass 'formats' and 'size' values to the 'file' type.
