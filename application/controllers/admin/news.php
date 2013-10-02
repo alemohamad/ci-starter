@@ -37,10 +37,12 @@ class News extends MY_Controller
             $info = array();
             $info['title'] = $this->input->post('title');
             $info['text'] = $this->input->post('text');
+            $info['email'] = $this->input->post('email');
             $info['date'] = $this->input->post('date');
             $info['display'] = ($this->input->post('display'))? 1 : 0;
             $info['type'] = (is_array($this->input->post('type'))) ? implode(",", $this->input->post('type')) : '';
             $info['tags'] = $this->input->post('tags');
+            $info['order'] = $this->input->post('order');
             $this->load->library('Slug');
             $info['slug'] = $this->slug->create_unique_slug($info['title'], 'news');
             $info['created_at'] = date("Y-m-d H:i:s");
@@ -98,10 +100,12 @@ class News extends MY_Controller
             $info['id'] = $this->input->post('id');
             $info['title'] = $this->input->post('title');
             $info['text'] = $this->input->post('text');
+            $info['email'] = $this->input->post('email');
             $info['date'] = $this->input->post('date');
             $info['display'] = ($this->input->post('display'))? 1 : 0;
             $info['type'] = (is_array($this->input->post('type'))) ? implode(",", $this->input->post('type')) : '';
             $info['tags'] = $this->input->post('tags');
+            $info['order'] = $this->input->post('order');
             $this->load->library('Slug');
             $info['slug'] = $this->slug->create_unique_slug($info['title'], 'news');
 
@@ -197,11 +201,13 @@ class News extends MY_Controller
             'id' => 'ID',
             'title' => 'Title',
             'text' => 'Text',
+            'email' => 'Email',
             'date' => 'Date',
             'picture' => 'Picture',
             'display' => 'Display',
             'tags' => 'Type',
             'tags' => 'Tags',
+            'order' => 'Order',
             'visible' => 'Visible',
             'created' => 'Created',
             'updated' => 'Updated'
@@ -215,11 +221,13 @@ class News extends MY_Controller
                 'id' => $item->id,
                 'title' => $item->title,
                 'text' => $item->text,
+                'email' => $item->email,
                 'date' => $item->date,
                 'picture' => $item->picture,
                 'display' => $item->display,
                 'type' => $item->type,
                 'tags' => $item->tags,
+                'order' => $item->order,
                 'visible' => $item->visible,
                 'created' => $item->created_at,
                 'updated' => $item->updated_at

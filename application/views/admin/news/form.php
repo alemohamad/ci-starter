@@ -13,6 +13,9 @@ echo $this->formulize->create('Title', 'title', 'txt', $var)->render();
 $var = isset($item->text) ? $item->text : '';
 echo $this->formulize->create('Text', 'text', 'html', $var)->render();
 
+$var = isset($item->email) ? $item->email : '';
+echo $this->formulize->create('Email', 'email', 'email', $var)->render();
+
 $var = isset($item->date) ? $item->date : '';
 echo $this->formulize->create('Date', 'date', 'date', $var)->render();
 
@@ -41,6 +44,9 @@ echo $this->formulize->create('Type', 'type', 'list', $var, $elements)->render()
 
 $var = isset($item->tags) ? $item->tags : '';
 echo $this->formulize->create('Tags', 'tags', 'tags', $var)->render();
+
+$var = isset($item->order) ? $item->order : '';
+echo $this->formulize->create('Order', 'order', 'number', $var)->render();
 ?>
 
   <?php if(isset($item->id)): ?>
