@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS `project_settings` (
   `email` VARCHAR(255) DEFAULT NULL,
   `pagination` int(11) DEFAULT 10,
   `visible` tinyint(1) DEFAULT 1,
+  `deleted` tinyint(1) DEFAULT 0,
   `last_login` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created_at` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,

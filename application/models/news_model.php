@@ -2,7 +2,7 @@
 
 class News_model extends MY_Model
 {
-    
+    protected $soft_delete = TRUE;
 }
 
 /* End of file news_model.php */

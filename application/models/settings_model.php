@@ -2,7 +2,7 @@
 
 class Settings_model extends MY_Model
 {
-    
+    protected $soft_delete = TRUE;
 }
 
 /* End of file settings_model.php */
