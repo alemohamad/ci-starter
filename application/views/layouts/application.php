@@ -34,7 +34,7 @@
             </article>
 
             <footer>
-                ci-starter v1.0 (Aug 05, 2013) by Ale Mohamad<br><img src="<?php echo base_url('assets/img/logo-am.png'); ?>" alt="Ale Mohamad">
+                ci-starter by Ale Mohamad<br><img src="<?php echo base_url('assets/img/logo-am.png'); ?>" alt="Ale Mohamad">
             </footer>
 
         </div>
