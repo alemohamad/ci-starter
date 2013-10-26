@@ -47,6 +47,9 @@ echo $this->formulize->create('Tags', 'tags', 'tags', $var)->render();
 
 $var = isset($item->order) ? $item->order : '';
 echo $this->formulize->create('Order', 'order', 'number', $var)->render();
+
+$var = isset($item->code) ? $item->code : '';
+echo $this->formulize->create('Color code', 'code', 'color', $var)->render();
 ?>
 
   <?php if(isset($item->id)): ?>

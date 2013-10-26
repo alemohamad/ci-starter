@@ -1,11 +1,11 @@
 # CodeIgniter Project Starter
 
-**ci-starter v1.0 (Aug 05, 2013) by Ale Mohamad**
+**ci-starter by Ale Mohamad**
 
 ## About the project
 
-This is a custom "project starter" curated by myself (Ale Mohamad) for myself.  
-I do not expect that this project will be useful for everyone, so leave it to your decision on using it or not. If you like this project, feel free to use it and tell me what you think.
+This is a custom *project starter* curated by myself (Ale Mohamad) for myself.  
+I do not expect that this project will be useful for everyone, so leave it to your decision on using it or not. If you like this project, feel free to use it and please tell me what you think.
 
 ## Requirements
 
@@ -31,7 +31,7 @@ $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'username';  
 $db['default']['password'] = 'password';  
 $db['default']['database'] = 'database';  
-$db['default']['dbdriver'] = 'mysql';  
+$db['default']['dbdriver'] = 'mysqli';  
 $db['default']['dbprefix'] = 'prefix_';
 ```
 
@@ -83,6 +83,7 @@ CREATE TABLE IF NOT EXISTS `project_settings` (
 * [ci-slug](https://github.com/alemohamad/ci-slug) (Ale Mohamad)
 * [ci-csv](https://github.com/alemohamad/ci-csv) (Ale Mohamad)
 * [Tags Manager v3.0](https://github.com/max-favilli/tagmanager) (Max Favilli)
+* [Spectrum v1.1.1](https://github.com/bgrins/spectrum) (Brian Grinstead)
 * [Bootstrap v2.3.2](http://getbootstrap.com/2.3.2/) (Mark Otto + jacob)
 
 ## About me

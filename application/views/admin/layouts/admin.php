@@ -40,6 +40,10 @@
         <!-- Le tag manager -->
         <script src="<?php echo site_url('assets/bootstrap/tagmanager/tagmanager.js'); ?>"></script>
         <link href="<?php echo site_url('assets/bootstrap/tagmanager/tagmanager.css'); ?>" rel="stylesheet"></link>
+
+        <!-- Le spectrum -->
+        <script src="<?php echo site_url('assets/bootstrap/spectrum/spectrum.js'); ?>"></script>
+        <link href="<?php echo site_url('assets/bootstrap/spectrum/spectrum.css'); ?>" rel="stylesheet"></link>
     </head>
 
     <body>

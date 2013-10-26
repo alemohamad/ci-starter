@@ -43,6 +43,7 @@ class News extends MY_Controller
             $info['type'] = (is_array($this->input->post('type'))) ? implode(",", $this->input->post('type')) : '';
             $info['tags'] = $this->input->post('tags');
             $info['order'] = $this->input->post('order');
+            $info['code'] = $this->input->post('code');
             $this->load->library('Slug');
             $info['slug'] = $this->slug->create_unique_slug($info['title'], 'news');
             $info['created_at'] = date("Y-m-d H:i:s");
@@ -106,6 +107,7 @@ class News extends MY_Controller
             $info['type'] = (is_array($this->input->post('type'))) ? implode(",", $this->input->post('type')) : '';
             $info['tags'] = $this->input->post('tags');
             $info['order'] = $this->input->post('order');
+            $info['code'] = $this->input->post('code');
             $this->load->library('Slug');
             $info['slug'] = $this->slug->create_unique_slug($info['title'], 'news');
 
@@ -208,6 +210,7 @@ class News extends MY_Controller
             'tags' => 'Type',
             'tags' => 'Tags',
             'order' => 'Order',
+            'code' => 'Color code',
             'visible' => 'Visible',
             'created' => 'Created',
             'updated' => 'Updated'
@@ -228,6 +231,7 @@ class News extends MY_Controller
                 'type' => $item->type,
                 'tags' => $item->tags,
                 'order' => $item->order,
+                'code' => $item->code,
                 'visible' => $item->visible,
                 'created' => $item->created_at,
                 'updated' => $item->updated_at
