@@ -2,6 +2,6 @@
 <div class="control-group">
   <label class="control-label" for="<?php echo $item['varname']; ?>"><?php echo $item['name']; ?></label>
   <div class="controls">
-    <input class="input-xlarge" type="number" id="<?php echo $item['varname']; ?>" name="<?php echo $item['varname']; ?>" value="<?php echo $item['value']; ?>" <?php echo $item['focus']; ?>>
+    <input class="input-xlarge" type="number" id="<?php echo $item['varname']; ?>" name="<?php echo $item['varname']; ?>" value="<?php echo $item['value']; ?>" <?php echo $item['focus']; ?> step="any" min="0">
   </div>
 </div>
