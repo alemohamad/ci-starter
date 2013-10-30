@@ -1,0 +1,99 @@
+/* The declarations for print output */
+@media print {
+/* Reset quotes */
+q {quotes: none}
+q:before, q:after {content: ""}   
+
+/* Hide everything unneeded */
+header h1, header nav, footer {display: none}
+img { max-width: 100px; }
+
+/* font sizes */
+body {
+	font: 12pt Georgia, "Times New Roman", Times, serif;
+	/* font: 12pt Arial, sans-serif; */
+	line-height: 1.3;
+}
+
+h1 {font-size: 24pt}
+
+h2 {font-size: 14pt; margin-top: 25px}
+
+aside h2 {font-size: 18pt}
+
+/* Show printer-frindly logo. */
+header .print {display: block}
+
+/* If you like things a little bit easier and more semantic you can alternatively just leave the h1 of the header visible, switch off the margin and make it bigger than the rest of the headlines */
+/*header nav, footer, img {display: none}
+
+header h1 {
+	margin: 0;
+	font-size: 30pt;
+}*/
+
+/* Some browsers like to show a border around images. Switch it off */
+img {border: 0}
+
+/* Mover the header a little bit awy from the content */
+header {margin-bottom: 40px}
+
+/* Display the URL of the site so that the user knows where the printout came from */
+/* header:after {display: block; content: "www.alemohamad.com"} */
+
+/* Additionally/optionally a little message could be displayed */
+/*header:before {
+	display: block;
+	content: "Thank you for printing our content at www.alemohamad.com. Please check back soon for new offers about our products and services.";
+	margin-bottom: 10px;
+	border: 1px solid #bbb;
+	padding: 3px 5px;
+	font-style: italic;
+}*/
+
+/* Separate blockquotes a little bit from the rest */
+blockquote {
+	font-size: 13pt;
+	font-style: italic;
+}
+
+/* By default links are blue. For optimal legibility change them to black */
+a {color: #000}
+
+/* Show the URL after each link, whereby internal links are preceeded by the site's URL */
+a:after {
+	content: " (" attr(href) ")";
+	font-size: 80%;
+	word-wrap: break-word;
+}
+
+/* External links don't get this treatment */
+a[href^="http://"]:after, a[href^="https://"]:after {
+	content: " (" attr(href) ")";
+}
+
+/* Append the source of the citation */
+q:after {content: " (" attr(cite) ")"}
+
+/* The Sidebar is placed under the content automatically. To distinguish it from the rest a border and a gap is set before */
+aside {
+	border-top: 1px solid #bbb;
+	margin-top: 30px;
+	display: block;
+	width: auto;
+	/* Reset the element for IE < 8 */
+	position: static;
+	width: auto;
+	padding: 10px 0 0;
+	/*page-break-before: always; */ /* Moves the sidebar to new page */
+}
+
+/* Custom bullets for the list */
+/*ul {list-style: none}
+
+.main ul li:before {content: "» "}*/
+
+}
+
+/* Form treatment */
+form input { border: none; }

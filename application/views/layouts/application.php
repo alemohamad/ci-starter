@@ -9,10 +9,11 @@
         <link rel="shortcut icon" href="<?php echo base_url('assets/img/favicon.ico'); ?>">
         <link rel="apple-touch-icon-precomposed" href="<?php echo base_url('assets/img/apple-touch-icon-precomposed.png'); ?>">
 
-        <link rel='stylesheet' href='<?php echo base_url('assets/css/reset.css'); ?>'>
-        <link rel='stylesheet' href='<?php echo base_url('assets/css/styles.css'); ?>'>
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/reset.css'); ?>" media="screen">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/styles.css'); ?>" media="screen">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/print.css'); ?>" media="print">
 
-        <script src='<?php echo base_url('assets/js/head.js'); ?>'></script>
+        <script src="<?php echo base_url('assets/js/head.js'); ?>"></script>
         <script>
             head.js(
                 { jquery : "http://code.jquery.com/jquery-1.8.3.js"},
