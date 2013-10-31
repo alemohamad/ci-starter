@@ -4,9 +4,9 @@
   <div class="controls">
     <?php if(count($item['elements'])): ?>
     <select class="input-xlarge" id="<?php echo $item['varname']; ?>-list" name="<?php echo $item['varname']; ?>[]" size="6" multiple>
-        <option value="0">None</option>
+        <option value="">None</option>
       <?php foreach($item['elements'] as $value => $element): ?>
-        <option value="<?php echo $value; ?>" <?php echo (strpos($item['value'], $value) !== FALSE) ? 'selected' : ''; ?>><?php echo $element; ?></option>
+        <option value="<?php echo $value; ?>" <?php echo (strpos( (string)$item['value'], (string)$value ) !== FALSE) ? 'selected' : ''; ?>><?php echo $element; ?></option>
       <?php endforeach; ?>
     </select>
     <?php else: ?>

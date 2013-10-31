@@ -4,7 +4,7 @@
   <div class="controls">
     <?php if(count($item['elements'])): ?>
     <select class="input-xlarge" id="<?php echo $item['varname']; ?>" name="<?php echo $item['varname']; ?>">
-        <option value="0" disabled selected>-- Choose an item --</option>
+        <option value="" disabled selected>-- Choose an item --</option>
       <?php foreach($item['elements'] as $value => $element): ?>
         <option value="<?php echo $value; ?>" <?php echo ($value == $item['value']) ? 'selected' : ''; ?>><?php echo $element; ?></option>
       <?php endforeach; ?>
