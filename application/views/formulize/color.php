@@ -11,7 +11,11 @@
 <script>
 $(function() {
     $( "#color-<?php echo $item['varname']; ?>" ).spectrum({
+       <?php if(!empty($item['value'])): ?>
+         color: "<?php echo $item['value']; ?>",
+       <?php else: ?>
          color: "#000000",
+       <?php endif; ?>
          showInput: true,
          preferredFormat: "hex6",
          clickoutFiresChange: true,

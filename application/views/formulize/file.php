@@ -6,7 +6,7 @@
     <input name="prev_<?php echo $item['varname']; ?>" type="hidden" value="<?php echo $item['value']; ?>" id="<?php echo $item['varname']; ?>-file">
     <span class="help-block"><small><b>Formats:</b> <?php echo $item['elements']['formats']; ?>. <b>Max size:</b> <?php echo $item['elements']['size']; ?>.</small></span>
     <?php if(!empty($item['value'])): ?>
-    <span class="help-block"><label><input type="checkbox" id="<?php echo $item['varname']; ?>-file-ck"> <small>Remove file</small></label></span>
+    <span class="help-block"><label><input type="checkbox" id="<?php echo $item['varname']; ?>-file-ck" style="width: 11px; height: 11px;"> <small>Remove file</small></label></span>
     <?php endif; ?>
   </div>
 </div>
