@@ -84,6 +84,7 @@ CREATE TABLE IF NOT EXISTS `project_settings` (
 * [ci-csv](https://github.com/alemohamad/ci-csv) (Ale Mohamad)
 * [Tags Manager v3.0](https://github.com/max-favilli/tagmanager) (Max Favilli)
 * [Spectrum v1.1.1](https://github.com/bgrins/spectrum) (Brian Grinstead)
+* [Adminer v3.7.1](https://github.com/vrana/adminer/) (Jakub Vrána)
 * [Bootstrap v2.3.2](http://getbootstrap.com/2.3.2/) (Mark Otto + jacob)
 
 ## About me
