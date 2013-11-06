@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class MY_Router extends CI_Router
 {
@@ -97,3 +97,6 @@ class MY_Router extends CI_Router
     }
 
 }
+
+/* End of file My_Router.php */
+/* Location: ./application/core/My_Router.php */
