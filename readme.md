@@ -22,6 +22,20 @@ Also the server must have at least PHP 5.3 or higher, and must have mod_rewrite 
 $config['encryption_key'] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 ```
 
+Configure the session settings for the project.
+
+```php
+$config['sess_cookie_name']		= 'project_session'; // use your project codename
+$config['sess_expiration']		= 7200;
+$config['sess_expire_on_close']	= TRUE; // when the user closes the window it expires
+$config['sess_encrypt_cookie']	= FALSE;
+$config['sess_use_database']	= TRUE; // set to TRUE so you can use the DB
+$config['sess_table_name']		= 'project_sessions'; // use your project codename
+$config['sess_match_ip']		= FALSE; // if TRUE it can block some users in the same network
+$config['sess_match_useragent']	= TRUE;
+$config['sess_time_to_update']	= 300;
+```
+
 ### /application/config/database.php
 
 Set up the database information.
@@ -66,6 +80,20 @@ CREATE TABLE IF NOT EXISTS `project_settings` (
   `updated_at` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+```
+
+Do the same with the sessions table. Rename the ```project_sessions``` table name for the proper one (it has to be '```<prefix>```_sessions').
+
+```sql
+CREATE TABLE IF NOT EXISTS  `project_sessions` (
+  `session_id` varchar(40) NOT NULL DEFAULT '0',
+  `ip_address` varchar(45) NOT NULL DEFAULT '0',
+  `user_agent` varchar(120) NOT NULL,
+  `last_activity` int(10) unsigned NOT NULL DEFAULT '0',
+  `user_data` text NOT NULL,
+  PRIMARY KEY (`session_id`),
+  KEY `last_activity_idx` (`last_activity`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
 ## What will you find in this starter kit?
