@@ -69,13 +69,15 @@ class News extends MY_Controller
 
                 $this->load->library('image_moo');
                 $this->image_moo
-                    ->load($picPath)
-                    ->resize_crop(170,100)
-                    ->save($picPathFile . $picRaw . '_s.jpg');
+                     ->set_jpeg_quality(100)
+                     ->load($picPath)
+                     ->resize_crop(170,100)
+                     ->save($picPathFile . $picRaw . '_s.jpg');
                 $this->image_moo
-                    ->load($picPath)
-                    ->resize_crop(410,370)
-                    ->save($picPathFile . $picRaw . '_l.jpg');
+                     ->set_jpeg_quality(100)
+                     ->load($picPath)
+                     ->resize_crop(410,370)
+                     ->save($picPathFile . $picRaw . '_l.jpg');
                 unlink($picPath);
             }
             /* END UPLOAD PICTURE */
@@ -132,13 +134,15 @@ class News extends MY_Controller
 
                 $this->load->library('image_moo');
                 $this->image_moo
-                    ->load($picPath)
-                    ->resize_crop(170,100)
-                    ->save($picPathFile . $picRaw . '_s.jpg');
+                     ->set_jpeg_quality(100)
+                     ->load($picPath)
+                     ->resize_crop(170,100)
+                     ->save($picPathFile . $picRaw . '_s.jpg');
                 $this->image_moo
-                    ->load($picPath)
-                    ->resize_crop(410,370)
-                    ->save($picPathFile . $picRaw . '_l.jpg');
+                     ->set_jpeg_quality(100)
+                     ->load($picPath)
+                     ->resize_crop(410,370)
+                     ->save($picPathFile . $picRaw . '_l.jpg');
                 unlink($picPath);
             } else {
                 $info['picture'] = $this->input->post('prev_picture');
