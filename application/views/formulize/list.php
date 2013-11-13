@@ -13,6 +13,7 @@
         <label style="display: inline-block;"><input type="radio" name="select-<?php echo $item['varname']?>" id="sel-none-<?php echo $item['varname']?>" style="width: 12px; height: 12px;"> <small>Select none</small></label></span>
     <?php else: ?>
     <span class="help-inline">There's no items to choose.</span>
+    <input name="<?php echo $item['varname']; ?>" type="hidden" value="">
     <?php endif; ?>
   </div>
 </div>

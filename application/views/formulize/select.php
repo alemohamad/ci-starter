@@ -11,6 +11,7 @@
     </select>
     <?php else: ?>
     <span class="help-inline">There's no items to choose.</span>
+    <input name="<?php echo $item['varname']; ?>" type="hidden" value="">
     <?php endif; ?>
   </div>
 </div>
