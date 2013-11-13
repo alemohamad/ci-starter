@@ -6,6 +6,8 @@
         <title>CodeIgniter Project Starter</title>
         <meta name="description" content="CodeIgniter Project Starter">
 
+        <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="Search Ale Mohamad">
+
         <link rel="alternate" href="<?php echo site_url('feed'); ?>" title="Atom" type="application/atom+xml">
 
         <link rel="shortcut icon" href="<?php echo base_url('assets/img/favicon.ico'); ?>">
