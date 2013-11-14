@@ -49,7 +49,7 @@ $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = 'prefix_';
 ```
 
-**Note:** If not using a database, you must remove the configuration from the ```/application/config/autoload.php``` file.
+**Note:** If not using a database, you must remove the Database Library from the ```/application/config/autoload.php``` file.
 
 ### /application/config/constants.php
 
@@ -101,7 +101,6 @@ CREATE TABLE IF NOT EXISTS  `project_sessions` (
 * [CodeIgniter v2.1.4](http://ellislab.com/codeigniter) (EllisLab)
 * [MY_Model](https://github.com/jamierumbelow/codeigniter-base-model) (Jamie Rumbelow)
 * [MY_Controller](https://github.com/jamierumbelow/codeigniter-base-controller) (Jamie Rumbelow)
-* **MY_Router** (don't know the original author)
 * [ci-feed](https://github.com/RoumenDamianoff/ci-feed) (Roumen Damianoff)
 * [ci-sitemap](https://github.com/RoumenDamianoff/ci-sitemap) (Roumen Damianoff)
 * [Image_moo](http://www.matmoo.com/digital-dribble/codeigniter/image_moo/) (Matthew Augier)
@@ -110,6 +109,7 @@ CREATE TABLE IF NOT EXISTS  `project_sessions` (
 * [Formulize](https://github.com/alemohamad/ci-formulize) (Ale Mohamad)
 * [ci-slug](https://github.com/alemohamad/ci-slug) (Ale Mohamad)
 * [ci-csv](https://github.com/alemohamad/ci-csv) (Ale Mohamad)
+* [wysihtml5 v0.3.0](https://github.com/xing/wysihtml5) (XING Developers)
 * [Tags Manager v3.0](https://github.com/max-favilli/tagmanager) (Max Favilli)
 * [Spectrum v1.1.1](https://github.com/bgrins/spectrum) (Brian Grinstead)
 * [Adminer v3.7.1](https://github.com/vrana/adminer/) (Jakub Vrána)
