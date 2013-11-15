@@ -45,7 +45,7 @@ class Extras extends MY_Controller
         // set your feed's title, description, link, pubdate and language
         $feed->title = 'CodeIgniter Project Starter';
         $feed->description = 'This is a custom "project starter" curated by Ale Mohamad (myself) for me.';
-        $feed->link = site_url('/');
+        $feed->link = site_url('feed');
         $feed->lang = 'en';
         $feed->pubdate = $posts[0]->created_at; // date of your last update (in this example create date of your latest post)
 
