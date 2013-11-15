@@ -59,6 +59,7 @@ Modify the constants for the Admin.
 define('ADMIN_PROJECT',     'Project Name');
 define('ADMIN_CLIENT',      'Ale Mohamad');
 define('ADMIN_MULTIUSER',   FALSE);
+define('ADMIN_CLEAR_CACHE', FALSE);
 ```
 
 ### /assets/data/base.sql
