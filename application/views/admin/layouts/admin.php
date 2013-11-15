@@ -79,6 +79,10 @@
                                         <li><a href="<?php echo site_url('admin/settings'); ?>"><i class="icon-th-list"></i> Manage users</a></li>
                                     <?php endif; ?>
 
+                                    <?php if(ADMIN_CLEAR_CACHE): ?>
+                                        <li><a href="<?php echo site_url('admin/settings/clear-cache'); ?>"><i class="icon-trash"></i> Clear cache</a></li>
+                                    <?php endif; ?>
+
                                     <?php
                                     $this->load->config('ga_api'); // verify if ga is configured
                                     if($this->config->item('profile_id') != '1234567890'):

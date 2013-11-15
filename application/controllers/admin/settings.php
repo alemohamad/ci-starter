@@ -171,6 +171,16 @@ class Settings extends MY_Controller
         $this->settings->update($info['id'], $info);
     }
 
+    public function clear_cache()
+    {
+        $this->layout = FALSE;
+        $this->view = FALSE;
+
+        $this->output->clear_all_cache();
+
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
 }
 
 /* End of file admin/settings.php */
