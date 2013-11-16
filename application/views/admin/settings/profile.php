@@ -57,6 +57,13 @@
                 </div>
             </div>
 
+            <?php
+            if($this->session->userdata('user') == 'admin' && ADMIN_MULTIUSER):
+                $var = isset($item->permissions) ? $item->permissions : '';
+                echo $this->formulize->create('Admin sections', 'permissions', 'tags', $var)->render();
+            endif;
+            ?>
+
             <div class="form-actions">
                 <button class="btn btn-primary" id="submitButton">Update info</button>
             </div>

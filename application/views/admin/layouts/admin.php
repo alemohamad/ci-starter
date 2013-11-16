@@ -66,8 +66,11 @@
                     <a class="brand" href="<?php echo site_url('admin'); ?>"><?php echo ADMIN_PROJECT; ?></a>
                     <?php if ($this->session->userdata('logged_in') == TRUE): ?>
                     <div class="nav-collapse collapse">
+                        <?php $admin_sections = explode(",", $this->session->userdata('permissions')); ?>
                         <ul class="nav">
+                            <?php if(in_array('news', $admin_sections)): ?>
                             <li <?php echo ($file == 'news')?' class="active"':''; ?>><a href="<?php echo site_url('admin/news'); ?>">News</a></li>
+                            <?php endif; ?>
                         </ul>
                         <ul class="nav pull-right">
                             <li class="dropdown">

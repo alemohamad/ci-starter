@@ -74,6 +74,7 @@ CREATE TABLE IF NOT EXISTS `project_settings` (
   `name` VARCHAR(255) DEFAULT NULL,
   `email` VARCHAR(255) DEFAULT NULL,
   `pagination` int(11) DEFAULT 10,
+  `permissions` text NOT NULL,
   `visible` tinyint(1) DEFAULT 1,
   `deleted` tinyint(1) DEFAULT 0,
   `last_login` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',

@@ -18,6 +18,15 @@ echo $this->formulize->create('Name', 'name', 'txt', $var)->render();
 
 $var = isset($item->email) ? $item->email : '';
 echo $this->formulize->create('Email', 'email', 'txt', $var)->render();
+
+$admin = $this->settings->get_by( array( 'user' => 'admin' ) );
+$permissions = explode(",", $admin->permissions);
+$elements = array();
+foreach($permissions as $permission):
+    $elements[$permission] = $permission;
+endforeach;
+$var = isset($item->permissions) ? $item->permissions : '';
+echo $this->formulize->create('Admin permissions', 'permissions', 'list', $var, $elements)->render();
 ?>
 
   <?php if(isset($item->id)): ?>

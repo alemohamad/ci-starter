@@ -41,6 +41,7 @@ class Settings extends MY_Controller
             $info['password'] = $this->input->post('password');
             $info['name'] = $this->input->post('name');
             $info['email'] = $this->input->post('email');
+            $info['permissions'] = implode(",", $this->input->post('permissions'));
             $info['created_at'] = date("Y-m-d H:i:s");
 
             $this->settings->insert($info);
@@ -66,6 +67,7 @@ class Settings extends MY_Controller
             $info['password'] = $this->input->post('password');
             $info['name'] = $this->input->post('name');
             $info['email'] = $this->input->post('email');
+            $info['permissions'] = implode(",", $this->input->post('permissions'));
 
             $this->settings->update($info['id'], $info);
 
@@ -121,6 +123,8 @@ class Settings extends MY_Controller
         $this->data['title'] = "User info";
         $this->data['file'] = $this->file;
         $this->data['item'] = $this->settings->get($this->session->userdata('id'));
+
+        $this->load->library('formulize');
     }
 
     public function edit_info($id)
@@ -133,6 +137,10 @@ class Settings extends MY_Controller
             $info['id'] = $this->input->post('id');
             $info['name'] = $this->input->post('name');
             $info['email'] = $this->input->post('email');
+
+            if($this->session->userdata('user') == 'admin' && ADMIN_MULTIUSER) {
+                $info['permissions'] = $this->input->post('permissions');
+            }
 
             if($this->input->post('pass_new') == $this->input->post('pass_new_repeat')) {
                 if($this->input->post('pass_new') != "") {

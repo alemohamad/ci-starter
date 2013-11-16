@@ -17,6 +17,11 @@ class News extends MY_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Warning!</h4>You must be logged in to access the system and make changes.</div>');
             redirect(site_url('admin/login'));
         }
+
+        $admin_sections = explode(",", $this->session->userdata('permissions'));
+        if(!in_array($this->file, $admin_sections)) {
+            redirect(site_url('admin/settings'));
+        }
     }
 
     public function index()
