@@ -19,14 +19,14 @@ class Formulize
      *
      * @param string $name
      * @param string $varname
-     * @param string $type (options: txt, html, date, file, checkbox, select, list, tags, number, email, color)
+     * @param string $type (options: txt, html, date, file, checkbox, select, list, tags, number, email, color, selectpic)
      * @param string $value (optional)
      * @param array $select_elements (optional)
      * Note: The $select_elements param can also be used to pass 'formats' and 'size' values to the 'file' type.
      *
      * @return object
      */
-    public function create($name, $varname, $type = 'txt', $value = '', $select_elements = array())
+    public function create($name, $varname, $type = 'txt', $value = '', $select_elements = array(), $select_pics = array())
     {
         $this->item = array(
             'name'     => $name,
@@ -34,7 +34,8 @@ class Formulize
             'type'     => $type,
             'value'    => $value,
             'focus'    => '',
-            'elements' => $select_elements
+            'elements' => $select_elements,
+            'pics'     => $select_pics
         );
 
         if($this->first) {

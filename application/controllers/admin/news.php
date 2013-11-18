@@ -45,6 +45,7 @@ class News extends MY_Controller
             $info['email'] = $this->input->post('email');
             $info['date'] = $this->input->post('date');
             $info['display'] = ($this->input->post('display'))? 1 : 0;
+            $info['typepic'] = $this->input->post('typepic');
             $info['type'] = (is_array($this->input->post('type'))) ? implode(",", $this->input->post('type')) : '';
             $info['tags'] = $this->input->post('tags');
             $info['order'] = $this->input->post('order');
@@ -111,6 +112,7 @@ class News extends MY_Controller
             $info['email'] = $this->input->post('email');
             $info['date'] = $this->input->post('date');
             $info['display'] = ($this->input->post('display'))? 1 : 0;
+            $info['typepic'] = $this->input->post('typepic');
             $info['type'] = (is_array($this->input->post('type'))) ? implode(",", $this->input->post('type')) : '';
             $info['tags'] = $this->input->post('tags');
             $info['order'] = $this->input->post('order');
@@ -216,7 +218,8 @@ class News extends MY_Controller
             'date' => 'Date',
             'picture' => 'Picture',
             'display' => 'Display',
-            'tags' => 'Type',
+            'type' => 'Type',
+            'typepic' => 'Type Pic',
             'tags' => 'Tags',
             'order' => 'Order',
             'code' => 'Color code',
@@ -238,6 +241,7 @@ class News extends MY_Controller
                 'picture' => $item->picture,
                 'display' => $item->display,
                 'type' => $item->type,
+                'typepic' => $item->typepic,
                 'tags' => $item->tags,
                 'order' => $item->order,
                 'code' => $item->code,

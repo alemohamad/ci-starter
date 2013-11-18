@@ -44,6 +44,10 @@
         <!-- Le spectrum -->
         <script src="<?php echo site_url('assets/bootstrap/spectrum/spectrum.js'); ?>"></script>
         <link href="<?php echo site_url('assets/bootstrap/spectrum/spectrum.css'); ?>" rel="stylesheet"></link>
+
+        <!-- Le ms-Dropdown -->
+        <script src="<?php echo site_url('assets/bootstrap/msdropdown/jquery.dd.min.js'); ?>"></script>
+        <link href="<?php echo site_url('assets/bootstrap/msdropdown/dd.css'); ?>" rel="stylesheet"></link>
     </head>
 
     <body>

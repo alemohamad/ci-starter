@@ -35,6 +35,19 @@ $var = isset($item->type) ? $item->type : '';
 echo $this->formulize->create('Type', 'type', 'select', $var, $elements)->render();
 
 $elements = array(
+    'sport' => 'Sport',
+    'music' => 'Music',
+    'paint' => 'Paint'
+);
+$elements_pics = array(
+    site_url('assets/img/sport.jpg'),
+    site_url('assets/img/music.jpg'),
+    site_url('assets/img/paint.jpg')
+);
+$var = isset($item->typepic) ? $item->typepic : '';
+echo $this->formulize->create('Type pic', 'typepic', 'selectpic', $var, $elements, $elements_pics)->render();
+
+$elements = array(
     'sports'     => 'Sports',
     'technology' => 'Technology',
     'fashion'    => 'Fashion'
