@@ -10,8 +10,7 @@
 $var = isset($item->user) ? $item->user : '';
 echo $this->formulize->create('User', 'user', 'txt', $var)->render();
 
-$var = isset($item->password) ? $item->password : '';
-echo $this->formulize->create('Password', 'password', 'txt', $var)->render();
+echo $this->formulize->create('Password', 'password', 'password')->render();
 
 $var = isset($item->name) ? $item->name : '';
 echo $this->formulize->create('Name', 'name', 'txt', $var)->render();

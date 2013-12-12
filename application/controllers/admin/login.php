@@ -11,12 +11,21 @@ class Login extends MY_Controller
             redirect('admin', 'refresh');
         }
 
+        // if admin user does not exists, create it
+        $admin_user = $this->settings->get_by( array('user' => 'admin') );
+        if(count($admin_user) == 0) {
+            $user_id = $this->authentication->create_user('admin', 'admin');
+            $data = array('name' => 'Admin', 'email' => 'info@server.com', 'created_at' => date("Y-m-d H:i:s"));
+            $this->settings->update($user_id, $data);
+        }
+
         if ($this->input->post('submit')) {
             $user = $this->input->post('user');
             $pass = $this->input->post('password');
 
-            if ( $data = $this->settings->as_array()->get_by(array('user' => $user, 'password' => $pass)) ) {
-                $user = $data;
+            if ($this->authentication->login($user, $pass)) {
+                $user_id = $this->authentication->read('identifier');
+                $user = $data = $this->settings->as_array()->get($user_id);
 
                 $data['logged_in'] = true;
                 $this->session->set_userdata($data);
@@ -37,10 +46,7 @@ class Login extends MY_Controller
 
     public function logout()
     {
-        $data = array(
-            'logged_in' => false
-        );
-        $this->session->set_userdata($data);
+        $this->authentication->logout();
         redirect('admin/login', 'refresh');
     }
 

@@ -11,7 +11,7 @@ class Settings extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        if ($this->session->userdata('logged_in') != TRUE) {
+        if (!$this->authentication->is_loggedin()) {
             $this->session->set_flashdata('message', '<div class="alert alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Warning!</h4>You must be logged in to access the system and make changes.</div>');
             redirect(site_url('admin/login'));
         }
@@ -19,7 +19,7 @@ class Settings extends MY_Controller
 
     public function index()
     {
-        if($this->session->userdata('user') != 'admin' || !ADMIN_MULTIUSER) {
+        if($this->authentication->read('username') != 'admin' || !ADMIN_MULTIUSER) {
             redirect(base_url() . 'admin/' . $this->file . '/profile');
         }
 
@@ -37,14 +37,17 @@ class Settings extends MY_Controller
 
         if ($this->input->post('form_submit')) {
             $info = array();
-            $info['user'] = $this->input->post('user');
-            $info['password'] = $this->input->post('password');
+            $user = $this->input->post('user');
+            $password = $this->input->post('password');
+
+            $user_id = $this->authentication->create_user($user, $password);
+
             $info['name'] = $this->input->post('name');
             $info['email'] = $this->input->post('email');
             $info['permissions'] = implode(",", $this->input->post('permissions'));
             $info['created_at'] = date("Y-m-d H:i:s");
 
-            $this->settings->insert($info);
+            $this->settings->update($user_id, $info);
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Success!</h4>The item was created without problems.</div>');
             redirect(base_url() . 'admin/' . $this->file);
@@ -64,7 +67,12 @@ class Settings extends MY_Controller
             $info = array();
             $info['id'] = $this->input->post('id');
             $info['user'] = $this->input->post('user');
-            $info['password'] = $this->input->post('password');
+
+            if($this->input->post('password') != "") {
+                $password = $this->input->post('password');
+                $this->authentication->change_password($password, $info['id']);
+            }
+
             $info['name'] = $this->input->post('name');
             $info['email'] = $this->input->post('email');
             $info['permissions'] = implode(",", $this->input->post('permissions'));
@@ -122,7 +130,7 @@ class Settings extends MY_Controller
 
         $this->data['title'] = "User info";
         $this->data['file'] = $this->file;
-        $this->data['item'] = $this->settings->get($this->session->userdata('id'));
+        $this->data['item'] = $this->settings->get($this->authentication->read('identifier'));
 
         $this->load->library('formulize');
     }
@@ -138,13 +146,13 @@ class Settings extends MY_Controller
             $info['name'] = $this->input->post('name');
             $info['email'] = $this->input->post('email');
 
-            if($this->session->userdata('user') == 'admin' && ADMIN_MULTIUSER) {
+            if($this->authentication->read('username') == 'admin' && ADMIN_MULTIUSER) {
                 $info['permissions'] = $this->input->post('permissions');
             }
 
             if($this->input->post('pass_new') == $this->input->post('pass_new_repeat')) {
                 if($this->input->post('pass_new') != "") {
-                    $info['password'] = $this->input->post('pass_new');
+                    $this->authentication->change_password($this->input->post('pass_new'));
                 }
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-error alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Error!</h4>New passwords are not the same.</div>');
@@ -173,7 +181,7 @@ class Settings extends MY_Controller
 
         $pagination = $this->input->post('pagination');
 
-        $info = $this->settings->as_array()->get($this->session->userdata('id'));
+        $info = $this->settings->as_array()->get($this->authentication->read('identifier'));
         $info['pagination'] = $pagination;
         $this->session->set_userdata($info);
         $this->settings->update($info['id'], $info);

@@ -105,6 +105,7 @@ CREATE TABLE IF NOT EXISTS  `project_sessions` (
 * [MY_Controller](https://github.com/jamierumbelow/codeigniter-base-controller) (Jamie Rumbelow)
 * [MY_Output](https://github.com/danmurf/CI-MY_Output) (Dan Murfitt)
 * [Image_moo](http://www.matmoo.com/digital-dribble/codeigniter/image_moo/) (Matthew Augier)
+* [Basic CodeIgniter Authentication](https://github.com/joelvardy/Basic-CodeIgniter-Authentication) (Joel Vardy)
 * [Formulize](https://github.com/alemohamad/ci-formulize) (Ale Mohamad)
 * [ci-slug](https://github.com/alemohamad/ci-slug) (Ale Mohamad)
 * [ci-csv](https://github.com/alemohamad/ci-csv) (Ale Mohamad)

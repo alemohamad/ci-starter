@@ -13,7 +13,7 @@ class News extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        if ($this->session->userdata('logged_in') != TRUE) {
+        if (!$this->authentication->is_loggedin()) {
             $this->session->set_flashdata('message', '<div class="alert alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Warning!</h4>You must be logged in to access the system and make changes.</div>');
             redirect(site_url('admin/login'));
         }
