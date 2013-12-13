@@ -19,17 +19,21 @@
             </form>
 
             <p>
+	            <?php if($create): ?>
                 <button class="btn" type="button" href="<?php echo site_url('admin/' . $file . '/create'); ?>" data-target="#createModal" data-toggle="modal"><i class="icon-plus-sign"></i> Create item</button>
+	            <?php endif; ?>
+		        <?php if($export_file): ?>
                 <a class="btn btn-success" href="<?php echo site_url('admin/' . $file . '/export'); ?>"><i class="icon-file icon-white"></i> Export CSV file</a>
+            <?php endif; ?>
             </p>
 
             <table class="table table-striped table-hover tablesorter" id="main">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Title</th>
-                        <th>Date</th>
-                        <th>Picture</th>
+                        <?php foreach($display_fields as $field): ?>
+                        <th><?php echo ucfirst($field); ?></th>
+                        <?php endforeach; ?>
                         <th style="width: 120px;">Actions</th>
                     </tr>
                 </thead>
@@ -37,21 +41,31 @@
                     <?php foreach($items as $item): ?>
                     <tr>
                         <td><?php echo $item->id; ?></td>
-                        <td><a href="<?php echo site_url('news/article/' . $item->slug); ?>" target="_blank"><?php echo $item->title; ?></a></td>
-                        <td><?php echo $item->date; ?></td>
+                        <?php foreach($display_fields as $field): ?>
+                        <td><?php
+                        if($field == 'picture'):
+                            if(!empty($item->picture)):
+                                echo '<a href="' . site_url('assets/uploads/' . $item->picture . '_l.jpg') . '" rel="popover" data-html="true" data-content="<img src=\'' . site_url('assets/uploads/' . $item->picture . '_s.jpg') . '\'>" data-title="Photo preview" target="_blank"><i class="icon-picture"></i></a>';
+	                        endif;
+                        else:
+                            echo $item->$field;
+                        endif;
+                        ?></td>
+                        <?php endforeach; ?>
                         <td>
-                            <?php if(!empty($item->picture)): ?>
-                            <a href="<?php echo site_url('assets/uploads/' . $item->picture . '_l.jpg'); ?>" rel="popover" data-html="true" data-content="<img src='<?php echo site_url('assets/uploads/' . $item->picture . '_s.jpg'); ?>'>" data-title="Photo preview" target="_blank"><i class="icon-picture"></i></a>
+                            <?php if($state): ?>
+                                <?php if($item->visible): ?>
+                                    <a class="btn btn-small btn-warning state-button" href="<?php echo site_url('admin/' . $file . '/state/' . $item->id); ?>" rel="tooltip" data-title="Hide item"><i class="icon-eye-open icon-white"></i><img src="<?php echo site_url('asstes/bootstrap/img/load-btn.gif'); ?>" alt="" style="display: none;"></a>
+                                <?php else: ?>
+                                    <a class="btn btn-small state-button" href="<?php echo site_url('admin/' . $file . '/state/' . $item->id); ?>" rel="tooltip" data-title="Show item"><i class="icon-eye-open"></i><img src="<?php echo site_url('assets/bootstrap/img/load-btn.gif'); ?>" alt="" style="display: none;"></a>
+                                <?php endif; ?>
                             <?php endif; ?>
-                        </td>
-                        <td>
-                            <?php if($item->visible): ?>
-                            <a class="btn btn-small btn-warning state-button" href="<?php echo site_url('admin/' . $file . '/state/' . $item->id); ?>" rel="tooltip" data-title="Hide item"><i class="icon-eye-open icon-white"></i><img src="<?php echo site_url('asstes/bootstrap/img/load-btn.gif'); ?>" alt="" style="display: none;"></a>
-                            <?php else: ?>
-                            <a class="btn btn-small state-button" href="<?php echo site_url('admin/' . $file . '/state/' . $item->id); ?>" rel="tooltip" data-title="Show item"><i class="icon-eye-open"></i><img src="<?php echo site_url('assets/bootstrap/img/load-btn.gif'); ?>" alt="" style="display: none;"></a>
+                            <?php if($edit): ?>
+                                <a class="btn btn-small btn-primary edit-btn" type="button" rel="tooltip" data-title="Edit item" href="<?php echo site_url('admin/' . $file . '/edit/' . $item->id); ?>" data-target="#editModal" data-toggle="modal"><i class="icon-pencil icon-white"></i></a>
                             <?php endif; ?>
-                            <a class="btn btn-small btn-primary edit-btn" type="button" rel="tooltip" data-title="Edit item" href="<?php echo site_url('admin/' . $file . '/edit/' . $item->id); ?>" data-target="#editModal" data-toggle="modal"><i class="icon-pencil icon-white"></i></a>
-                            <a class="btn btn-small btn-danger delete-btn" type="button" rel="tooltip" data-title="Delete item" href="<?php echo site_url('admin/' . $file . '/delete/' . $item->id); ?>" data-target="#deleteModal" data-toggle="modal"><i class="icon-trash icon-white"></i></a>
+                            <?php if($delete): ?>
+                                <a class="btn btn-small btn-danger delete-btn" type="button" rel="tooltip" data-title="Delete item" href="<?php echo site_url('admin/' . $file . '/delete/' . $item->id); ?>" data-target="#deleteModal" data-toggle="modal"><i class="icon-trash icon-white"></i></a>
+                            <?php endif; ?>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -131,12 +145,12 @@ var base_url = '<?php echo site_url('/'); ?>';
 <script>
 $(document).ready(function(){
   $('#main')
-    .tablesorter({sortReset: true, sortRestart: true, headers:{ 3:{sorter:false}, 4:{sorter:false} } })
+    .tablesorter({sortReset: true, sortRestart: true, headers:{ <?php echo count($display_fields) + 1; ?>:{sorter:false} } })
     <?php if(!empty($items)):?>
     // list unsorted columns
     .tablesorterPager({container: $("#pager"), size: <?php echo $this->session->userdata('pagination'); ?>})
     <?php endif; ?>
-    .tablesorterFilter({filterContainer: "#filter-box", filterClearContainer: "#filter-clear-button", filterColumns: [0, 1, 2], filterCaseSensitive: false});
+    .tablesorterFilter({filterContainer: "#filter-box", filterClearContainer: "#filter-clear-button", filterCaseSensitive: false});
     // list columns that will be filtered
 
   $('.state-button').live('click', function(e) {

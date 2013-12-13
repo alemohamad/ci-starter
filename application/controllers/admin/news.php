@@ -27,16 +27,24 @@ class News extends MY_Controller
     public function index()
     {
         $this->layout = 'admin/layouts/admin.php';
+        $this->view = 'admin/admin_views/list.php';
 
         $this->data['title'] = $this->title;
         $this->data['file'] = $this->file;
         $this->data['items'] = $this->news->get_all();
+
+        $this->data['create'] = TRUE;
+        $this->data['edit'] = TRUE;
+        $this->data['delete'] = TRUE;
+        $this->data['state'] = TRUE;
+        $this->data['export_file'] = TRUE;
+        $this->data['display_fields'] = array('title', 'date', 'picture');
     }
 
     public function create()
     {
         $this->layout = FALSE;
-        $this->view = 'admin/news/form.php';
+        $this->view = 'admin/admin_views/form.php';
 
         if ($this->input->post('form_submit')) {
             $info = array();
@@ -96,13 +104,13 @@ class News extends MY_Controller
 
         $this->data['title'] = $this->title;
         $this->data['file'] = $this->file;
-        $this->load->library('formulize');
+        $this->data['form_fields'] = $this->form_fields();
     }
 
     public function edit($id)
     {
         $this->layout = FALSE;
-        $this->view = 'admin/news/form.php';
+        $this->view = 'admin/admin_views/form.php';
 
         if ($this->input->post('id')) {
             $info = array();
@@ -165,12 +173,78 @@ class News extends MY_Controller
         $this->data['title'] = $this->title;
         $this->data['file'] = $this->file;
         $this->data['item'] = $this->news->get($id);
-        $this->load->library('formulize');
+        $this->data['form_fields'] = $this->form_fields($this->data['item']);
+    }
+
+    private function form_fields($item = '')
+    {
+		$this->load->library('formulize');
+	    $output_form_fields = '';
+
+	    $var = isset($item->title) ? $item->title : '';
+		$output_form_fields .= $this->formulize->create('Title', 'title', 'txt', $var)->render();
+
+		$var = isset($item->text) ? $item->text : '';
+		$output_form_fields .= $this->formulize->create('Text', 'text', 'html', $var)->render();
+
+		$var = isset($item->email) ? $item->email : '';
+		$output_form_fields .= $this->formulize->create('Email', 'email', 'email', $var)->render();
+
+		$var = isset($item->date) ? $item->date : '';
+		$output_form_fields .= $this->formulize->create('Date', 'date', 'date', $var)->render();
+
+		$var = isset($item->picture) ? $item->picture : '';
+		$options = array('formats' => 'JPG, PNG', 'size' => '2 MB');
+		$output_form_fields .= $this->formulize->create('Picture', 'picture', 'file', $var, $options)->render();
+
+		$var = isset($item->display) ? $item->display : '';
+		$output_form_fields .= $this->formulize->create('Display', 'display', 'checkbox', $var)->render();
+
+		$elements = array(
+		    'sports'     => 'Sports',
+		    'technology' => 'Technology',
+		    'fashion'    => 'Fashion'
+		);
+		$var = isset($item->type) ? $item->type : '';
+		$output_form_fields .= $this->formulize->create('Type', 'type', 'select', $var, $elements)->render();
+
+		$elements = array(
+		    'sport' => 'Sport',
+		    'music' => 'Music',
+		    'paint' => 'Paint'
+		);
+		$elements_pics = array(
+		    site_url('assets/img/sport.jpg'),
+		    site_url('assets/img/music.jpg'),
+		    site_url('assets/img/paint.jpg')
+		);
+		$var = isset($item->typepic) ? $item->typepic : '';
+		$output_form_fields .= $this->formulize->create('Type pic', 'typepic', 'selectpic', $var, $elements, $elements_pics)->render();
+
+		$elements = array(
+		    'sports'     => 'Sports',
+		    'technology' => 'Technology',
+		    'fashion'    => 'Fashion'
+		);
+		$var = isset($item->type) ? $item->type : '';
+		$output_form_fields .= $this->formulize->create('Type', 'type', 'list', $var, $elements)->render();
+
+		$var = isset($item->tags) ? $item->tags : '';
+		$output_form_fields .= $this->formulize->create('Tags', 'tags', 'tags', $var)->render();
+
+		$var = isset($item->order) ? $item->order : '';
+		$output_form_fields .= $this->formulize->create('Order', 'order', 'number', $var)->render();
+
+		$var = isset($item->code) ? $item->code : '';
+		$output_form_fields .= $this->formulize->create('Color code', 'code', 'color', $var)->render();
+
+		return $output_form_fields;
     }
 
     public function delete($id)
     {
         $this->layout = FALSE;
+        $this->view = 'admin/admin_views/delete.php';
 
         if ($this->input->post('id')) {
             $this->news->delete($id);
@@ -182,6 +256,7 @@ class News extends MY_Controller
         $this->data['title'] = $this->title;
         $this->data['file'] = $this->file;
         $this->data['item'] = $this->news->get($id);
+        $this->data['delete_title'] = 'title';
     }
 
     public function state($id)
