@@ -4,6 +4,7 @@
 
             <div class="page-header">
                 <h1>Content Management System</h1>
+                <p class="lead">I forgot my password!</p>
             </div>
 
             <?php
@@ -16,19 +17,12 @@
                 <div class="control-group">
                     <label class="control-label" for="inputUser">Username</label>
                     <div class="controls">
-                        <input type="text" name="user" id="inputUser" placeholder="Username" autofocus>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="inputPassword">Password</label>
-                    <div class="controls">
-                        <input type="password" name="password" id="inputPassword" placeholder="Password">
+                        <input type="text" name="user" id="inputUser" placeholder="What's your username?" autofocus>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="controls">
-                        <button type="submit" name="submit" value="submit" class="btn btn-small btn-success"><i class="icon-chevron-right icon-white"></i> Log in</button>
-						<a class="btn btn-small btn-danger" href="<?php echo site_url('/admin/login/forgot-password'); ?>"><i class="icon-warning-sign icon-white"></i> I forgot my password</a>
+                        <button type="submit" name="submit" value="submit" class="btn btn-small btn-danger"><i class="icon-lock icon-white"></i> Reset my password</button>
                     </div>
                 </div>
             </form>

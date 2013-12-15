@@ -37,10 +37,11 @@ define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 
-define('ADMIN_PROJECT',		'Project Name');
-define('ADMIN_CLIENT',		'Ale Mohamad');
-define('ADMIN_MULTIUSER',	FALSE);
-define('ADMIN_CLEAR_CACHE',	FALSE);
+define('ADMIN_PROJECT',		  'Project Name');
+define('ADMIN_CLIENT',		  'Ale Mohamad');
+define('ADMIN_PRIMARY_EMAIL', 'user@server.com');
+define('ADMIN_MULTIUSER',	  FALSE);
+define('ADMIN_CLEAR_CACHE',   FALSE);
 
 
 /* End of file constants.php */

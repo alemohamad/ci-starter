@@ -31,7 +31,7 @@
                 <label class="control-label" for="email">Email</label>
                 <div class="controls">
                     <input class="input-xlarge" type="text" id="email" name="email" value="<?php echo $item->email; ?>">
-                    <span class="help-inline"><a href="http://www.gravatar.com/" target="_blank">Gravatar</a> email account.</span>
+                    <span class="help-inline"><a href="http://www.gravatar.com/" target="_blank">Gravatar</a> account and security.</span>
                 </div>
             </div>
 

@@ -56,10 +56,11 @@ $db['default']['dbprefix'] = 'prefix_';
 Modify the constants for the Admin.
 
 ```php
-define('ADMIN_PROJECT',     'Project Name');
-define('ADMIN_CLIENT',      'Ale Mohamad');
-define('ADMIN_MULTIUSER',   FALSE);
-define('ADMIN_CLEAR_CACHE', FALSE);
+define('ADMIN_PROJECT',		  'Project Name');
+define('ADMIN_CLIENT',		  'Ale Mohamad');
+define('ADMIN_PRIMARY_EMAIL', 'user@server.com');
+define('ADMIN_MULTIUSER',	  FALSE);
+define('ADMIN_CLEAR_CACHE',   FALSE);
 ```
 
 ### /assets/data/base.sql
@@ -75,6 +76,7 @@ CREATE TABLE IF NOT EXISTS `project_settings` (
   `email` VARCHAR(255) DEFAULT NULL,
   `pagination` int(11) DEFAULT 10,
   `permissions` text NOT NULL,
+  `reset_token` varchar(64) DEFAULT NULL,
   `visible` tinyint(1) DEFAULT 1,
   `deleted` tinyint(1) DEFAULT 0,
   `last_login` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
