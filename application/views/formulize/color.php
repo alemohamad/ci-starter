@@ -1,12 +1,16 @@
 <?php header("Content-type: text/html; charset=utf-8"); ?>
 <?php $time_item = time(); ?>
-<div class="control-group">
-  <label class="control-label" for="color-<?php echo $item['varname'] . '-' . $time_item; ?>"><?php echo $item['name']; ?></label>
-  <div class="controls">
-    <input class="input-small" type="text" id="enterAColor" value="<?php echo ($item['value'])? $item['value'] : '#000000'; ?>">
-    <input class="input-xlarge" type="text" id="color-<?php echo $item['varname'] . '-' . $time_item; ?>" name="<?php echo $item['varname']; ?>" value="<?php echo $item['value']; ?>" <?php echo $item['focus']; ?>>
-    <span class="help-block">Only colors in hexadecimal format.</span>
-  </div>
+<div class="form-group">
+	<label for="color-<?php echo $item['varname'] . '-' . $time_item; ?>" class="col-sm-2 control-label"><?php echo $item['name']; ?></label>
+	<div class="col-sm-10">
+		<div class="col-md-4">
+			<input type="text" class="form-control" id="enterAColor" value="<?php echo ($item['value'])? $item['value'] : '#000000'; ?>">
+		</div>
+		<div class="col-md-4">
+			<input type="text" class="form-control" id="color-<?php echo $item['varname'] . '-' . $time_item; ?>" name="<?php echo $item['varname']; ?>" value="<?php echo $item['value']; ?>" <?php echo $item['focus']; ?>>
+		</div>
+	    <span class="help-block">Only colors in hexadecimal format.</span>
+	</div>
 </div>
 
 <script>

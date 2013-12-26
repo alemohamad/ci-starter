@@ -6,13 +6,16 @@ class Settings extends MY_Controller
     private $title = "Manage admin users";
     private $file = "settings";
 
+    protected $helpers = array( 'am' );
+
     protected $models = array( 'settings' );
 
     public function __construct()
     {
         parent::__construct();
         if (!$this->authentication->is_loggedin()) {
-            $this->session->set_flashdata('message', '<div class="alert alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Warning!</h4>You must be logged in to access the system and make changes.</div>');
+    		$this->session->set_flashdata("alert_message", "<strong>Warning!</strong> You must be logged in to access the system and make changes.");
+			$this->session->set_flashdata("alert_type", "warning");
             redirect(site_url('admin/login'));
         }
     }
@@ -49,7 +52,8 @@ class Settings extends MY_Controller
 
             $this->settings->update($user_id, $info);
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Success!</h4>The item was created without problems.</div>');
+    		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> The item was created without issues.");
+			$this->session->set_flashdata("alert_type", "success");
             redirect(base_url() . 'admin/' . $this->file);
         }
 
@@ -79,7 +83,8 @@ class Settings extends MY_Controller
 
             $this->settings->update($info['id'], $info);
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Success!</h4>The item was updated without problems.</div>');
+    		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> The item was updated without issues.");
+			$this->session->set_flashdata("alert_type", "success");
             redirect(base_url() . 'admin/' . $this->file);
         }
 
@@ -96,7 +101,8 @@ class Settings extends MY_Controller
         if ($this->input->post('id')) {
             $this->settings->delete($id);
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Success!</h4>The item was deleted without problems.</div>');
+    		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> The item was deleted without issues.");
+			$this->session->set_flashdata("alert_type", "success");
             redirect(base_url() . 'admin/' . $this->file);
         }
 
@@ -145,9 +151,10 @@ class Settings extends MY_Controller
             $info['id'] = $this->input->post('id');
             $info['name'] = $this->input->post('name');
             $info['email'] = $this->input->post('email');
+            $info['theme'] = $this->input->post('theme');
 
             if($this->authentication->read('username') == 'admin' && ADMIN_MULTIUSER) {
-                $info['permissions'] = $this->input->post('permissions');
+                $data['permissions'] = $info['permissions'] = $this->input->post('permissions');
             }
 
             if($this->input->post('pass_new') == $this->input->post('pass_new_repeat')) {
@@ -155,8 +162,9 @@ class Settings extends MY_Controller
                     $this->authentication->change_password($this->input->post('pass_new'));
                 }
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-error alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Error!</h4>New passwords are not the same.</div>');
-                redirect(base_url() . 'admin/' . $this->file);
+        		$this->session->set_flashdata("alert_message", "<strong>Error!</strong> New passwords are not the same.");
+    			$this->session->set_flashdata("alert_type", "danger");
+                redirect(base_url() . 'admin/' . $this->file . '/profile');
             }
 
             $this->settings->update($info['id'], $info);
@@ -165,9 +173,11 @@ class Settings extends MY_Controller
             $data = array();
             $data['name'] = $info['name'];
             $data['email'] = $info['email'];
+            $data['theme'] = $info['theme'];
             $this->session->set_userdata($data);
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Success!</h4>The user info was updated without problems.</div>');
+    		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> The user info was updated without issues.");
+			$this->session->set_flashdata("alert_type", "success");
             redirect(base_url() . 'admin/' . $this->file . '/profile');
         }
 
@@ -194,8 +204,77 @@ class Settings extends MY_Controller
 
         $this->output->clear_all_cache();
 
+		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> Site cache cleared.");
+		$this->session->set_flashdata("alert_type", "success");
         redirect($_SERVER['HTTP_REFERER']);
     }
+
+    public function backup_db()
+    {
+        $this->layout = FALSE;
+        $this->view = FALSE;
+
+		// load mysql config
+		$this->db = $this->load->database('export_db', TRUE);
+
+		// create db backup
+        $this->load->model('backupdb');
+		$db_file = $this->backupdb->backup();
+
+		// prepare and send email with link
+		$this->load->library('email');
+        $config['mailtype'] = 'html';
+        $this->email->initialize($config);
+		$domain = str_replace('www.', '', $_SERVER['HTTP_HOST']);
+		$this->email->from('no-reply@' . $domain, ADMIN_PROJECT);
+		$this->email->to($this->session->userdata('email'), $this->session->userdata('name'));
+        $this->email->subject(ADMIN_PROJECT . ' : Database backup');
+        $template = $this->load->view('admin/settings/email_db_backup', array('db_file' => $db_file), TRUE);
+        $this->email->message($template);
+        $var = $this->email->send();
+
+		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> The backup was made and an email was sent with the link.");
+		$this->session->set_flashdata("alert_type", "success");
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+	public function feedback_admin()
+	{
+		$this->layout = FALSE;
+        $this->load->library('formulize');
+		
+        if ($this->input->post('form_submit')) {
+            $info = array();
+            $info['subject'] = $this->input->post('subject');
+            $info['message'] = nl2br($this->input->post('message'));
+			$info['user']    = $this->session->userdata('user');
+			$info['name']    = $this->session->userdata('name');
+			
+			$admin_user = $this->settings->get_by( array('user' => 'admin') );
+
+			// prepare and send email with link
+			$this->load->library('email');
+	        $config['mailtype'] = 'html';
+	        $this->email->initialize($config);
+			$domain = str_replace('www.', '', $_SERVER['HTTP_HOST']);
+			$this->email->from('no-reply@' . $domain, ADMIN_PROJECT);
+			$this->email->to($admin_user->email, $admin_user->name);
+	        $this->email->subject('User feedback : ' . $info['subject']);
+	        $template = $this->load->view('admin/settings/email_feedback', $info, TRUE);
+	        $this->email->message($template);
+	        $var = $this->email->send();
+
+    		$this->session->set_flashdata("alert_message", "<strong>Message sent!</strong> Thanks for writing. Soon we'll be answering your comments.");
+			$this->session->set_flashdata("alert_type", "success");
+	        redirect($_SERVER['HTTP_REFERER']);
+        }
+	}
+
+	public function help()
+	{
+        $this->layout = 'admin/layouts/admin.php';
+        $this->data['file'] = $this->file;
+	}
 
 }
 

@@ -1,6 +1,0 @@
-user-agent: *
-disallow: /admin/
-disallow: /system/
-disallow: /application/
-
-Sitemap: http://website.com/sitemap.xml

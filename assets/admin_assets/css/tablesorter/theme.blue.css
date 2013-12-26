@@ -1,0 +1,25 @@
+/* tables */
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	background-color: #ccc;
+	padding-left: 10px;
+}
+table.tablesorter thead tr .tablesorter-header {
+	background-image: url(bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+table.tablesorter thead tr .tablesorter-headerAsc {
+	background-image: url(asc.gif) !important;
+}
+table.tablesorter thead tr .tablesorter-headerDesc {
+	background-image: url(desc.gif) !important;
+}
+table.tablesorter thead tr .tablesorter-headerDesc, table.tablesorter thead tr .tablesorter-headerAsc {
+	background-color: #999;
+	color: #eee;
+}
+table.tablesorter thead tr .sorter-false {
+	background: #eee;
+	cursor: default;
+}

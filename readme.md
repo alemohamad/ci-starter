@@ -49,18 +49,19 @@ $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = 'prefix_';
 ```
 
-**Note:** If not using a database, you must remove the Database Library from the ```/application/config/autoload.php``` file.
+**Note:** If not using a database, you must remove the Database Library from the ```/application/config/autoload.php``` file and turn the ```sess_use_database``` session option to ```FALSE```.
 
 ### /application/config/constants.php
 
 Modify the constants for the Admin.
 
 ```php
-define('ADMIN_PROJECT',		  'Project Name');
+define('ADMIN_PROJECT',		  'Project name');
 define('ADMIN_CLIENT',		  'Ale Mohamad');
 define('ADMIN_PRIMARY_EMAIL', 'user@server.com');
 define('ADMIN_MULTIUSER',	  FALSE);
 define('ADMIN_CLEAR_CACHE',   FALSE);
+define('ADMIN_DB_BACKUP',     FALSE);
 ```
 
 ### /assets/data/base.sql
@@ -74,8 +75,9 @@ CREATE TABLE IF NOT EXISTS `project_settings` (
   `password` VARCHAR(255) DEFAULT NULL,
   `name` VARCHAR(255) DEFAULT NULL,
   `email` VARCHAR(255) DEFAULT NULL,
-  `pagination` int(11) DEFAULT 10,
   `permissions` text NOT NULL,
+  `theme` varchar(255) DEFAULT 'default',
+  `pagination` int(11) DEFAULT 10,
   `reset_token` varchar(64) DEFAULT NULL,
   `visible` tinyint(1) DEFAULT 1,
   `deleted` tinyint(1) DEFAULT 0,
@@ -106,7 +108,7 @@ CREATE TABLE IF NOT EXISTS  `project_sessions` (
 * [MY_Model](https://github.com/jamierumbelow/codeigniter-base-model) (Jamie Rumbelow)
 * [MY_Controller](https://github.com/jamierumbelow/codeigniter-base-controller) (Jamie Rumbelow)
 * [MY_Output](https://github.com/danmurf/CI-MY_Output) (Dan Murfitt)
-* [Image_moo](http://www.matmoo.com/digital-dribble/codeigniter/image_moo/) (Matthew Augier)
+* [Image_moo v1.1.5](http://www.matmoo.com/digital-dribble/codeigniter/image_moo/) (Matthew Augier)
 * [Basic CodeIgniter Authentication](https://github.com/joelvardy/Basic-CodeIgniter-Authentication) (Joel Vardy)
 * [Formulize](https://github.com/alemohamad/ci-formulize) (Ale Mohamad)
 * [ci-slug](https://github.com/alemohamad/ci-slug) (Ale Mohamad)
@@ -115,12 +117,14 @@ CREATE TABLE IF NOT EXISTS  `project_sessions` (
 * [ci-sitemap](https://github.com/RoumenDamianoff/ci-sitemap) (Roumen Damianoff)
 * [Google Analytics Api library](https://github.com/chonthu/Codeigniter-Google-Analytics-Class) (Nithin Meppurathu)
 * [Gravatar library](https://github.com/rsmarshall/Codeigniter-Gravatar) (Ryan Marshall)
-* [wysihtml5 v0.3.0](https://github.com/xing/wysihtml5) (XING Developers)
+* [CodeIgniter Database backup Model](https://github.com/psradich/CI_DatabaseBackup) (psradich)
+* [bootstrap-wysihtml5](https://github.com/jhollingworth/bootstrap-wysihtml5/) (James Hollingworth)
+* [tablesorter v2.14.4](https://github.com/Mottie/tablesorter) (Rob G)
 * [Tags Manager v3.0](https://github.com/max-favilli/tagmanager) (Max Favilli)
 * [Spectrum v1.1.1](https://github.com/bgrins/spectrum) (Brian Grinstead)
 * [ms-Dropdown v3.5.2](https://github.com/marghoobsuleman/ms-Dropdown) (Marghoob Suleman)
 * [Adminer v3.7.1](https://github.com/vrana/adminer/) (Jakub Vrána)
-* [Bootstrap v2.3.2](http://getbootstrap.com/2.3.2/) (Mark Otto + jacob)
+* [Bootstrap v3.0.3](http://getbootstrap.com/) (Mark Otto + jacob)
 
 ## About me
 

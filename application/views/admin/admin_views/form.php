@@ -1,18 +1,23 @@
 <?php header('Content-Type:text/html; charset=UTF-8'); ?>
+<?php $title_section = (isset($item->id))? 'Edit' : 'Create'; ?>
+<?php $url_section = (isset($item->id))? site_url('admin/' . $file . '/edit/' . $item->id) : site_url('admin/' . $file . '/create') ; ?>
+<div class="modal-dialog">
+	<div class="modal-content">
+		<form class="form-horizontal" action="<?=$url_section?>" method="post" enctype="multipart/form-data">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel"><?=$title_section?> item</h4>
+			</div>
+			<div class="modal-body">
+				<?=$form_fields?>
 
-<?php if(isset($item->id)): ?>
-  <form class="form-horizontal" action="<?php echo site_url('admin/' . $file . '/edit/' . $item->id); ?>" method="post" enctype="multipart/form-data">
-<?php else: ?>
-  <form class="form-horizontal" action="<?php echo site_url('admin/' . $file . '/create'); ?>" method="post" enctype="multipart/form-data">
-<?php endif; ?>
-
-<?php
-echo $form_fields;
-?>
-
-  <?php if(isset($item->id)): ?>
-  <input name="id" type="hidden" value="<?php echo $item->id; ?>">
-  <?php endif; ?>
-  <input name="form_submit" type="hidden" value="1">
-
-</form>
+				<input name="id" type="hidden" value="<?= (isset($item->id))? $item->id : ''; ?>">
+				<input name="form_submit" type="hidden" value="1">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary"><?=$title_section?> item</button>
+			</div>
+		</form>
+	</div>
+</div>

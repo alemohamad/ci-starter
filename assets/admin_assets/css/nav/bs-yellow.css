@@ -1,0 +1,67 @@
+/* BOOTSTRAP WARNING */
+/* http://smarchal.com/twbscolor/?bd=fcf8e3&bh=faebcc&cd=8a6d3b&ch=66512c */
+
+.navbar-default {
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+.navbar-default .navbar-brand {
+    color: #8a6d3b;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #66512c;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #8a6d3b;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #66512c;
+}
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #66512c;
+    background-color: #faebcc;
+}
+.navbar-default .navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:hover, 
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #66512c;
+    background-color: #faebcc;
+}
+.navbar-default .navbar-nav > .dropdown > a .caret {
+    border-top-color: #8a6d3b;
+    border-bottom-color: #8a6d3b;
+}
+.navbar-default .navbar-nav > .dropdown > a:hover .caret,
+.navbar-default .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: #66512c;
+    border-bottom-color: #66512c;
+}
+.navbar-default .navbar-nav > .open > a .caret, 
+.navbar-default .navbar-nav > .open > a:hover .caret, 
+.navbar-default .navbar-nav > .open > a:focus .caret {
+    border-top-color: #66512c;
+    border-bottom-color: #66512c;
+}
+.navbar-default .navbar-toggle {
+    border-color: #faebcc;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #faebcc;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #8a6d3b;
+}
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #8a6d3b;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #66512c;
+    }
+}

@@ -9,8 +9,11 @@ class Home extends MY_Controller
         if (!$this->authentication->is_loggedin()) {
             redirect(site_url('admin/login'));
         } else {
-            // redirect to the first section
-            redirect(site_url('admin/news'));
+            // redirect to the first section in the user's permissons
+			$permissions = explode(",", $this->session->userdata('permissions'));
+			$sections = explode("/", $permissions[0]);
+			$section = $sections[1];
+            redirect(site_url('admin/' . $section));
         }
     }
 

@@ -1,0 +1,67 @@
+/* BOOTSTRAP DANGER */
+/* http://smarchal.com/twbscolor/?bd=f2dede&bh=ebccd1&cd=a94442&ch=843534 */
+
+.navbar-default {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+.navbar-default .navbar-brand {
+    color: #a94442;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #843534;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #a94442;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #843534;
+}
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #843534;
+    background-color: #ebccd1;
+}
+.navbar-default .navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:hover, 
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #843534;
+    background-color: #ebccd1;
+}
+.navbar-default .navbar-nav > .dropdown > a .caret {
+    border-top-color: #a94442;
+    border-bottom-color: #a94442;
+}
+.navbar-default .navbar-nav > .dropdown > a:hover .caret,
+.navbar-default .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: #843534;
+    border-bottom-color: #843534;
+}
+.navbar-default .navbar-nav > .open > a .caret, 
+.navbar-default .navbar-nav > .open > a:hover .caret, 
+.navbar-default .navbar-nav > .open > a:focus .caret {
+    border-top-color: #843534;
+    border-bottom-color: #843534;
+}
+.navbar-default .navbar-toggle {
+    border-color: #ebccd1;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #ebccd1;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #a94442;
+}
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #a94442;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #843534;
+    }
+}

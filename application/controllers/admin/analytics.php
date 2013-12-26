@@ -3,6 +3,8 @@
 class Analytics extends MY_Controller
 {
 
+    protected $helpers = array( 'am' );
+
     private $title = "Google Analytics";
     private $file = "analytics";
 
@@ -23,7 +25,7 @@ class Analytics extends MY_Controller
         $this->data['file'] = $this->file;
 
         $days = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
-        $month = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'November', 'December');
+        $month = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
 
         $this->load->library('ga_api');
 
@@ -43,7 +45,7 @@ class Analytics extends MY_Controller
         foreach($ga as $day => $item) {
             $info = array();
             $iday = strtotime($day);
-            $info[] = $days[date('w', $iday)] . ', ' . date('j', $iday) . ' de ' . $month[date('n', $iday) - 1] . ', ' . date('Y', $iday);
+            $info[] = $days[date('w', $iday)] . ', ' . $month[date('n', $iday) - 1] . ' ' . date('j', $iday) . ', ' . date('Y', $iday);
             $info[] = intval($item['visits']);
             $info[] = intval($item['newVisits']);
             $results[] = $info;

@@ -48,12 +48,12 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = '';
-$db['default']['password'] = '';
-$db['default']['database'] = '';
+$db['default']['hostname'] = '190.228.29.58';
+$db['default']['username'] = 'amohamad';
+$db['default']['password'] = 'CXxQaPuG';
+$db['default']['database'] = 'amohamad';
 $db['default']['dbdriver'] = 'mysqli';
-$db['default']['dbprefix'] = '';
+$db['default']['dbprefix'] = 'datos_';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
 $db['default']['cache_on'] = FALSE;
@@ -63,6 +63,9 @@ $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
+
+$db['export_db'] = $db['default'];
+$db['export_db']['dbdriver'] = 'mysql';
 
 
 /* End of file database.php */

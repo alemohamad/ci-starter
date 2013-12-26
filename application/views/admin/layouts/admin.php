@@ -1,146 +1,156 @@
 <?php header('Content-Type:text/html; charset=UTF-8'); ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>CMS</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Content Management System">
+    <meta name="author" content="<?=ADMIN_CLIENT?>">
+    <link rel="shortcut icon" href="<?=site_url('assets/admin_assets/img/favicon.ico')?>">
 
-        <!-- Le styles -->
-        <link href="<?php echo site_url('assets/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet">
-        <link href="<?php echo site_url('assets/bootstrap/css/bootstrap-responsive.min.css'); ?>" rel="stylesheet">
-        <link href="<?php echo site_url('assets/bootstrap/js/google-code-prettify/prettify.css'); ?>" rel="stylesheet">
-        <link href="<?php echo site_url('assets/bootstrap/css/ui-lightness/jquery-ui-1.8.23.custom.css'); ?>" rel="stylesheet">
-        <link href="<?php echo site_url('assets/bootstrap/css/styles.css'); ?>" rel="stylesheet">
-        <style type="text/css">
-        #status { background-image:url(<?php echo site_url('assets/bootstrap/img/loader-b.gif'); ?>); }
-        </style>
+    <title>CMS - <?=ADMIN_PROJECT?></title>
 
-        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
-          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+    <!-- Bootstrap core CSS -->
+    <link href="<?= site_url('assets/admin_assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
+	<?php if($this->session->userdata('theme') != 'default' && $this->session->userdata('logged_in')): ?>
+    <link href="<?= site_url('assets/admin_assets/css/nav/bs-' . $this->session->userdata('theme') . '.css'); ?>" rel="stylesheet">
+	<?php endif; ?>
 
-        <!-- Le fav and touch icons -->
-        <link rel="shortcut icon" href="<?php echo site_url('assets/bootstrap/img/favicon.ico'); ?>">
+    <!-- Custom styles -->
+    <link href="<?= site_url('assets/admin_assets/css/ui-lightness/jquery-ui-1.8.23.custom.css'); ?>" rel="stylesheet">
+    <link href="<?= site_url('assets/admin_assets/css/tablesorter/theme.blue.css'); ?>" rel="stylesheet">
+    <link href="<?= site_url('assets/admin_assets/editor/bootstrap-wysihtml5.css'); ?>" rel="stylesheet"></link>
+    <link href="<?= site_url('assets/admin_assets/tagmanager/tagmanager.css'); ?>" rel="stylesheet"></link>
+    <link href="<?= site_url('assets/admin_assets/spectrum/spectrum.css'); ?>" rel="stylesheet"></link>
+    <link href="<?= site_url('assets/admin_assets/msdropdown/dd.css'); ?>" rel="stylesheet"></link>
+    <link href="<?= site_url('assets/admin_assets/css/admin.css'); ?>" rel="stylesheet">
 
-        <!-- Le tablesorter javascript -->
-        <script src="<?php echo site_url('assets/bootstrap/js/jquery-1.7.2.min.js'); ?>"></script>
-        <script src="<?php echo site_url('assets/bootstrap/js/jquery-ui-1.8.23.custom.min.js'); ?>"></script>
-        <script src="<?php echo site_url('assets/bootstrap/js/jquery.tablesorter.js'); ?>"></script>
-        <script src="<?php echo site_url('assets/bootstrap/js/jquery.tablesorter.widgets.min.js'); ?>"></script>
-        <script src="<?php echo site_url('assets/bootstrap/js/jquery.tablesorter.filter.js'); ?>"></script>
-        <script src="<?php echo site_url('assets/bootstrap/js/jquery.tablesorter.pager.js'); ?>"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
 
-        <!-- Le wysiwyg bootstrap editor -->
-        <script src="<?php echo site_url('assets/bootstrap/editor/wysihtml5-0.3.0.js'); ?>"></script>
-        <script src="<?php echo site_url('assets/bootstrap/editor/bootstrap-wysihtml5.js'); ?>"></script>
-        <link href="<?php echo site_url('assets/bootstrap/editor/bootstrap-wysihtml5.css'); ?>" rel="stylesheet"></link>
+<body>
 
-        <!-- Le tag manager -->
-        <script src="<?php echo site_url('assets/bootstrap/tagmanager/tagmanager.js'); ?>"></script>
-        <link href="<?php echo site_url('assets/bootstrap/tagmanager/tagmanager.css'); ?>" rel="stylesheet"></link>
+    <!-- Admin preloader -->
+    <div id="preloader">
+        <div id="status"><span class="glyphicon glyphicon-cloud-download"></span> Loading CMS</div>
+    </div>
 
-        <!-- Le spectrum -->
-        <script src="<?php echo site_url('assets/bootstrap/spectrum/spectrum.js'); ?>"></script>
-        <link href="<?php echo site_url('assets/bootstrap/spectrum/spectrum.css'); ?>" rel="stylesheet"></link>
+    <!-- Wrap all page content here -->
+    <div id="wrap">
 
-        <!-- Le ms-Dropdown -->
-        <script src="<?php echo site_url('assets/bootstrap/msdropdown/jquery.dd.min.js'); ?>"></script>
-        <link href="<?php echo site_url('assets/bootstrap/msdropdown/dd.css'); ?>" rel="stylesheet"></link>
-    </head>
-
-    <body>
-
-        <!-- Admin preloader -->
-        <div id="preloader">
-            <div id="status">&nbsp;</div>
-        </div>
-
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
+        <!-- Fixed navbar -->
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
                     <?php if ($this->session->userdata('logged_in') == TRUE): ?>
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </a>
+                    </button>
                     <?php endif; ?>
-                    <a class="brand" href="<?php echo site_url('admin'); ?>"><?php echo ADMIN_PROJECT; ?></a>
-                    <?php if ($this->session->userdata('logged_in') == TRUE): ?>
-                    <div class="nav-collapse collapse">
-                        <?php $admin_sections = explode(",", $this->session->userdata('permissions')); ?>
-                        <ul class="nav">
-                            <?php if(in_array('news', $admin_sections)): ?>
-                            <li <?php echo ($file == 'news')?' class="active"':''; ?>><a href="<?php echo site_url('admin/news'); ?>">News</a></li>
-                            <?php endif; ?>
-                        </ul>
-                        <ul class="nav pull-right">
-                            <li class="dropdown">
-                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo $this->gravatar->get_gravatar($this->session->userdata('email'), NULL, 20); ?>" class="gravatar" style="margin-right: 5px;" alt="Profile picture"> Logged in as <?php echo $this->session->userdata('name'); ?> <b class="caret"></b></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="<?php echo site_url('admin/settings/profile'); ?>"><i class="icon-user"></i> User info</a></li>
-
-                                    <?php if($this->session->userdata('user') == 'admin' && ADMIN_MULTIUSER): ?>
-                                        <li><a href="<?php echo site_url('admin/settings'); ?>"><i class="icon-th-list"></i> Manage users</a></li>
-                                    <?php endif; ?>
-
-                                    <?php if(ADMIN_CLEAR_CACHE): ?>
-                                        <li><a href="<?php echo site_url('admin/settings/clear-cache'); ?>"><i class="icon-trash"></i> Clear cache</a></li>
-                                    <?php endif; ?>
-
-                                    <?php
-                                    $this->load->config('ga_api'); // verify if ga is configured
-                                    if($this->config->item('profile_id') != '1234567890'):
-                                    ?>
-                                        <li><a href="<?php echo site_url('admin/analytics'); ?>"><i class="icon-signal"></i> Google Analytics</a></li>
-                                    <?php endif; ?>
-
-                                    <li><a href="<?php echo site_url('/'); ?>" target="_blank"><i class="icon-home"></i> Go to website</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="<?php echo site_url('admin/login/logout'); ?>"><i class="icon-off"></i> Logout</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div><!--/.nav-collapse -->
-                    <?php endif; ?>
+                    <a class="navbar-brand" href="<?=site_url('admin')?>"><?=ADMIN_PROJECT?></a>
                 </div>
+                <?php if ($this->session->userdata('logged_in') == TRUE): ?>
+                <div class="collapse navbar-collapse">
+                    <?php $admin_sections = explode(",", $this->session->userdata('permissions')); ?>
+                    <ul class="nav navbar-nav">
+						<?php foreach($admin_sections as $admin_section): ?>
+							<?php $a_section = explode("/", $admin_section); ?>
+							<li <?= ($file == $a_section[1])? 'class="active"' : ''; ?>><a href="<?=site_url('admin/' . $a_section[1])?>"><?=$a_section[0]?></a></li>
+						<?php endforeach; ?>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="<?= $this->gravatar->get_gravatar($this->session->userdata('email'), NULL, 20) ?>" style="margin-top:-3px;margin-right:5px;" alt="Profile picture" class="img-circle">
+                                Logged in as <?=$this->session->userdata('name')?> <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<?=site_url('admin/settings/profile')?>"><span class="glyphicon glyphicon-user"></span>&nbsp; User info (<small><?=$this->session->userdata('user')?></small>)</a></li>
+
+                                <?php if($this->session->userdata('user') == 'admin' && ADMIN_MULTIUSER): ?>
+                                <li><a href="<?=site_url('admin/settings')?>"><span class="glyphicon glyphicon-th-list"></span>&nbsp; Manage users</a></li>
+                                <?php endif; ?>
+
+								<li><a href="javascript:;" rel="tooltip" data-title="Time log" data-placement="left"><span class="glyphicon glyphicon-time"></span>&nbsp; <span id="box_timer">--:--:--</span></a></li>
+
+                                <li class="divider"></li>
+
+                                <?php $this->load->config('ga_api'); if($this->config->item('profile_id') != '1234567890'): ?>
+                                <li><a href="<?=site_url('admin/analytics')?>"><span class="glyphicon glyphicon-stats"></span>&nbsp; Google Analytics</a></li>
+                                <?php endif; ?>
+
+                                <?php if(ADMIN_CLEAR_CACHE): ?>
+                                <li><a href="<?=site_url('admin/settings/clear-cache')?>"><span class="glyphicon glyphicon-trash"></span>&nbsp; Clear cached data</a></li>
+                                <?php endif; ?>
+
+                                <?php if(ADMIN_DB_BACKUP): ?>
+                                <li><a href="<?=site_url('admin/settings/backup-db')?>"><span class="glyphicon glyphicon-floppy-save"></span>&nbsp; Database backup</a></li>
+                                <?php endif; ?>
+
+                                <li><a href="javascript:;" data-toggle="modal" data-target="#contact-modal" data-remote="<?=site_url('admin/settings/feedback-admin')?>"><span class="glyphicon glyphicon-send"></span>&nbsp; Send feedback</a></li>
+                                <li><a href="<?=site_url('admin/settings/help')?>"><span class="glyphicon glyphicon-book"></span>&nbsp; Help</a></li>
+                                <li class="divider"></li>
+                                <li><a href="<?=site_url('/')?>" target="_blank"><span class="glyphicon glyphicon-globe"></span>&nbsp; Open website</a></li>
+                                <li><a href="<?=site_url('admin/login/logout')?>"><span class="glyphicon glyphicon-log-out"></span>&nbsp; Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+                <?php endif; ?>
             </div>
         </div>
 
-        <div class="container-fluid">
+        <!-- Begin page content -->
+        <div class="container container-body">
             <?= $yield ?>
+        </div>
+    </div>
 
-            <hr>
-
-            <footer>
-                <?php if ($this->session->userdata('logged_in') == TRUE): ?>
-                    <?php if($this->session->userdata('last_login') != '0000-00-00 00:00:00'): ?>
-                        <?php $this->load->helper('date'); ?>
-                        <p class="pull-right"><small><b>Last login:</b> <?php echo unix_to_human(strtotime($this->session->userdata('last_login'))); ?></small></p>
-                    <?php endif; ?>
+    <div id="footer">
+        <div class="container">
+            <p class="text-muted col-md-4">&copy; <?=ADMIN_CLIENT?> <?=date('Y')?></p>
+			<p class="text-muted col-md-4 text-center hidden-xs hidden-sm year_moment"><?=year_moment();?></p>
+            <?php if ($this->session->userdata('logged_in') == TRUE): ?>
+                <?php if($this->session->userdata('last_login') != '0000-00-00 00:00:00'): ?>
+                    <?php $this->load->helper('date'); ?>
+                    <p class="text-muted col-md-4 text-right small hidden-xs hidden-sm"><strong>Last login:</strong> <?= unix_to_human(strtotime($this->session->userdata('last_login'))); ?></p>
                 <?php endif; ?>
-                <p>&copy; <?php echo ADMIN_CLIENT; ?> <?php echo date('Y'); ?></p>
-            </footer>
+            <?php endif; ?>
+        </div>
+    </div>
 
-        </div><!--/.fluid-container-->
+	<div class="modal fade modal-form" id="contact-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="text-center container"><img src="<?=site_url('assets/admin_assets/img/load_modal.gif')?>" alt="Loading modal" style="padding: 9px;"></div>
+	</div>
 
-        <!-- Le javascript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="<?php echo site_url('assets/bootstrap/js/google-code-prettify/prettify.js'); ?>"></script>
-        <script src="<?php echo site_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
-
-        <!-- Preloader -->
-        <script type="text/javascript">
-            //<![CDATA[
-                $(window).load(function() { // makes sure the whole site is loaded
-                    $("#status").fadeOut(); // will first fade out the loading animation
-                    $("#preloader").delay(350).fadeOut("slow"); // will fade out the white DIV that covers the website.
-                })
-            //]]>
-        </script>
-
-    </body>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+    <script src="<?= site_url('assets/admin_assets/js/bootstrap.min.js'); ?>"></script>
+    <script src="<?= site_url('assets/admin_assets/js/jquery.tablesorter.js'); ?>"></script>
+    <script src="<?= site_url('assets/admin_assets/js/jquery.tablesorter.pager.js'); ?>"></script>
+    <script src="<?= site_url('assets/admin_assets/js/jquery.tablesorter.widgets.js'); ?>"></script>
+    <script src="<?= site_url('assets/admin_assets/editor/wysihtml5-0.3.0.js'); ?>"></script>
+    <script src="<?= site_url('assets/admin_assets/editor/bootstrap-wysihtml5.js'); ?>"></script>
+    <script src="<?= site_url('assets/admin_assets/tagmanager/tagmanager.js'); ?>"></script>
+    <script src="<?= site_url('assets/admin_assets/spectrum/spectrum.js'); ?>"></script>
+    <script src="<?= site_url('assets/admin_assets/msdropdown/jquery.dd.min.js'); ?>"></script>
+    <script src="<?= site_url('assets/admin_assets/js/admin.js'); ?>"></script>
+    <script>
+	$(function() {
+		remember_me_init('ch_<?= url_title(ADMIN_PROJECT, '_', TRUE); ?>', 'user_<?= url_title(ADMIN_PROJECT, '_', TRUE); ?>');
+		<? if($this->session->userdata('logged_in')): ?>call_timer(localStorage.seconds);<? else: ?>localStorage.seconds = 0;<? endif; ?>
+	});
+	</script>
+</body>
 </html>

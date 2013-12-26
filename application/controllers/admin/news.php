@@ -14,14 +14,12 @@ class News extends MY_Controller
     {
         parent::__construct();
         if (!$this->authentication->is_loggedin()) {
-            $this->session->set_flashdata('message', '<div class="alert alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Warning!</h4>You must be logged in to access the system and make changes.</div>');
+    		$this->session->set_flashdata("alert_message", "<strong>Warning!</strong> You must be logged in to access the system and make changes.");
+			$this->session->set_flashdata("alert_type", "warning");
             redirect(site_url('admin/login'));
         }
 
-        $admin_sections = explode(",", $this->session->userdata('permissions'));
-        if(!in_array($this->file, $admin_sections)) {
-            redirect(site_url('admin/settings'));
-        }
+		verify_credentials($this->file, $this->session->userdata('permissions'), site_url('admin/settings'));
     }
 
     public function index()
@@ -38,7 +36,7 @@ class News extends MY_Controller
         $this->data['delete'] = TRUE;
         $this->data['state'] = TRUE;
         $this->data['export_file'] = TRUE;
-        $this->data['display_fields'] = array('title', 'date', 'picture');
+        $this->data['display_fields'] = array('title', 'date', 'color_code', 'picture');
     }
 
     public function create()
@@ -62,43 +60,18 @@ class News extends MY_Controller
             $info['slug'] = $this->slug->create_unique_slug($info['title'], 'news');
             $info['created_at'] = date("Y-m-d H:i:s");
 
-            /* FILE UPLOAD PICTURE */
-            $this->load->library('upload');
-            $config = array();
-            $config['file_name'] = date('YmdHis') . '_project_news.jpg';
-            $config['upload_path'] = './assets/uploads/';
-            $config['allowed_types'] = 'jpg|jpeg|png';
-            $config['max_size']	= '2000';
-            $this->upload->initialize($config);
-
-            if($this->upload->do_upload('picture')) {
-                $pic = $this->upload->data();
-                $picName = $pic['file_name'];
-                $picRaw = $pic['raw_name'];
-                $picType = $pic['file_type'];
-                $picPath = $pic['full_path'];
-                $picPathFile = $pic['file_path'];
-
-                $info['picture'] = $picRaw;
-
-                $this->load->library('image_moo');
-                $this->image_moo
-                     ->set_jpeg_quality(100)
-                     ->load($picPath)
-                     ->resize_crop(170,100)
-                     ->save($picPathFile . $picRaw . '_s.jpg');
-                $this->image_moo
-                     ->set_jpeg_quality(100)
-                     ->load($picPath)
-                     ->resize_crop(410,370)
-                     ->save($picPathFile . $picRaw . '_l.jpg');
-                unlink($picPath);
-            }
-            /* END UPLOAD PICTURE */
+			// upload and resize pictures
+			$resizes = array(
+				't' => array('w' =>  50, 'h' =>  50),
+				's' => array('w' => 170, 'h' => 100),
+				'l' => array('w' => 410, 'h' => 370)
+			);
+			$info['picture'] = upload_picture('picture', 'project', $this->file, '', $resizes);
 
             $this->news->insert($info);
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Success!</h4>The item was created without problems.</div>');
+    		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> The item was created without issues.");
+			$this->session->set_flashdata("alert_type", "success");
             redirect(base_url() . 'admin/' . $this->file);
         }
 
@@ -128,45 +101,18 @@ class News extends MY_Controller
             $this->load->library('Slug');
             $info['slug'] = $this->slug->create_unique_slug($info['title'], 'news');
 
-            /* FILE UPLOAD PICTURE */
-            $this->load->library('upload');
-            $config = array();
-            $config['file_name'] = date('YmdHis') . '_project_news.jpg';
-            $config['upload_path'] = './assets/uploads/';
-            $config['allowed_types'] = 'jpg|jpeg|png';
-            $config['max_size']	= '2000';
-            $this->upload->initialize($config);
-
-            if($this->upload->do_upload('picture')) {
-                $pic = $this->upload->data();
-                $picName = $pic['file_name'];
-                $picRaw = $pic['raw_name'];
-                $picType = $pic['file_type'];
-                $picPath = $pic['full_path'];
-                $picPathFile = $pic['file_path'];
-
-                $info['picture'] = $picRaw;
-
-                $this->load->library('image_moo');
-                $this->image_moo
-                     ->set_jpeg_quality(100)
-                     ->load($picPath)
-                     ->resize_crop(170,100)
-                     ->save($picPathFile . $picRaw . '_s.jpg');
-                $this->image_moo
-                     ->set_jpeg_quality(100)
-                     ->load($picPath)
-                     ->resize_crop(410,370)
-                     ->save($picPathFile . $picRaw . '_l.jpg');
-                unlink($picPath);
-            } else {
-                $info['picture'] = $this->input->post('prev_picture');
-            }
-            /* END UPLOAD PICTURE */
+			// upload and resize pictures
+			$resizes = array(
+				't' => array('w' =>  50, 'h' =>  50),
+				's' => array('w' => 170, 'h' => 100),
+				'l' => array('w' => 410, 'h' => 370)
+			);
+			$info['picture'] = upload_picture('picture', 'project', $this->file, $this->input->post('prev_picture'), $resizes);
 
             $this->news->update($info['id'], $info);
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Success!</h4>The item was updated without problems.</div>');
+    		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> The item was updated without issues.");
+			$this->session->set_flashdata("alert_type", "success");
             redirect(base_url() . 'admin/' . $this->file);
         }
 
@@ -249,7 +195,8 @@ class News extends MY_Controller
         if ($this->input->post('id')) {
             $this->news->delete($id);
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Success!</h4>The item was deleted without problems.</div>');
+    		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> The item was deleted without issues.");
+			$this->session->set_flashdata("alert_type", "success");
             redirect(base_url() . 'admin/' . $this->file);
         }
 
