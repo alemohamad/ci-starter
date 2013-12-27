@@ -40,9 +40,9 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 define('ADMIN_PROJECT',		  'Project name');
 define('ADMIN_CLIENT',		  'Ale Mohamad');
 define('ADMIN_PRIMARY_EMAIL', 'user@server.com');
-define('ADMIN_MULTIUSER',	  TRUE);
-define('ADMIN_CLEAR_CACHE',   TRUE);
-define('ADMIN_DB_BACKUP',     TRUE);
+define('ADMIN_MULTIUSER',	  FALSE);
+define('ADMIN_CLEAR_CACHE',   FALSE);
+define('ADMIN_DB_BACKUP',     FALSE);
 
 
 /* End of file constants.php */
