@@ -47,7 +47,7 @@ class Settings extends MY_Controller
 
             $info['name'] = $this->input->post('name');
             $info['email'] = $this->input->post('email');
-            $info['permissions'] = implode(",", $this->input->post('permissions'));
+            $info['permissions'] = (is_array($this->input->post('permissions'))) ? implode(",", $this->input->post('permissions')) : '';
             $info['created_at'] = date("Y-m-d H:i:s");
 
             $this->settings->update($user_id, $info);
@@ -79,7 +79,7 @@ class Settings extends MY_Controller
 
             $info['name'] = $this->input->post('name');
             $info['email'] = $this->input->post('email');
-            $info['permissions'] = implode(",", $this->input->post('permissions'));
+            $info['permissions'] = (is_array($this->input->post('permissions'))) ? implode(",", $this->input->post('permissions')) : '';
 
             $this->settings->update($info['id'], $info);
 
