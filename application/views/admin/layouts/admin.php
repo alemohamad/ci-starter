@@ -59,6 +59,7 @@
                 </div>
                 <?php if ($this->session->userdata('logged_in') == TRUE): ?>
                 <div class="collapse navbar-collapse">
+					<?php if($this->session->userdata('permissions') != ''): ?>
                     <?php $admin_sections = explode(",", $this->session->userdata('permissions')); ?>
                     <ul class="nav navbar-nav">
 						<?php foreach($admin_sections as $admin_section): ?>
@@ -66,6 +67,7 @@
 							<li <?= ($file == $a_section[1])? 'class="active"' : ''; ?>><a href="<?=site_url('admin/' . $a_section[1])?>"><?=$a_section[0]?></a></li>
 						<?php endforeach; ?>
                     </ul>
+					<?php endif; ?>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
