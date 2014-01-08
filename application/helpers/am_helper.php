@@ -131,5 +131,10 @@ function verify_credentials($file, $permissions, $redirect_to) {
 	}
 }
 
+// load file with no cache
+function site_url_file($file_path) {
+    return site_url($file_path . "?" . time());
+}
+
 /* End of file am_helper.php */
 /* Location: ./application/helpers/am_helper.php */
