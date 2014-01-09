@@ -47,7 +47,7 @@ $(document).ready(function(){
 		var target = e.target.className;
 		if(/modal-form/i.test(target)) {
 			$(this).find('.modal-body').html('<img src="' + url_web + 'assets/admin_assets/img/loading.gif"> Loading info...');
-			$(this).removeData();
+			$(this).removeData().find('.modal-form').empty();
 		}
 	});
 });
