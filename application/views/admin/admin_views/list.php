@@ -48,10 +48,16 @@
                 <td><a href="<?=site_url( picture_path('assets/uploads/' . $item->$field, 'l') )?>" target="_blank" rel="popover" data-content="<img src='<?=site_url( picture_path('assets/uploads/' . $item->$field, 's') )?>' alt='Image preview' style='max-width: 250px;'>" data-html="true" data-trigger="hover" data-delay="300"><span class="glyphicon glyphicon-picture"></span></a></td>
 	            <?php elseif(preg_match("/color/i", $field) && !empty($item->$field)): ?>
 	            <td><span class="glyphicon glyphicon-tint" style="color: <?=$item->$field?>; text-shadow:0px 0px 4px #b8babc;"></span> <small><?=$item->$field?></small></td>
+            	<?php elseif(is_array($item->$field)): ?>
+	            <td>-</td>
 	            <?php elseif(is_object($item->$field)): ?>
-	            <td><?=$item->$field->title?></td>
-                <?php else: ?>
-                <td><?=$item->$field?></td>
+					<?php if(isset($item->$field->title)): ?>
+	            	<td><?=$item->$field->title?></td>
+					<?php elseif(isset($item->$field->name)): ?>
+		        	<td><?=$item->$field->name?></td>
+                	<?php endif; ?>
+		        <?php else: ?>
+		        <td><?=$item->$field?></td>
                 <?php endif; ?>
 			<?php endforeach; ?>
 			<td>
