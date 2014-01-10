@@ -68,11 +68,18 @@ function resize_uploaded_picture(array $file, $resize_sizes = '', $quality = 70)
 	$CI->load->library('image_moo');
 
 	foreach($resize_sizes as $ext => $sizes) {
-        $CI->image_moo
-			->set_jpeg_quality($quality)
-			->load($file['full_path'])
-			->resize_crop($sizes['w'], $sizes['h'])
-			->save($file['file_path'] . $file['raw_name'] . '_' . $ext . '.jpg');
+		if($sizes['w'] == 0 && $sizes['h'] == 0) {
+	        $CI->image_moo
+				->set_jpeg_quality(100)
+				->load($file['full_path'])
+				->save($file['file_path'] . $file['raw_name'] . '_' . $ext . '.jpg');
+		} else {
+	        $CI->image_moo
+				->set_jpeg_quality($quality)
+				->load($file['full_path'])
+				->resize_crop($sizes['w'], $sizes['h'])
+				->save($file['file_path'] . $file['raw_name'] . '_' . $ext . '.jpg');
+		}
 	}
 
 	if(is_array($resize_sizes)) {
