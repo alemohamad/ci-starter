@@ -8,7 +8,7 @@
 			</div>
 			<div class="modal-body">
 				<label>Are you sure you want to delete this item?</label>
-				<p class="lead"><?=$item->$delete_title?></label>
+				<p class="lead"><?=(isset($item->$delete_title))? $item->$delete_title:'' ?></label>
 				<input type="hidden" name="id" value="<?=$item->id?>" />
 			</div>
 			<div class="modal-footer">
