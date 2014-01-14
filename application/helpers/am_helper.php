@@ -38,6 +38,11 @@ function upload_file($file_name, $project, $section, $prev_file = '', $path = '.
 	$CI =& get_instance();
 	$CI->load->library('upload');
 
+	// if the directory not exists, we create it
+	if(!is_dir($path)) {
+		mkdir($path, 0777, TRUE);
+	}
+
 	// if we can't write in the folder, we change that from here
 	$perms = substr(sprintf('%o', fileperms($path)), -4);
 	if($perms != '0777') {
@@ -57,6 +62,8 @@ function upload_file($file_name, $project, $section, $prev_file = '', $path = '.
         $file = $CI->upload->data();
 		// file_name, raw_name, file_type, full_path, file_path
 		return $file; // array
+    } else {
+        // die($CI->upload->display_errors()); // show upload errors
     }
 
 	return $prev_file;
@@ -106,6 +113,50 @@ function picture_path($picture_path = '', $size = 'l') {
 		$result = $picture_path . '.png';
 	}
 	return substr($result, 2);
+}
+
+function upload_zip_pics($file_name, $project, $section, $prev_file = '', $resize_sizes = '', $quality = 70, $path = './assets/uploads/', $max_size = 2000) {
+	$uploaded_file = upload_file($file_name, $project, $section, $prev_file, $path, 'zip', $max_size);
+
+	if(is_array($uploaded_file)) {
+		$extracted_files = extract_zip($uploaded_file);
+
+		$new_files = array();
+		foreach($extracted_files as $extracted_file) {
+		 	$new_files[] = resize_uploaded_picture($extracted_file, $resize_sizes, $quality);
+		}
+
+		return $new_files;
+	}
+
+	return $uploaded_file;
+}
+
+function extract_zip($uploaded_file) {
+	$CI =& get_instance();
+	$CI->load->helper('file');
+	$CI->load->library('unzip');
+
+	// if the directory not exists, we create it
+	$temp_path = './assets/uploads/temp/';
+	if(!is_dir($temp_path)) {
+		mkdir($temp_path, 0777, TRUE);
+	}
+
+	$CI->unzip->extract('./assets/uploads/' . $uploaded_file['raw_name'] . '.zip', './assets/uploads/temp/');
+	unlink('./assets/uploads/' . $uploaded_file['raw_name'] . '.zip'); // delete uploaded zip file
+
+	$temp_files = get_dir_file_info('./assets/uploads/temp/');
+
+	$pics = array();
+	foreach($temp_files as $temp_file) {
+		$item['full_path'] = $temp_file['relative_path'] . $temp_file['name'];
+		$item['file_path'] = $temp_file['relative_path'] . '../';
+		$item['raw_name'] = substr($temp_file['name'], 0, -4);
+		$pics[] = $item;
+	}
+
+	return $pics;
 }
 
 function year_moment() {

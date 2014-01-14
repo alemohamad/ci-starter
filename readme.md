@@ -118,6 +118,7 @@ CREATE TABLE IF NOT EXISTS  `project_sessions` (
 * [Google Analytics Api library](https://github.com/chonthu/Codeigniter-Google-Analytics-Class) (Nithin Meppurathu)
 * [Gravatar library](https://github.com/rsmarshall/Codeigniter-Gravatar) (Ryan Marshall)
 * [CodeIgniter Database backup Model](https://github.com/psradich/CI_DatabaseBackup) (psradich)
+* [CodeIgniter Unzip](https://github.com/philsturgeon/codeigniter-unzip) (Phil Sturgeon)
 * [bootstrap-wysihtml5](https://github.com/jhollingworth/bootstrap-wysihtml5/) (James Hollingworth)
 * [tablesorter v2.14.4](https://github.com/Mottie/tablesorter) (Rob G)
 * [Tags Manager v3.0](https://github.com/max-favilli/tagmanager) (Max Favilli)

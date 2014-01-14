@@ -68,6 +68,21 @@ class News extends MY_Controller
 			);
 			$info['picture'] = upload_picture('picture', 'project', $this->file, '', $resizes);
 
+			/*
+			// upload and resize pictures with a zip file
+			$resizes = array(
+				't' => array('w' =>  50, 'h' =>  50),
+				's' => array('w' => 170, 'h' => 100),
+				'l' => array('w' => 410, 'h' => 370)
+			);
+			$pictures = upload_zip_pics('picture', 'project', $this->file, '', $resizes);
+			$i = 0;
+			foreach($pictures as $picture) {
+				$i++;
+				$info['picture_' . $i] = $picture;
+			}
+			*/
+
             $this->news->insert($info);
 
     		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> The item was created without issues.");
