@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS  `project_sessions` (
 * [Tags Manager v3.0](https://github.com/max-favilli/tagmanager) (Max Favilli)
 * [Spectrum v1.1.1](https://github.com/bgrins/spectrum) (Brian Grinstead)
 * [ms-Dropdown v3.5.2](https://github.com/marghoobsuleman/ms-Dropdown) (Marghoob Suleman)
-* [Adminer v3.7.1](https://github.com/vrana/adminer/) (Jakub Vrána)
+* [Adminer v4.0.2](https://github.com/vrana/adminer/) (Jakub Vrána)
 * [Bootstrap v3.0.3](http://getbootstrap.com/) (Mark Otto + jacob)
 
 ## About me
