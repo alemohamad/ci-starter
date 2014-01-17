@@ -38,9 +38,12 @@ $(document).ready(function(){
 		}
 	});
 
-	// init tooltips, popovers
+	// init tooltips, popovers, button-loading
 	$("*[rel=tooltip]").tooltip();
 	$("*[rel=popover]").popover();
+	$("body").delegate("*[rel=loading]", "click", function() {
+		$(this).button('loading');
+	});
 
 	// reset modals on hidden
 	$('.modal').on('hidden.bs.modal', function(e) {

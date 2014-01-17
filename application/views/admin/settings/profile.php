@@ -80,7 +80,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-7">
-			<button type="submit" class="btn btn-primary btn-sm">Update user info</button>
+			<button type="submit" class="btn btn-primary btn-sm" rel="loading" data-loading-text="Updating...">Update user info</button>
             <input name="id" type="hidden" value="<?=$item->id?>">
 		</div>
 	</div>

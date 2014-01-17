@@ -16,7 +16,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary"><?=$title_section?> item</button>
+				<button type="submit" class="btn btn-primary" rel="loading" data-loading-text="Sending..."><?=$title_section?> item</button>
 			</div>
 		</form>
 	</div>

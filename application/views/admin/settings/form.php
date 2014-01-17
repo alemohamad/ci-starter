@@ -36,7 +36,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary"><?=$title_section?> user</button>
+				<button type="submit" class="btn btn-primary" rel="loading" data-loading-text="Sending..."><?=$title_section?> user</button>
 			</div>
 		</form>
 	</div>
