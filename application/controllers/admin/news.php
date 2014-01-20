@@ -5,6 +5,7 @@ class News extends MY_Controller
 
     private $title = "News";
     private $file = "news";
+	private $gallery = FALSE;
 
     protected $helpers = array( 'am' );
 
@@ -135,6 +136,7 @@ class News extends MY_Controller
         $this->data['file'] = $this->file;
         $this->data['item'] = $this->news->get($id);
         $this->data['form_fields'] = $this->form_fields($this->data['item']);
+		$this->data['gallery'] = $this->gallery;
     }
 
     private function form_fields($item = '')

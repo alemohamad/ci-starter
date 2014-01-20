@@ -24,7 +24,7 @@ function object2array($object) {
 }
 
 // custom file upload code to reuse
-function upload_picture($file_name, $project, $section, $prev_file = '', $resize_sizes = '', $quality = 70, $path = './assets/uploads/', $types = 'jpg|jpeg|png', $max_size = 2000) {
+function upload_picture($file_name, $project, $section, $prev_file = '', $resize_sizes = '', $quality = 70, $path = './assets/uploads/', $types = 'jpg|jpeg|png', $max_size = 10000) {
 	$uploaded_file = upload_file($file_name, $project, $section, $prev_file, $path, $types, $max_size);
 
 	if(is_array($uploaded_file)) {
@@ -34,7 +34,7 @@ function upload_picture($file_name, $project, $section, $prev_file = '', $resize
 	return $uploaded_file;
 }
 
-function upload_file($file_name, $project, $section, $prev_file = '', $path = './assets/uploads/', $types = 'jpg|jpeg|png', $max_size = 2000) {
+function upload_file($file_name, $project, $section, $prev_file = '', $path = './assets/uploads/', $types = 'jpg|jpeg|png', $max_size = 10000) {
 	$CI =& get_instance();
 	$CI->load->library('upload');
 
@@ -115,7 +115,7 @@ function picture_path($picture_path = '', $size = 'l') {
 	return substr($result, 2);
 }
 
-function upload_zip_pics($file_name, $project, $section, $prev_file = '', $resize_sizes = '', $quality = 70, $path = './assets/uploads/', $max_size = 2000) {
+function upload_zip_pics($file_name, $project, $section, $prev_file = '', $resize_sizes = '', $quality = 70, $path = './assets/uploads/', $max_size = 10000) {
 	$uploaded_file = upload_file($file_name, $project, $section, $prev_file, $path, 'zip', $max_size);
 
 	if(is_array($uploaded_file)) {

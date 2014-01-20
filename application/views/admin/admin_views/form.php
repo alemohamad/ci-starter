@@ -9,7 +9,28 @@
 				<h4 class="modal-title" id="myModalLabel"><?=$title_section?> item</h4>
 			</div>
 			<div class="modal-body">
-				<?=$form_fields?>
+
+				<? if(isset($item->id) && $gallery): ?>
+				<div class="form-group">
+					<div class="text-center col-sm-offset-2 col-sm-10">
+					<ul class="nav nav-pills">
+						<li class="active"><a href="#form" data-toggle="tab">Item contents</a></li>
+						<li><a href="#gallery" data-toggle="tab">Gallery</a></li>
+					</ul>
+					</div>
+				</div>
+				<? endif; ?>
+
+				<div class="tab-content">
+					<div class="tab-pane fade in active" id="form">
+						<?=$form_fields?>
+					</div>
+					<? if(isset($item) && $gallery): ?>
+					<div class="tab-pane fade text-center" id="gallery">
+						<iframe src="<?=site_url('admin/gallery/gallery-list/' . $item->id . '/' . $file)?>" frameborder="0" width="550" height="340"></iframe>
+					</div>
+					<? endif; ?>
+				</div>
 
 				<input name="id" type="hidden" value="<?= (isset($item->id))? $item->id : ''; ?>">
 				<input name="form_submit" type="hidden" value="1">
