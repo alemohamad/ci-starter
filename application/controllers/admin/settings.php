@@ -3,21 +3,23 @@
 class Settings extends MY_Controller
 {
 
-    private $title = "Manage admin users";
-    private $file = "settings";
-
-    protected $helpers = array( 'am' );
+    protected $helpers = array( 'am', 'admin_language' );
 
     protected $models = array( 'settings' );
+
+    private $title = '';
+    private $file = "settings";
 
     public function __construct()
     {
         parent::__construct();
         if (!$this->authentication->is_loggedin()) {
-    		$this->session->set_flashdata("alert_message", "<strong>Warning!</strong> You must be logged in to access the system and make changes.");
+    		$this->session->set_flashdata("alert_message", lang_phrase('alert_not_logged_in') );
 			$this->session->set_flashdata("alert_type", "warning");
             redirect(site_url('admin/login'));
         }
+
+		$this->title = lang_phrase('manage_title');
     }
 
     public function index()
@@ -52,7 +54,7 @@ class Settings extends MY_Controller
 
             $this->settings->update($user_id, $info);
 
-    		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> The item was created without issues.");
+    		$this->session->set_flashdata("alert_message", lang_phrase('alert_create_success') );
 			$this->session->set_flashdata("alert_type", "success");
             redirect(base_url() . 'admin/' . $this->file);
         }
@@ -83,7 +85,7 @@ class Settings extends MY_Controller
 
             $this->settings->update($info['id'], $info);
 
-    		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> The item was updated without issues.");
+    		$this->session->set_flashdata("alert_message", lang_phrase('alert_edit_success') );
 			$this->session->set_flashdata("alert_type", "success");
             redirect(base_url() . 'admin/' . $this->file);
         }
@@ -101,7 +103,7 @@ class Settings extends MY_Controller
         if ($this->input->post('id')) {
             $this->settings->delete($id);
 
-    		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> The item was deleted without issues.");
+    		$this->session->set_flashdata("alert_message", lang_phrase('alert_delete_success') );
 			$this->session->set_flashdata("alert_type", "success");
             redirect(base_url() . 'admin/' . $this->file);
         }
@@ -134,7 +136,7 @@ class Settings extends MY_Controller
     {
         $this->layout = 'admin/layouts/admin.php';
 
-        $this->data['title'] = "User info";
+        $this->data['title'] = lang_phrase('profile_title');
         $this->data['file'] = $this->file;
         $this->data['item'] = $this->settings->get($this->authentication->read('identifier'));
 
@@ -162,7 +164,7 @@ class Settings extends MY_Controller
                     $this->authentication->change_password($this->input->post('pass_new'));
                 }
             } else {
-        		$this->session->set_flashdata("alert_message", "<strong>Error!</strong> New passwords are not the same.");
+        		$this->session->set_flashdata("alert_message", lang_phrase('alert_password_profile_wrong') );
     			$this->session->set_flashdata("alert_type", "danger");
                 redirect(base_url() . 'admin/' . $this->file . '/profile');
             }
@@ -176,7 +178,7 @@ class Settings extends MY_Controller
             $data['theme'] = $info['theme'];
             $this->session->set_userdata($data);
 
-    		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> The user info was updated without issues.");
+    		$this->session->set_flashdata("alert_message", lang_phrase('alert_edit_profile_success') );
 			$this->session->set_flashdata("alert_type", "success");
             redirect(base_url() . 'admin/' . $this->file . '/profile');
         }
@@ -204,7 +206,7 @@ class Settings extends MY_Controller
 
         $this->output->clear_all_cache();
 
-		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> Site cache cleared.");
+		$this->session->set_flashdata("alert_message", lang_phrase('alert_cache_success') );
 		$this->session->set_flashdata("alert_type", "success");
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -233,7 +235,7 @@ class Settings extends MY_Controller
         $this->email->message($template);
         $var = $this->email->send();
 
-		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> The backup was made and an email was sent with the link.");
+		$this->session->set_flashdata("alert_message", lang_phrase('alert_db_backup_success') );
 		$this->session->set_flashdata("alert_type", "success");
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -264,7 +266,7 @@ class Settings extends MY_Controller
 	        $this->email->message($template);
 	        $var = $this->email->send();
 
-    		$this->session->set_flashdata("alert_message", "<strong>Message sent!</strong> Thanks for writing. Soon we'll be answering your comments.");
+    		$this->session->set_flashdata("alert_message", lang_phrase('alert_feedback_success') );
 			$this->session->set_flashdata("alert_type", "success");
 	        redirect($_SERVER['HTTP_REFERER']);
         }

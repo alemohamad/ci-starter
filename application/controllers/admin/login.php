@@ -3,7 +3,7 @@
 class Login extends MY_Controller
 {
 
-    protected $helpers = array( 'am' );
+    protected $helpers = array( 'am', 'admin_language' );
 
     protected $models = array( 'settings' );
 
@@ -37,7 +37,7 @@ class Login extends MY_Controller
 
                 redirect('admin');
             } else {
-        		$this->session->set_flashdata("alert_message", "<strong>Ouch!</strong> The username or password are incorrect. Review the data and try again.");
+        		$this->session->set_flashdata("alert_message", lang_phrase('alert_login_wrong') );
     			$this->session->set_flashdata("alert_type", "danger");
                 redirect('admin/login');
             }
@@ -59,7 +59,7 @@ class Login extends MY_Controller
 			$user = $this->input->post('user');
 
 			if(empty($user)) {
-        		$this->session->set_flashdata("alert_message", "<strong>Hey!</strong> Please provide a valid username.");
+        		$this->session->set_flashdata("alert_message", lang_phrase('alert_forgot_invalid') );
     			$this->session->set_flashdata("alert_type", "warning");
                 redirect('admin/login/forgot-password');
 			}
@@ -83,11 +83,11 @@ class Login extends MY_Controller
 
                 $var = $this->email->send();
 
-        		$this->session->set_flashdata("alert_message", "<strong>Sent!</strong> In a few minutes you'll receive an email with info to reset your password.");
+        		$this->session->set_flashdata("alert_message", lang_phrase('alert_forgot_success') );
     			$this->session->set_flashdata("alert_type", "success");
                 redirect('admin/login/forgot-password');
             } else {
-        		$this->session->set_flashdata("alert_message", "<strong>Ouch!</strong> We don't have that username in our system.");
+        		$this->session->set_flashdata("alert_message", lang_phrase('alert_forgot_wrong') );
     			$this->session->set_flashdata("alert_type", "danger");
                 redirect('admin/login/forgot-password');
 			}
@@ -114,11 +114,11 @@ class Login extends MY_Controller
 				$this->settings->update($user_id, $user);
 				$this->authentication->change_password($password1, $user_id);
 				
-	    		$this->session->set_flashdata("alert_message", "<strong>Hooray!</strong> You have saved a new password!");
+	    		$this->session->set_flashdata("alert_message", lang_phrase('alert_reset_success') );
 				$this->session->set_flashdata("alert_type", "success");
 	            redirect('admin/login');
 			} else {
-	    		$this->session->set_flashdata("alert_message", "<strong>Ouch!</strong> Please provide a valid password.");
+	    		$this->session->set_flashdata("alert_message", lang_phrase('alert_reset_invalid') );
 				$this->session->set_flashdata("alert_type", "warning");
 	            redirect('admin/login/reset-password/' . $hash);
 			}
@@ -131,7 +131,7 @@ class Login extends MY_Controller
 			$this->data['user'] = $user_reset->user;
 			$this->data['user_id'] = $user_reset->id;
 		} else {
-    		$this->session->set_flashdata("alert_message", "<strong>Ouch!</strong> Invalid password reset value.");
+    		$this->session->set_flashdata("alert_message", lang_phrase('alert_reset_error') );
 			$this->session->set_flashdata("alert_type", "warning");
             redirect('admin/login');
 		}

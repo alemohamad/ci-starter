@@ -5,9 +5,9 @@ class News extends MY_Controller
 
     private $title = "News";
     private $file = "news";
-	private $gallery = FALSE;
+	private $gallery = TRUE;
 
-    protected $helpers = array( 'am' );
+    protected $helpers = array( 'am', 'admin_language' );
 
     protected $models = array( 'news' );
 
@@ -15,7 +15,7 @@ class News extends MY_Controller
     {
         parent::__construct();
         if (!$this->authentication->is_loggedin()) {
-    		$this->session->set_flashdata("alert_message", "<strong>Warning!</strong> You must be logged in to access the system and make changes.");
+    		$this->session->set_flashdata("alert_message", lang_phrase('alert_not_logged_in') );
 			$this->session->set_flashdata("alert_type", "warning");
             redirect(site_url('admin/login'));
         }
@@ -86,7 +86,7 @@ class News extends MY_Controller
 
             $this->news->insert($info);
 
-    		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> The item was created without issues.");
+    		$this->session->set_flashdata("alert_message", lang_phrase('alert_create_success') );
 			$this->session->set_flashdata("alert_type", "success");
             redirect(base_url() . 'admin/' . $this->file);
         }
@@ -127,7 +127,7 @@ class News extends MY_Controller
 
             $this->news->update($info['id'], $info);
 
-    		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> The item was updated without issues.");
+    		$this->session->set_flashdata("alert_message", lang_phrase('alert_edit_success') );
 			$this->session->set_flashdata("alert_type", "success");
             redirect(base_url() . 'admin/' . $this->file);
         }
@@ -212,7 +212,7 @@ class News extends MY_Controller
         if ($this->input->post('id')) {
             $this->news->delete($id);
 
-    		$this->session->set_flashdata("alert_message", "<strong>Success!</strong> The item was deleted without issues.");
+    		$this->session->set_flashdata("alert_message", lang_phrase('alert_delete_success') );
 			$this->session->set_flashdata("alert_type", "success");
             redirect(base_url() . 'admin/' . $this->file);
         }

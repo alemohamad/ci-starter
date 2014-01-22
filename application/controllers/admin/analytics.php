@@ -3,7 +3,7 @@
 class Analytics extends MY_Controller
 {
 
-    protected $helpers = array( 'am' );
+    protected $helpers = array( 'am', 'admin_language' );
 
     private $title = "Google Analytics";
     private $file = "analytics";
@@ -12,7 +12,8 @@ class Analytics extends MY_Controller
     {
         parent::__construct();
         if (!$this->authentication->is_loggedin()) {
-            $this->session->set_flashdata('message', '<div class="alert alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Warning!</h4>You must be logged in to access the system and make changes.</div>');
+    		$this->session->set_flashdata("alert_message", lang_phrase('alert_not_logged_in') );
+			$this->session->set_flashdata("alert_type", "warning");
             redirect(site_url('admin/login'));
         }
     }
@@ -24,8 +25,13 @@ class Analytics extends MY_Controller
         $this->data['title'] = $this->title;
         $this->data['file'] = $this->file;
 
-        $days = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
-        $month = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+		if(ADMIN_LANGUAGE == 'en') {
+	        $days = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+	        $month = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+		} else if(ADMIN_LANGUAGE == 'es') {
+	        $days = array('Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado');
+	        $month = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+		}
 
         $this->load->library('ga_api');
 
@@ -40,7 +46,11 @@ class Analytics extends MY_Controller
         unset($ga['summary']);
 
         $results = array();
-        $results[] = array('Date', 'Visits', 'New visits');
+		if(ADMIN_LANGUAGE == 'en') {
+        	$results[] = array('Date', 'Visits', 'New visits');
+		} else if(ADMIN_LANGUAGE == 'es') {
+        	$results[] = array('Día', 'Visitas', 'Nuevas visitas');
+		}
 
         foreach($ga as $day => $item) {
             $info = array();
@@ -52,7 +62,11 @@ class Analytics extends MY_Controller
         }
 
         $this->data['ga_results'] = json_encode($results);
-        $this->data['ga_title'] = "{$summary['metrics']['visits']} visits to the website during the last 31 days";
+		if(ADMIN_LANGUAGE == 'en') {
+        	$this->data['ga_title'] = "{$summary['metrics']['visits']} visits to the website during the last 31 days";
+		} else if(ADMIN_LANGUAGE == 'es') {
+        	$this->data['ga_title'] = "{$summary['metrics']['visits']} visitas al sitio web en los últimos 31 días";
+		}
     }
 
 }

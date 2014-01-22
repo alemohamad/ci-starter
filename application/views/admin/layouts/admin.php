@@ -37,7 +37,7 @@
 
     <!-- Admin preloader -->
     <div id="preloader">
-        <div id="status"><span class="glyphicon glyphicon-cloud-download"></span> Loading CMS</div>
+        <div id="status"><span class="glyphicon glyphicon-cloud-download"></span> <?=lang_phrase('cms_loading')?></div>
     </div>
 
     <!-- Wrap all page content here -->
@@ -72,16 +72,16 @@
                         <li class="dropdown">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="<?= $this->gravatar->get_gravatar($this->session->userdata('email'), NULL, 20) ?>" style="margin-top:-3px;margin-right:5px;" alt="Profile picture" class="img-circle">
-                                Logged in as <?=$this->session->userdata('name')?> <b class="caret"></b>
+                                <?=lang_phrase('menu_title')?> <?=$this->session->userdata('name')?> <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?=site_url('admin/settings/profile')?>"><span class="glyphicon glyphicon-user"></span>&nbsp; User info (<small><?=$this->session->userdata('user')?></small>)</a></li>
+                                <li><a href="<?=site_url('admin/settings/profile')?>"><span class="glyphicon glyphicon-user"></span>&nbsp; <?=lang_phrase('menu_user')?> (<small><?=$this->session->userdata('user')?></small>)</a></li>
 
                                 <?php if($this->session->userdata('user') == 'admin' && ADMIN_MULTIUSER): ?>
-                                <li><a href="<?=site_url('admin/settings')?>"><span class="glyphicon glyphicon-th-list"></span>&nbsp; Manage users</a></li>
+                                <li><a href="<?=site_url('admin/settings')?>"><span class="glyphicon glyphicon-th-list"></span>&nbsp; <?=lang_phrase('menu_manage')?></a></li>
                                 <?php endif; ?>
 
-								<li><a href="javascript:;" rel="tooltip" data-title="Time log" data-placement="left"><span class="glyphicon glyphicon-time"></span>&nbsp; <span id="box_timer">--:--:--</span></a></li>
+								<li><a href="javascript:;" rel="tooltip" data-title="<?=lang_phrase('menu_time')?>" data-placement="left"><span class="glyphicon glyphicon-time"></span>&nbsp; <span id="box_timer">--:--:--</span></a></li>
 
                                 <li class="divider"></li>
 
@@ -90,18 +90,18 @@
                                 <?php endif; ?>
 
                                 <?php if(ADMIN_CLEAR_CACHE): ?>
-                                <li><a href="<?=site_url('admin/settings/clear-cache')?>"><span class="glyphicon glyphicon-trash"></span>&nbsp; Clear cached data</a></li>
+                                <li><a href="<?=site_url('admin/settings/clear-cache')?>"><span class="glyphicon glyphicon-trash"></span>&nbsp; <?=lang_phrase('menu_cache')?></a></li>
                                 <?php endif; ?>
 
                                 <?php if(ADMIN_DB_BACKUP): ?>
-                                <li><a href="<?=site_url('admin/settings/backup-db')?>"><span class="glyphicon glyphicon-floppy-save"></span>&nbsp; Database backup</a></li>
+                                <li><a href="<?=site_url('admin/settings/backup-db')?>"><span class="glyphicon glyphicon-floppy-save"></span>&nbsp; <?=lang_phrase('menu_db_backup')?></a></li>
                                 <?php endif; ?>
 
-                                <li><a href="javascript:;" data-toggle="modal" data-target="#contact-modal" data-remote="<?=site_url('admin/settings/feedback-admin')?>"><span class="glyphicon glyphicon-send"></span>&nbsp; Send feedback</a></li>
-                                <li><a href="<?=site_url('admin/settings/help')?>"><span class="glyphicon glyphicon-book"></span>&nbsp; Help</a></li>
+                                <li><a href="javascript:;" data-toggle="modal" data-target="#contact-modal" data-remote="<?=site_url('admin/settings/feedback-admin')?>"><span class="glyphicon glyphicon-send"></span>&nbsp; <?=lang_phrase('menu_feedback')?></a></li>
+                                <li><a href="<?=site_url('admin/settings/help')?>"><span class="glyphicon glyphicon-book"></span>&nbsp; <?=lang_phrase('menu_help')?></a></li>
                                 <li class="divider"></li>
-                                <li><a href="<?=site_url('/')?>" target="_blank"><span class="glyphicon glyphicon-globe"></span>&nbsp; Open website</a></li>
-                                <li><a href="<?=site_url('admin/login/logout')?>"><span class="glyphicon glyphicon-log-out"></span>&nbsp; Logout</a></li>
+                                <li><a href="<?=site_url('/')?>" target="_blank"><span class="glyphicon glyphicon-globe"></span>&nbsp; <?=lang_phrase('menu_open')?></a></li>
+                                <li><a href="<?=site_url('admin/login/logout')?>"><span class="glyphicon glyphicon-log-out"></span>&nbsp; <?=lang_phrase('menu_logout')?></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -123,7 +123,7 @@
             <?php if ($this->session->userdata('logged_in') == TRUE): ?>
                 <?php if($this->session->userdata('last_login') != '0000-00-00 00:00:00'): ?>
                     <?php $this->load->helper('date'); ?>
-                    <p class="text-muted col-md-4 text-right small hidden-xs hidden-sm"><strong>Last login:</strong> <?= unix_to_human(strtotime($this->session->userdata('last_login'))); ?></p>
+                    <p class="text-muted col-md-4 text-right small hidden-xs hidden-sm"><strong><?=lang_phrase('cms_last_login')?>:</strong> <?= unix_to_human(strtotime($this->session->userdata('last_login'))); ?></p>
                 <?php endif; ?>
             <?php endif; ?>
         </div>
@@ -147,7 +147,7 @@
     <script src="<?= site_url('assets/admin_assets/tagmanager/tagmanager.js'); ?>"></script>
     <script src="<?= site_url('assets/admin_assets/spectrum/spectrum.js'); ?>"></script>
     <script src="<?= site_url('assets/admin_assets/msdropdown/jquery.dd.min.js'); ?>"></script>
-    <script src="<?= site_url('assets/admin_assets/js/admin.js'); ?>"></script>
+    <script src="<?= site_url('assets/admin_assets/js/admin.js?v=' . time()); ?>"></script>
     <script>
 	$(function() {
 		remember_me_init('ch_<?= url_title(ADMIN_PROJECT, '_', TRUE); ?>', 'user_<?= url_title(ADMIN_PROJECT, '_', TRUE); ?>');

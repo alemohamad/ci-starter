@@ -3,7 +3,7 @@
 class Gallery extends MY_Controller
 {
 
-    protected $helpers = array( 'am' );
+    protected $helpers = array( 'am', 'admin_language' );
 
     protected $models = array( 'related_galleries' );
 
@@ -11,7 +11,7 @@ class Gallery extends MY_Controller
     {
         parent::__construct();
         if (!$this->authentication->is_loggedin()) {
-    		$this->session->set_flashdata("alert_message", "<strong>Warning!</strong> You must be logged in to access the system and make changes.");
+    		$this->session->set_flashdata("alert_message", lang_phrase('alert_not_logged_in') );
 			$this->session->set_flashdata("alert_type", "warning");
             redirect(site_url('admin/login'));
         }
@@ -83,7 +83,7 @@ class Gallery extends MY_Controller
 
 			$this->related_galleries->insert($info);
 
-			$this->session->set_flashdata("alert_message", "<strong>Success!</strong> The item was created without issues.");
+			$this->session->set_flashdata("alert_message", lang_phrase('alert_create_success') );
 			$this->session->set_flashdata("alert_type", "success");
             redirect($_SERVER['HTTP_REFERER']);
 		} else {

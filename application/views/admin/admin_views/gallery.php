@@ -42,9 +42,9 @@
 		</ul>
 
 		<p class="text-center">
-			<button type="button" id="delete_form" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i> Delete</button>
-			<button type="button" id="high_form"  class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-star"></i> Highlight</button>
-			<button type="button" id="unhigh_form"  class="btn btn-default btn-xs"><i class="glyphicon glyphicon-star-empty"></i> Unhighlight</button>
+			<button type="button" id="delete_form" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i> <?=lang_phrase('gallery_delete')?></button>
+			<button type="button" id="high_form"  class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-star"></i> <?=lang_phrase('gallery_highlight')?></button>
+			<button type="button" id="unhigh_form"  class="btn btn-default btn-xs"><i class="glyphicon glyphicon-star-empty"></i> <?=lang_phrase('gallery_unhighlight')?></button>
 		</p>
 	</form>
 

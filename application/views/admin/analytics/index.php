@@ -16,6 +16,6 @@
     </script>
 
     <div id="chart_div" style="width: 100%; height: 300px; margin: 0 auto; text-align: left;"></div>
-    <p class="text-center"><a class="btn btn-default" href="http://www.google.com/intl/en_ALL/analytics/" target="_blank"><span class="glyphicon glyphicon-stats"></span>&nbsp; Go to Google Analytics to view the full report</a></p>
-    <p class="text-center small">Responsible account of GA: <strong><?php $this->load->config('ga_api'); echo $this->config->item('email'); ?></strong></p>
+    <p class="text-center"><a class="btn btn-default" href="http://www.google.com/intl/en_ALL/analytics/" target="_blank"><span class="glyphicon glyphicon-stats"></span>&nbsp; <?=lang_phrase('ga_btn')?></a></p>
+    <p class="text-center small"><?=lang_phrase('ga_msg')?>: <strong><?php $this->load->config('ga_api'); echo $this->config->item('email'); ?></strong></p>
 </div>
