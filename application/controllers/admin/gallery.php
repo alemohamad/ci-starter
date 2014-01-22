@@ -60,7 +60,7 @@ class Gallery extends MY_Controller
 				's' => array('w' => 170, 'h' => 100),
 				'l' => array('w' => 410, 'h' => 370)
 			);
-			$info['picture'] = upload_picture('picture', 'project', 'gallery', '', $resizes);
+			$info['picture'] = upload_picture('picture', ADMIN_PROJECT_CODE, 'gallery', '', $resizes);
 
 			/*
 			// upload and resize pictures with a zip file
@@ -69,7 +69,7 @@ class Gallery extends MY_Controller
 				's' => array('w' => 170, 'h' => 100),
 				'l' => array('w' => 410, 'h' => 370)
 			);
-			$pictures = upload_zip_pics('picture', 'project', 'gallery', '', $resizes);
+			$pictures = upload_zip_pics('picture', ADMIN_PROJECT_CODE, 'gallery', '', $resizes);
 			$i = 0;
 			foreach($pictures as $picture) {
 				$i++;
