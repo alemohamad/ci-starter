@@ -56,10 +56,12 @@ $db['default']['dbprefix'] = 'prefix_';
 Modify the constants for the Admin.
 
 ```php
-define('ADMIN_PROJECT',		  'Project name');
-define('ADMIN_CLIENT',		  'Ale Mohamad');
+define('ADMIN_PROJECT',       'Project name');
+define('ADMIN_PROJECT_CODE',  'project');
+define('ADMIN_CLIENT',        'Ale Mohamad');
 define('ADMIN_PRIMARY_EMAIL', 'user@server.com');
-define('ADMIN_MULTIUSER',	  FALSE);
+define('ADMIN_LANGUAGE',      'en');
+define('ADMIN_MULTIUSER',     FALSE);
 define('ADMIN_CLEAR_CACHE',   FALSE);
 define('ADMIN_DB_BACKUP',     FALSE);
 ```
