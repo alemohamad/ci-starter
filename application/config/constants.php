@@ -45,6 +45,7 @@ define('ADMIN_LANGUAGE',      'en');
 define('ADMIN_MULTIUSER',     FALSE);
 define('ADMIN_CLEAR_CACHE',   FALSE);
 define('ADMIN_DB_BACKUP',     FALSE);
+define('MAINTENANCE_MODE',    FALSE);
 
 
 /* End of file constants.php */

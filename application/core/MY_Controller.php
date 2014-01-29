@@ -65,6 +65,13 @@ class MY_Controller extends CI_Controller
     {
         parent::__construct();
  
+        // custom maintenance mode message
+        if(MAINTENANCE_MODE == TRUE) {
+            $this->load->view('layouts/maintenance_view');
+            $this->output->_display();
+            die();
+        }
+ 
         $this->_load_models();
         $this->_load_helpers();
     }
@@ -92,7 +99,8 @@ class MY_Controller extends CI_Controller
             }
             else
             {
-                show_404(strtolower(get_class($this)).'/'.$method);
+                // show_404(strtolower(get_class($this)).'/'.$method);
+				$this->view = 'error/index'; // custom error page
             }
         }
  
