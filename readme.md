@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS  `project_sessions` (
 
 * [CodeIgniter v2.1.4](http://ellislab.com/codeigniter) (EllisLab)
 * [MY_Model](https://github.com/jamierumbelow/codeigniter-base-model) (Jamie Rumbelow)
-* [MY_Controller](https://github.com/jamierumbelow/codeigniter-base-controller) (Jamie Rumbelow) *modified
+* [MY_Controller](https://github.com/jamierumbelow/codeigniter-base-controller) (Jamie Rumbelow) *
 * [MY_Output](https://github.com/danmurf/CI-MY_Output) (Dan Murfitt)
 * [Image_moo v1.1.5](http://www.matmoo.com/digital-dribble/codeigniter/image_moo/) (Matthew Augier)
 * [Basic CodeIgniter Authentication](https://github.com/joelvardy/Basic-CodeIgniter-Authentication) (Joel Vardy)
