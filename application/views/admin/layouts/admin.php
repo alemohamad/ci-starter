@@ -24,6 +24,7 @@
     <link href="<?= site_url('assets/admin_assets/tagmanager/tagmanager.css'); ?>" rel="stylesheet"></link>
     <link href="<?= site_url('assets/admin_assets/spectrum/spectrum.css'); ?>" rel="stylesheet"></link>
     <link href="<?= site_url('assets/admin_assets/msdropdown/dd.css'); ?>" rel="stylesheet"></link>
+    <link href="<?= site_url('assets/admin_assets/css/font-awesome.min.css'); ?>" rel="stylesheet"></link>
     <link href="<?= site_url('assets/admin_assets/css/admin.css'); ?>" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
