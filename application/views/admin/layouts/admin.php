@@ -79,7 +79,7 @@
                                 <li><a href="<?=site_url('admin/settings/profile')?>"><span class="glyphicon glyphicon-user"></span>&nbsp; <?=lang_phrase('menu_user')?> (<small><?=$this->session->userdata('user')?></small>)</a></li>
 
                                 <?php if($this->session->userdata('user') == 'admin' && ADMIN_MULTIUSER): ?>
-                                <li><a href="<?=site_url('admin/settings')?>"><span class="glyphicon glyphicon-th-list"></span>&nbsp; <?=lang_phrase('menu_manage')?></a></li>
+                                <li><a href="<?=site_url('admin/settings')?>"><i class="fa fa-users"></i>&nbsp; <?=lang_phrase('menu_manage')?></a></li>
                                 <?php endif; ?>
 
 								<li><a href="javascript:;" rel="tooltip" data-title="<?=lang_phrase('menu_time')?>" data-placement="left"><span class="glyphicon glyphicon-time"></span>&nbsp; <span id="box_timer">--:--:--</span></a></li>
@@ -87,7 +87,7 @@
                                 <li class="divider"></li>
 
                                 <?php $this->load->config('ga_api'); if($this->config->item('profile_id') != '1234567890'): ?>
-                                <li><a href="<?=site_url('admin/analytics')?>"><span class="glyphicon glyphicon-stats"></span>&nbsp; Google Analytics</a></li>
+                                <li><a href="<?=site_url('admin/analytics')?>"><i class="fa fa-bar-chart-o"></i>&nbsp; Google Analytics</a></li>
                                 <?php endif; ?>
 
                                 <?php if(ADMIN_CLEAR_CACHE): ?>
@@ -99,7 +99,7 @@
                                 <?php endif; ?>
 
                                 <li><a href="javascript:;" data-toggle="modal" data-target="#contact-modal" data-remote="<?=site_url('admin/settings/feedback-admin')?>"><span class="glyphicon glyphicon-send"></span>&nbsp; <?=lang_phrase('menu_feedback')?></a></li>
-                                <li><a href="<?=site_url('admin/settings/help')?>"><span class="glyphicon glyphicon-book"></span>&nbsp; <?=lang_phrase('menu_help')?></a></li>
+                                <li><a href="<?=site_url('admin/settings/help')?>"><i class="fa fa-question"></i>&nbsp; <?=lang_phrase('menu_help')?></a></li>
                                 <li class="divider"></li>
                                 <li><a href="<?=site_url('/')?>" target="_blank"><span class="glyphicon glyphicon-globe"></span>&nbsp; <?=lang_phrase('menu_open')?></a></li>
                                 <li><a href="<?=site_url('admin/login/logout')?>"><span class="glyphicon glyphicon-log-out"></span>&nbsp; <?=lang_phrase('menu_logout')?></a></li>

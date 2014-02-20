@@ -18,7 +18,7 @@
 
 <?php if($this->session->userdata('user') == 'admin' && ADMIN_MULTIUSER): ?>
 <div class="well">
-	<p class="col-md-2"><strong><span class="glyphicon glyphicon-th-list"></span>&nbsp; <?=lang_phrase('help_manage_title')?></strong></p>
+	<p class="col-md-2"><strong><i class="fa fa-users"></i>&nbsp; <?=lang_phrase('help_manage_title')?></strong></p>
 	<?=lang_phrase('help_manage_msg')?>
 </div>
 <?php endif; ?>
@@ -29,7 +29,7 @@
 </div>
 
 <div class="well">
-	<p class="col-md-2"><strong><span class="glyphicon glyphicon-stats"></span>&nbsp; <?=lang_phrase('help_google_title')?></strong></p>
+	<p class="col-md-2"><strong><i class="fa fa-bar-chart-o"></i>&nbsp; <?=lang_phrase('help_google_title')?></strong></p>
 	<?=lang_phrase('help_google_msg')?>
 </div>
 
@@ -53,7 +53,7 @@
 </div>
 
 <div class="well">
-	<p class="col-md-2"><strong><span class="glyphicon glyphicon-book"></span>&nbsp; <?=lang_phrase('help_help_title')?></strong></p>
+	<p class="col-md-2"><strong><i class="fa fa-question"></i>&nbsp; <?=lang_phrase('help_help_title')?></strong></p>
 	<?=lang_phrase('help_help_msg')?>
 </div>
 
