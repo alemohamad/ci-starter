@@ -94,6 +94,7 @@ class News extends MY_Controller
         $this->data['title'] = $this->title;
         $this->data['file'] = $this->file;
         $this->data['form_fields'] = $this->form_fields();
+        $this->data['gallery'] = $this->gallery;
     }
 
     public function edit($id)
