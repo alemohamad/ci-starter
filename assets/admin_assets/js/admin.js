@@ -25,13 +25,13 @@ $(document).ready(function(){
 		
 		$.ajax(urlLink, { dataType: 'json', type: 'get', cache: false, timeout: 8000 });
 		
-		if(element.hasClass('btn-warning')) {
-			element.removeClass('btn-warning');
+		if(element.hasClass('btn-success')) {
+			element.removeClass('btn-success');
 			element.find('span').removeClass('glyphicon-eye-open');
 			element.find('span').addClass('glyphicon-eye-close');
 			// element.attr('data-title', "Show");
 		} else {
-			element.addClass('btn-warning');
+			element.addClass('btn-success');
 			element.find('span').addClass('glyphicon-eye-open');
 			element.find('span').removeClass('glyphicon-eye-close');
 			// element.attr('data-title', "Hide");

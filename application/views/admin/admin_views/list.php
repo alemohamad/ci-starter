@@ -62,7 +62,7 @@
 			<?php endforeach; ?>
 			<td>
 				<?php if($state): ?>
-				<button class="btn btn-xs <?=($item->visible)?'btn-warning':''?> state-status" rel="tooltip" data-title="<?=lang_phrase('btn_status')?>" data-url="<?=site_url('admin/' . $file . '/state/' . $item->id)?>"><span class="glyphicon glyphicon-eye-<?=($item->visible)?'open':'close'?>"></span></button>
+				<button class="btn btn-xs <?=($item->visible)?'btn-success':''?> state-status" rel="tooltip" data-title="<?=lang_phrase('btn_status')?>" data-url="<?=site_url('admin/' . $file . '/state/' . $item->id)?>"><span class="glyphicon glyphicon-eye-<?=($item->visible)?'open':'close'?>"></span></button>
 				<?php endif; ?>
 				<?php if($edit): ?>
 				<button class="btn btn-xs btn-primary" rel="tooltip" data-title="<?=lang_phrase('btn_edit')?>" data-toggle="modal" data-target="#ui-modal" data-remote="<?=site_url('admin/' . $file . '/edit/' . $item->id)?>"><span class="glyphicon glyphicon-pencil"></span></button>
