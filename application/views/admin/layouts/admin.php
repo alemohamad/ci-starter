@@ -72,7 +72,6 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="<?= $this->gravatar->get_gravatar($this->session->userdata('email'), NULL, 20) ?>" style="margin-top:-3px;margin-right:5px;" alt="Profile picture" class="img-circle">
                                 <?=lang_phrase('menu_title')?> <?=$this->session->userdata('name')?> <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
@@ -104,6 +103,9 @@
                                 <li><a href="<?=site_url('/')?>" target="_blank"><span class="glyphicon glyphicon-globe"></span>&nbsp; <?=lang_phrase('menu_open')?></a></li>
                                 <li><a href="<?=site_url('admin/login/logout')?>"><span class="glyphicon glyphicon-log-out"></span>&nbsp; <?=lang_phrase('menu_logout')?></a></li>
                             </ul>
+                        </li>
+                        <li>
+                            <img src="<?= $this->gravatar->get_gravatar($this->session->userdata('email'), NULL, 40) ?>" style="margin:5px 10px;" alt="Profile picture" class="img-circle">
                         </li>
                     </ul>
                 </div><!--/.nav-collapse -->
