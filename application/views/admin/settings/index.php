@@ -56,7 +56,7 @@
 				<button class="btn btn-info first" rel="tooltip" data-title="<?=lang_phrase('pager_first')?>"><span class="glyphicon glyphicon-backward"></span></button>
 				<button class="btn btn-info prev" rel="tooltip" data-title="<?=lang_phrase('pager_previous')?>"><span class="glyphicon glyphicon-fast-backward"></span></button>
 			</span>
-			<input type="search" class="form-control text-center pagedisplay" id="filter-control" disabled="disabled">
+			<input type="search" class="form-control text-center pagedisplay" id="filter-control" readonly>
 			<span class="input-group-btn">
 				<button class="btn btn-info next" rel="tooltip" data-title="<?=lang_phrase('pager_next')?>"><span class="glyphicon glyphicon-fast-forward"></span></button>
 				<button class="btn btn-info last" rel="tooltip" data-title="<?=lang_phrase('pager_last')?>"><span class="glyphicon glyphicon-forward"></span></button>

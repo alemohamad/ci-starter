@@ -14,6 +14,7 @@ function lang_phrase($field) {
 	$language['en']['login_remember'] = 'Remember me';
 	$language['en']['login_remember_msg'] = 'For security reasons, only the username will be remembered.';
 	$language['en']['login_btn_login'] = 'Log in';
+	$language['en']['login_btn_login_load'] = '<span class=\'glyphicon glyphicon-log-in\'></span>&nbsp; Logging in...';
 	$language['en']['login_btn_forgot'] = 'I forgot my password';
 	// forgot and reset password
 	$language['en']['forgot_title'] = 'I forgot my password!';
@@ -174,6 +175,7 @@ function lang_phrase($field) {
 	$language['es']['login_remember'] = 'Recordarme';
 	$language['es']['login_remember_msg'] = 'Por razones de seguridad, sólo el usuario será recordado.';
 	$language['es']['login_btn_login'] = 'Ingresar';
+	$language['es']['login_btn_login_load'] = '<span class=\'glyphicon glyphicon-log-in\'></span>&nbsp; Ingresando...';
 	$language['es']['login_btn_forgot'] = 'Olvidé mi contraseña';
 	// forgot and reset password
 	$language['es']['forgot_title'] = '¡Olvidé mi contraseña!';

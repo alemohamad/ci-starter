@@ -34,7 +34,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-4">
-			<button type="submit" name="submit" value="submit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-log-in"></span>&nbsp; <?=lang_phrase('login_btn_login')?></button>
+			<button type="submit" name="submit" value="submit" class="btn btn-success btn-sm" rel="loading" data-loading-text="<?=lang_phrase('login_btn_login_load')?>"><span class="glyphicon glyphicon-log-in"></span>&nbsp; <?=lang_phrase('login_btn_login')?></button>
 			<a href="<?=site_url('admin/login/forgot-password')?>" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-lock"></span>&nbsp; <?=lang_phrase('login_btn_forgot')?></a>
 		</div>
 	</div>
