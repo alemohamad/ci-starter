@@ -84,7 +84,7 @@
 
 <div class="well">
 	<p class="col-md-2">
-		<button class="btn btn-xs btn-warning" rel="tooltip" data-title="<?=lang_phrase('help_status_title')?>">
+		<button class="btn btn-xs btn-success" rel="tooltip" data-title="<?=lang_phrase('help_status_title')?>">
 			<span class="glyphicon glyphicon-eye-open"></span>
 		</button>
 	</p>
