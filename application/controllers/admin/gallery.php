@@ -53,14 +53,14 @@ class Gallery extends MY_Controller
 			die('error!');
 		}
 
-		if($this->input->post('form_submit')) {
+		// if($this->input->post('form_submit')) {
 			// upload and resize pictures
 			$resizes = array(
 				't' => array('w' =>  50, 'h' =>  50),
 				's' => array('w' => 170, 'h' => 100),
 				'l' => array('w' => 410, 'h' => 370)
 			);
-			$info['picture'] = upload_picture('picture', ADMIN_PROJECT_CODE, 'gallery', '', $resizes);
+			$info['picture'] = upload_picture('fd-file', ADMIN_PROJECT_CODE, 'gallery', '', $resizes);
 
 			/*
 			// upload and resize pictures with a zip file
@@ -85,10 +85,10 @@ class Gallery extends MY_Controller
 
 			$this->session->set_flashdata("alert_message", lang_phrase('alert_create_success') );
 			$this->session->set_flashdata("alert_type", "success");
-            redirect($_SERVER['HTTP_REFERER']);
-		} else {
-			die('error!');
-		}
+            // redirect($_SERVER['HTTP_REFERER']); // with the file drop, this isnt necessary
+		// } else {
+		//     die('error!');
+		// }
 	}
 
 	public function status($status, $id) {

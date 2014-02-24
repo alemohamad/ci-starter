@@ -15,20 +15,85 @@
 
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="//code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+    <script src="<?= site_url('assets/admin_assets/js/filedrop-min.js'); ?>"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+    .fd-zone {
+        position: relative;
+        overflow: hidden;
+        width: 400px;
+        height: 120px;
+        margin: 5px auto;
+        text-align: center;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        border: 2px dashed #c4c4c4;
+        background-color: #f7f7f7;
+    }
+    .drop-help {
+        display: table;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        color: #a4a4a4;
+        font: normal 14px/1.4 "Helvetica Neue","HelveticaNeue",Helvetica,Arial,sans-serif;
+        -webkit-font-smoothing: antialiased;
+    }
+    .drop-help span {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
+    .fd-file {
+        opacity: 0;
+        font-size: 118px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        filter: alpha(opacity=0);
+        font-family: sans-serif;
+    }
+    .fd-zone.over { background-color: #fefefe; border-style: solid; }
+    .loader {
+        background-color: rgba(200, 200, 200, 0.5);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 99999;
+        text-align: center;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        color: #4a4a4a;
+        font: normal 14px/1.4 "Helvetica Neue","HelveticaNeue",Helvetica,Arial,sans-serif;
+        -webkit-font-smoothing: antialiased;
+        display: none;
+    }
+	</style>
 </head>
 
 <body>
 
-<form id="new_gallery_form" method="post" action="<?=site_url('admin/gallery/create/' . $id . '/' . $table)?>" enctype="multipart/form-data">
-<?=$fields?>
-<input name="form_submit" type="hidden" value="1">
-</form>
+<div class="loader upload-files"><br><br><br><br>Uploading photos<br>This could take a while</div>
+<div class="loader deleting-files"><br><br><br><br>Deleting<br>This could take a while</div>
+<div class="loader state-files"><br><br><br><br>Changing state<br>This could take a while</div>
+
+	<div id="zone">
+      <div class="drop-help">
+        <span>Drop photos or click to browse</span>
+      </div>
+    </div>
 
 	<form id="gallery_form" method="post" action="">
 		<ul class="imagePicker" id="sortable">
@@ -42,13 +107,19 @@
 		</ul>
 
 		<p class="text-center">
-			<button type="button" id="delete_form" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i> <?=lang_phrase('gallery_delete')?></button>
-			<button type="button" id="high_form"  class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-star"></i> <?=lang_phrase('gallery_highlight')?></button>
-			<button type="button" id="unhigh_form"  class="btn btn-default btn-xs"><i class="glyphicon glyphicon-star-empty"></i> <?=lang_phrase('gallery_unhighlight')?></button>
+			<button type="button" id="delete_form" class="btn btn-danger btn-xs" onclick="show_delete()"><i class="glyphicon glyphicon-remove"></i> <?=lang_phrase('gallery_delete')?></button>
+			<button type="button" id="high_form"  class="btn btn-warning btn-xs" onclick="show_state()"><i class="glyphicon glyphicon-star"></i> <?=lang_phrase('gallery_highlight')?></button>
+			<button type="button" id="unhigh_form"  class="btn btn-default btn-xs" onclick="show_state()"><i class="glyphicon glyphicon-star-empty"></i> <?=lang_phrase('gallery_unhighlight')?></button>
 		</p>
 	</form>
 
 	<script>
+	function show_delete() {
+		$(".deleting-files").show();
+	}
+	function show_state() {
+		$(".state-files").show();
+	}
 	$(document).ready(function() {
 		$('input[type=file]').on('change', function() {
 			$('#new_gallery_form').submit();
@@ -82,6 +153,37 @@
 			form.attr('action', '<?=site_url('admin/gallery/status/unhigh/' . $id)?>');
 			form.submit();
 		});
+		
+		// file drop
+		var options = { iframe: { url: '<?=site_url('admin/gallery/create/' . $id . '/' . $table)?>' } };
+		var zone = new FileDrop('zone', options);
+
+		zone.event('send', function (files) {
+		  // alert('start upload');
+		  $(".upload-files").show();
+		  var total_files = files.length;
+		  var count_files = 0;
+		  files.each(function (file) {
+		    file.event('done', function (xhr) {
+		      count_files++;
+		      if(count_files == total_files) {
+		        // all files uploaded
+		        // alert('all files uploaded (' + count_files + ')');
+		        location.reload();
+		      }
+		    });
+		    file.sendTo('<?=site_url('admin/gallery/create/' . $id . '/' . $table)?>');
+		  });
+		});
+
+		zone.event('iframeDone', function (xhr) {
+		  // iframe uploaded
+		});
+
+		fd.addEvent(fd.byID('multiple'), 'change', function (e) {
+		  zone.multiple(e.currentTarget || e.srcElement.checked);
+		});
+		// end file drop
 	});
 	</script>
 

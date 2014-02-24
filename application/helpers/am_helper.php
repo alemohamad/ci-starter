@@ -52,21 +52,33 @@ function upload_file($file_name, $project, $section, $prev_file = '', $path = '.
 	$extension = explode('|', $types);
 
     $config = array();
-    $config['file_name'] = date('YmdHis') . '_' . $project . '_' . $section . '.' . $extension[0];
+    $config['file_name_wo_ext'] = date('YmdHis') . '_' . $project . '_' . $section;
+    $config['file_name'] = $config['file_name_wo_ext'] . '.' . $extension[0];
     $config['upload_path'] = $path;
     $config['allowed_types'] = $types;
     $config['max_size']	= $max_size;
     $CI->upload->initialize($config);
 
-    if($CI->upload->do_upload($file_name)) {
-        $file = $CI->upload->data();
-		// file_name, raw_name, file_type, full_path, file_path
-		return $file; // array
+    if (!empty($_FILES['fd-file']) and is_uploaded_file($_FILES['fd-file']['tmp_name'])) {
+        if($CI->upload->do_upload($file_name)) {
+            $file = $CI->upload->data();
+    		// file_name, raw_name, file_type, full_path, file_path
+    		return $file; // array
+        } else {
+            // die($CI->upload->display_errors()); // show upload errors
+        }
     } else {
-        // die($CI->upload->display_errors()); // show upload errors
+        // Raw POST data.
+        $data = file_get_contents("php://input");
+        file_put_contents($config['upload_path'].$config['file_name'], $data);
+        $array_file = array();
+        $array_file['raw_name'] = $config['file_name_wo_ext'];
+        $array_file['file_path'] = $config['upload_path'];
+        $array_file['full_path'] = $config['upload_path'].$config['file_name'];
+        return $array_file;
     }
 
-	return $prev_file;
+    return $prev_file;
 }
 
 // custom resize picture code to reuse
