@@ -244,9 +244,9 @@ function lang_phrase($field) {
 	$language['es']['gallery_changing'] = 'Cambiando estado';
 	$language['es']['gallery_uploading'] = 'Subiendo fotos';
 	$language['es']['gallery_uploaded'] = 'Subidas 0 de 0 fotos';
-	$language['en']['gallery_uploaded1'] = 'Subidas';
-	$language['en']['gallery_uploaded2'] = 'de';
-	$language['en']['gallery_uploaded3'] = 'fotos';
+	$language['es']['gallery_uploaded1'] = 'Subidas';
+	$language['es']['gallery_uploaded2'] = 'de';
+	$language['es']['gallery_uploaded3'] = 'fotos';
 	$language['es']['gallery_selectall'] = 'Seleccionar todos';
 	$language['es']['gallery_unselectall'] = 'Deseleccionar todos';
 	$language['es']['gallery_delete'] = 'Eliminar';
