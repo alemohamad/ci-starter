@@ -27,9 +27,9 @@
     .fd-zone {
         position: relative;
         overflow: hidden;
-        width: 400px;
-        height: 120px;
-        margin: 5px auto;
+        width: 95%;
+        height: 100px;
+        margin: 15px auto 5px;
         text-align: center;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -66,17 +66,17 @@
     }
     .fd-zone.over { background-color: #fefefe; border-style: solid; }
     .loader {
-        background-color: rgba(200, 200, 200, 0.5);
+        background-color: rgba(200, 200, 200, 0.7);
         width: 100%;
         height: 100%;
-        position: absolute;
+        position: fixed;
         z-index: 99999;
         text-align: center;
         top: 0;
         left: 0;
         overflow: hidden;
         color: #4a4a4a;
-        font: normal 14px/1.4 "Helvetica Neue","HelveticaNeue",Helvetica,Arial,sans-serif;
+        font: bold 14px/1.4 "Helvetica Neue","HelveticaNeue",Helvetica,Arial,sans-serif;
         -webkit-font-smoothing: antialiased;
         display: none;
     }
@@ -85,7 +85,7 @@
 
 <body>
 
-<div class="loader upload-files"><br><br><br><br>Uploading photos<br>This could take a while</div>
+<div class="loader upload-files"><br><br><br><br>Uploading photos<br>This could take a while<br><br><span class="status-upload">Uploading 0 of 0</span></div>
 <div class="loader deleting-files"><br><br><br><br>Deleting<br>This could take a while</div>
 <div class="loader state-files"><br><br><br><br>Changing state<br>This could take a while</div>
 
@@ -107,6 +107,8 @@
 		</ul>
 
 		<p class="text-center">
+			<button type="button" id="select_form" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-check"></i> Select all</button>
+			<button type="button" id="unselect_form" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-unchecked"></i> Unselect all</button>
 			<button type="button" id="delete_form" class="btn btn-danger btn-xs" onclick="show_delete()"><i class="glyphicon glyphicon-remove"></i> <?=lang_phrase('gallery_delete')?></button>
 			<button type="button" id="high_form"  class="btn btn-warning btn-xs" onclick="show_state()"><i class="glyphicon glyphicon-star"></i> <?=lang_phrase('gallery_highlight')?></button>
 			<button type="button" id="unhigh_form"  class="btn btn-default btn-xs" onclick="show_state()"><i class="glyphicon glyphicon-star-empty"></i> <?=lang_phrase('gallery_unhighlight')?></button>
@@ -138,6 +140,13 @@
 		});
 		$("#sortable").disableSelection();
 
+		$('#select_form').on('click', function() {
+			$(".form-checkbox").prop('checked', true);
+		});
+		$('#unselect_form').on('click', function() {
+			$(".form-checkbox").prop('checked', false);
+		});
+
 		$('#delete_form').on('click', function() {
 			var form = $('#gallery_form');
 			form.attr('action', '<?=site_url('admin/gallery/status/delete/' . $id)?>');
@@ -163,9 +172,11 @@
 		  $(".upload-files").show();
 		  var total_files = files.length;
 		  var count_files = 0;
+          $(".status-upload").text("Uploading " + count_files + " of " + total_files + " photos");
 		  files.each(function (file) {
 		    file.event('done', function (xhr) {
 		      count_files++;
+              $(".status-upload").text("Uploading " + count_files + " of " + total_files + " photos");
 		      if(count_files == total_files) {
 		        // all files uploaded
 		        // alert('all files uploaded (' + count_files + ')');

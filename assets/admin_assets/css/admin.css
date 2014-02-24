@@ -59,7 +59,7 @@ code {
 	width:56px;
 	height:56px;
 	display:inline-block;
-	margin:10px;
+	margin:9px;
 }
 .imagePicker li label { cursor:pointer; }
 .imagePicker li img {
