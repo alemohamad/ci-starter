@@ -85,13 +85,13 @@
 
 <body>
 
-<div class="loader upload-files"><br><br><br><br>Uploading photos<br>This could take a while<br><br><span class="status-upload">Uploading 0 of 0</span></div>
-<div class="loader deleting-files"><br><br><br><br>Deleting<br>This could take a while</div>
-<div class="loader state-files"><br><br><br><br>Changing state<br>This could take a while</div>
+<div class="loader upload-files"><br><br><br><br><?=lang_phrase('gallery_uploading')?><br><?=lang_phrase('gallery_while')?><br><br><span class="status-upload"><?=lang_phrase('gallery_uploaded')?></span></div>
+<div class="loader deleting-files"><br><br><br><br><?=lang_phrase('gallery_deleting')?><br><?=lang_phrase('gallery_while')?></div>
+<div class="loader state-files"><br><br><br><br><?=lang_phrase('gallery_changing')?><br><?=lang_phrase('gallery_while')?></div>
 
 	<div id="zone">
       <div class="drop-help">
-        <span>Drop photos or click to browse</span>
+        <span><?=lang_phrase('gallery_drag')?></span>
       </div>
     </div>
 
@@ -107,8 +107,8 @@
 		</ul>
 
 		<p class="text-center">
-			<button type="button" id="select_form" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-check"></i> Select all</button>
-			<button type="button" id="unselect_form" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-unchecked"></i> Unselect all</button>
+			<button type="button" id="select_form" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-check"></i> <?=lang_phrase('gallery_selectall')?></button>
+			<button type="button" id="unselect_form" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-unchecked"></i> <?=lang_phrase('gallery_unselectall')?></button>
 			<button type="button" id="delete_form" class="btn btn-danger btn-xs" onclick="show_delete()"><i class="glyphicon glyphicon-remove"></i> <?=lang_phrase('gallery_delete')?></button>
 			<button type="button" id="high_form"  class="btn btn-warning btn-xs" onclick="show_state()"><i class="glyphicon glyphicon-star"></i> <?=lang_phrase('gallery_highlight')?></button>
 			<button type="button" id="unhigh_form"  class="btn btn-default btn-xs" onclick="show_state()"><i class="glyphicon glyphicon-star-empty"></i> <?=lang_phrase('gallery_unhighlight')?></button>
@@ -172,11 +172,11 @@
 		  $(".upload-files").show();
 		  var total_files = files.length;
 		  var count_files = 0;
-          $(".status-upload").text("Uploading " + count_files + " of " + total_files + " photos");
+          $(".status-upload").text("<?=lang_phrase('gallery_uploaded1')?> " + count_files + " <?=lang_phrase('gallery_uploaded2')?> " + total_files + " <?=lang_phrase('gallery_uploaded3')?>");
 		  files.each(function (file) {
 		    file.event('done', function (xhr) {
 		      count_files++;
-              $(".status-upload").text("Uploading " + count_files + " of " + total_files + " photos");
+              $(".status-upload").text("<?=lang_phrase('gallery_uploaded1')?> " + count_files + " <?=lang_phrase('gallery_uploaded2')?> " + total_files + " <?=lang_phrase('gallery_uploaded3')?>");
 		      if(count_files == total_files) {
 		        // all files uploaded
 		        // alert('all files uploaded (' + count_files + ')');

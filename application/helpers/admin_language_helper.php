@@ -66,6 +66,17 @@ function lang_phrase($field) {
 	// gallery
 	$language['en']['gallery_item_title'] = 'Item info';
 	$language['en']['gallery_title'] = 'Gallery';
+	$language['en']['gallery_drag'] = 'Drop photos or click to browse';
+	$language['en']['gallery_while'] = 'This could take a while';
+	$language['en']['gallery_deleting'] = 'Deleting';
+	$language['en']['gallery_changing'] = 'Changing state';
+	$language['en']['gallery_uploading'] = 'Uploading photos';
+	$language['en']['gallery_uploaded'] = 'Uploading 0 of 0 photos';
+	$language['en']['gallery_uploaded1'] = 'Uploading';
+	$language['en']['gallery_uploaded2'] = 'of';
+	$language['en']['gallery_uploaded3'] = 'photos';
+	$language['en']['gallery_selectall'] = 'Select all';
+	$language['en']['gallery_unselectall'] = 'Unselect all';
 	$language['en']['gallery_delete'] = 'Delete';
 	$language['en']['gallery_highlight'] = 'Highlight';
 	$language['en']['gallery_unhighlight'] = 'Unhighlight';
@@ -227,6 +238,17 @@ function lang_phrase($field) {
 	// gallery
 	$language['es']['gallery_item_title'] = 'Información';
 	$language['es']['gallery_title'] = 'Galería';
+	$language['es']['gallery_drag'] = 'Soltar fotos o click aquí para elegir';
+	$language['es']['gallery_while'] = 'Esto puede tomar un momento';
+	$language['es']['gallery_deleting'] = 'Eliminando';
+	$language['es']['gallery_changing'] = 'Cambiando estado';
+	$language['es']['gallery_uploading'] = 'Subiendo fotos';
+	$language['es']['gallery_uploaded'] = 'Subidas 0 de 0 fotos';
+	$language['en']['gallery_uploaded1'] = 'Subidas';
+	$language['en']['gallery_uploaded2'] = 'de';
+	$language['en']['gallery_uploaded3'] = 'fotos';
+	$language['es']['gallery_selectall'] = 'Seleccionar todos';
+	$language['es']['gallery_unselectall'] = 'Deseleccionar todos';
 	$language['es']['gallery_delete'] = 'Eliminar';
 	$language['es']['gallery_highlight'] = 'Destacar';
 	$language['es']['gallery_unhighlight'] = 'Quitar el destacado';
