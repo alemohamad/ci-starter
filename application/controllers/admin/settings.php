@@ -155,6 +155,7 @@ class Settings extends MY_Controller
             $info['email'] = $this->input->post('email');
             $info['theme'] = $this->input->post('theme');
 
+            $data = array();
             if($this->authentication->read('username') == 'admin' && ADMIN_MULTIUSER) {
                 $data['permissions'] = $info['permissions'] = $this->input->post('permissions');
             }
@@ -172,7 +173,6 @@ class Settings extends MY_Controller
             $this->settings->update($info['id'], $info);
 
             // update session info
-            $data = array();
             $data['name'] = $info['name'];
             $data['email'] = $info['email'];
             $data['theme'] = $info['theme'];
