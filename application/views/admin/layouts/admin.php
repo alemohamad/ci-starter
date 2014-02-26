@@ -38,7 +38,15 @@
 
     <!-- Admin preloader -->
     <div id="preloader">
-        <div id="status"><span class="glyphicon glyphicon-cloud-download"></span> <?=lang_phrase('cms_loading')?></div>
+        <div id="status">
+            <script>
+            document.write("<span class='glyphicon glyphicon-cloud-download'></span> <?=lang_phrase('cms_loading')?>");
+            </script>
+            <noscript>
+                <small><b>Houston, we've got a problem!</b></small><br><br>
+                <small>It appears that your web browser does not support JavaScript, or you have temporarily disabled scripting. Either way, this site won't work without it.</small>
+            </noscript>
+        </div>
     </div>
 
     <!-- Wrap all page content here -->
