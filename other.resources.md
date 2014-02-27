@@ -11,6 +11,7 @@
 * [CodeIgniter LinkedIn](https://github.com/MurrionSoftware/codeigniter-linkedin-library) (Murrion Software)
 * [CodeIgniter Instagram](https://github.com/ianckc/CodeIgniter-Instagram-Library) (Ian Luckraft)
 * [Pinterest API PHP](https://github.com/kellan/pinterest.api.php) (Kellan)
+* [CodeIgniter Dropbox API](https://github.com/jimdoescode/CodeIgniter-Dropbox-API-Library) (Jim Saunders)
 * [CodeIgniter Bitly](https://github.com/patrickpopowicz/codeigniter-bitly) (Patrick Popowicz)
 * [Mobile Detect](https://github.com/serbanghita/Mobile-Detect) (Serban Ghita)
 * [GrabzIt Screenshots API](https://github.com/subdesign/codeigniter-Grabzit) (Barna Szalai)
