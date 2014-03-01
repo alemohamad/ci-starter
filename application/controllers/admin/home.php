@@ -10,13 +10,13 @@ class Home extends MY_Controller
             redirect(site_url('admin/login'));
         } else {
             // redirect to the first section in the user's permissons
-			if($this->session->userdata('permissions') == '') {
-				$section = 'settings/profile';
-			} else {
-				$permissions = explode(",", $this->session->userdata('permissions'));
-				$sections = explode("/", $permissions[0]);
-				$section = $sections[1];
-			}
+            if($this->session->userdata('permissions') == '') {
+                $section = 'settings/profile';
+            } else {
+                $permissions = explode(",", $this->session->userdata('permissions'));
+                $sections = explode("/", $permissions[0]);
+                $section = $sections[1];
+            }
             redirect(site_url('admin/' . $section));
         }
     }

@@ -36,9 +36,9 @@ code {
 }
 
 .year_moment {
-	font-size: 23px;
-	margin-top: 16px !important;
-	margin-bottom: 0 !important;
+    font-size: 23px;
+    margin-top: 16px !important;
+    margin-bottom: 0 !important;
 }
 
 /* Preloader */
@@ -52,40 +52,40 @@ code {
 /* Form Gallery */
 .imagePicker { list-style:none; padding:0; margin:0; }
 .imagePicker li {
-	position:relative;
-	border:solid 1px #9b9b9b;
-	padding:2px;
-	background:#ccc;
-	width:56px;
-	height:56px;
-	display:inline-block;
-	margin:9px;
+    position:relative;
+    border:solid 1px #9b9b9b;
+    padding:2px;
+    background:#ccc;
+    width:56px;
+    height:56px;
+    display:inline-block;
+    margin:9px;
 }
 .imagePicker li label { cursor:pointer; }
 .imagePicker li img {
-	width:50px;
-	height:50px;
-	display:block;
+    width:50px;
+    height:50px;
+    display:block;
 }
 .imagePicker li .form-checkbox {
-	position:absolute;
-	bottom:4px;
-	right:4px;
+    position:absolute;
+    bottom:4px;
+    right:4px;
 }
 .imagePicker li .ui-state-highlight {
-	margin: 0;
-	padding: 0;
-	top: 0;
+    margin: 0;
+    padding: 0;
+    top: 0;
 }
 .imagePicker li .ui-state-default {
-	
+    
 }
 .imagePicker li .highlight {
-	position:absolute;
-	top:-6px;
-	left:-6px;
-	color:#FDD017;
-	text-shadow: 1px 1px 5px #999;
+    position:absolute;
+    top:-6px;
+    left:-6px;
+    color:#FDD017;
+    text-shadow: 1px 1px 5px #999;
 }
 
 /* Flags */

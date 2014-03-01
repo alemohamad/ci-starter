@@ -37,8 +37,8 @@ class Login extends MY_Controller
 
                 redirect('admin');
             } else {
-        		$this->session->set_flashdata("alert_message", lang_phrase('alert_login_wrong') );
-    			$this->session->set_flashdata("alert_type", "danger");
+                $this->session->set_flashdata("alert_message", lang_phrase('alert_login_wrong') );
+                $this->session->set_flashdata("alert_type", "danger");
                 redirect('admin/login');
             }
         }
@@ -54,26 +54,26 @@ class Login extends MY_Controller
     }
 
     public function forgot_password()
-	{
-		if($this->input->post('submit')) {
-			$user = $this->input->post('user');
+    {
+        if($this->input->post('submit')) {
+            $user = $this->input->post('user');
 
-			if(empty($user)) {
-        		$this->session->set_flashdata("alert_message", lang_phrase('alert_forgot_invalid') );
-    			$this->session->set_flashdata("alert_type", "warning");
+            if(empty($user)) {
+                $this->session->set_flashdata("alert_message", lang_phrase('alert_forgot_invalid') );
+                $this->session->set_flashdata("alert_type", "warning");
                 redirect('admin/login/forgot-password');
-			}
+            }
 
-			if($user_reset = $this->settings->get_by( array( 'visible' => 1, 'user' => $user ) )) {
-				$this->load->helper('string');
-				$user_reset->reset_token = random_string('alnum', 64);
-				$this->settings->update($user_reset->id, $user_reset);
+            if($user_reset = $this->settings->get_by( array( 'visible' => 1, 'user' => $user ) )) {
+                $this->load->helper('string');
+                $user_reset->reset_token = random_string('alnum', 64);
+                $this->settings->update($user_reset->id, $user_reset);
 
-				$this->load->library('email');
+                $this->load->library('email');
                 $config['mailtype'] = 'html';
                 $this->email->initialize($config);
 
-				$domain = str_replace('www.', '', $_SERVER['HTTP_HOST']);
+                $domain = str_replace('www.', '', $_SERVER['HTTP_HOST']);
                 $this->email->from('no-reply@' . $domain, ADMIN_PROJECT);
                 $this->email->to($user_reset->email, $user_reset->name);
 
@@ -83,59 +83,59 @@ class Login extends MY_Controller
 
                 $var = $this->email->send();
 
-        		$this->session->set_flashdata("alert_message", lang_phrase('alert_forgot_success') );
-    			$this->session->set_flashdata("alert_type", "success");
+                $this->session->set_flashdata("alert_message", lang_phrase('alert_forgot_success') );
+                $this->session->set_flashdata("alert_type", "success");
                 redirect('admin/login/forgot-password');
             } else {
-        		$this->session->set_flashdata("alert_message", lang_phrase('alert_forgot_wrong') );
-    			$this->session->set_flashdata("alert_type", "danger");
+                $this->session->set_flashdata("alert_message", lang_phrase('alert_forgot_wrong') );
+                $this->session->set_flashdata("alert_type", "danger");
                 redirect('admin/login/forgot-password');
-			}
-		}
+            }
+        }
 
-		$this->layout = 'admin/layouts/admin.php';
-		$this->data['item'] = 'admin';
+        $this->layout = 'admin/layouts/admin.php';
+        $this->data['item'] = 'admin';
     }
 
     public function reset_password($hash = '')
-	{
-		if(empty($hash)) {
-			redirect('admin/login');
-		}
-
-		if($this->input->post('submit')) {
-			$password1 = $this->input->post('password1');
-			$password2 = $this->input->post('password2');
-			$user_id = $this->input->post('user_id');
-			
-			if( !empty($password1) && ($password1 == $password2) ) {
-				$user = $this->settings->get( $user_id );
-                $user->reset_token = NULL;
-				$this->settings->update($user_id, $user);
-				$this->authentication->change_password($password1, $user_id);
-				
-	    		$this->session->set_flashdata("alert_message", lang_phrase('alert_reset_success') );
-				$this->session->set_flashdata("alert_type", "success");
-	            redirect('admin/login');
-			} else {
-	    		$this->session->set_flashdata("alert_message", lang_phrase('alert_reset_invalid') );
-				$this->session->set_flashdata("alert_type", "warning");
-	            redirect('admin/login/reset-password/' . $hash);
-			}
-		}
-
-		if($user_reset = $this->settings->get_by( array( 'visible' => 1, 'reset_token' => $hash ) )) {
-			$this->layout = 'admin/layouts/admin.php';
-			$this->data['item'] = 'admin';
-			$this->data['name'] = $user_reset->name;
-			$this->data['user'] = $user_reset->user;
-			$this->data['user_id'] = $user_reset->id;
-		} else {
-    		$this->session->set_flashdata("alert_message", lang_phrase('alert_reset_error') );
-			$this->session->set_flashdata("alert_type", "warning");
+    {
+        if(empty($hash)) {
             redirect('admin/login');
-		}
-	}
+        }
+
+        if($this->input->post('submit')) {
+            $password1 = $this->input->post('password1');
+            $password2 = $this->input->post('password2');
+            $user_id = $this->input->post('user_id');
+            
+            if( !empty($password1) && ($password1 == $password2) ) {
+                $user = $this->settings->get( $user_id );
+                $user->reset_token = NULL;
+                $this->settings->update($user_id, $user);
+                $this->authentication->change_password($password1, $user_id);
+                
+                $this->session->set_flashdata("alert_message", lang_phrase('alert_reset_success') );
+                $this->session->set_flashdata("alert_type", "success");
+                redirect('admin/login');
+            } else {
+                $this->session->set_flashdata("alert_message", lang_phrase('alert_reset_invalid') );
+                $this->session->set_flashdata("alert_type", "warning");
+                redirect('admin/login/reset-password/' . $hash);
+            }
+        }
+
+        if($user_reset = $this->settings->get_by( array( 'visible' => 1, 'reset_token' => $hash ) )) {
+            $this->layout = 'admin/layouts/admin.php';
+            $this->data['item'] = 'admin';
+            $this->data['name'] = $user_reset->name;
+            $this->data['user'] = $user_reset->user;
+            $this->data['user_id'] = $user_reset->id;
+        } else {
+            $this->session->set_flashdata("alert_message", lang_phrase('alert_reset_error') );
+            $this->session->set_flashdata("alert_type", "warning");
+            redirect('admin/login');
+        }
+    }
 
 }
 

@@ -13,9 +13,9 @@
 
     <!-- Bootstrap core CSS -->
     <link href="<?= site_url('assets/admin_assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
-	<?php if($this->session->userdata('theme') != 'default' && $this->session->userdata('logged_in')): ?>
+    <?php if($this->session->userdata('theme') != 'default' && $this->session->userdata('logged_in')): ?>
     <link href="<?= site_url('assets/admin_assets/css/nav/bs-' . $this->session->userdata('theme') . '.css'); ?>" rel="stylesheet">
-	<?php endif; ?>
+    <?php endif; ?>
 
     <!-- Custom styles -->
     <link href="<?= site_url('assets/admin_assets/css/ui-lightness/jquery-ui-1.8.23.custom.css'); ?>" rel="stylesheet">
@@ -68,15 +68,15 @@
                 </div>
                 <?php if ($this->session->userdata('logged_in') == TRUE): ?>
                 <div class="collapse navbar-collapse">
-					<?php if($this->session->userdata('permissions') != ''): ?>
+                    <?php if($this->session->userdata('permissions') != ''): ?>
                     <?php $admin_sections = explode(",", $this->session->userdata('permissions')); ?>
                     <ul class="nav navbar-nav">
-						<?php foreach($admin_sections as $admin_section): ?>
-							<?php $a_section = explode("/", $admin_section); ?>
-							<li <?= ($file == $a_section[1])? 'class="active"' : ''; ?>><a href="<?=site_url('admin/' . $a_section[1])?>"><?=$a_section[0]?></a></li>
-						<?php endforeach; ?>
+                        <?php foreach($admin_sections as $admin_section): ?>
+                            <?php $a_section = explode("/", $admin_section); ?>
+                            <li <?= ($file == $a_section[1])? 'class="active"' : ''; ?>><a href="<?=site_url('admin/' . $a_section[1])?>"><?=$a_section[0]?></a></li>
+                        <?php endforeach; ?>
                     </ul>
-					<?php endif; ?>
+                    <?php endif; ?>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
@@ -89,7 +89,7 @@
                                 <li><a href="<?=site_url('admin/settings')?>"><i class="fa fa-users"></i>&nbsp; <?=lang_phrase('menu_manage')?></a></li>
                                 <?php endif; ?>
 
-								<li><a href="javascript:;" rel="tooltip" data-title="<?=lang_phrase('menu_time')?>" data-placement="left"><span class="glyphicon glyphicon-time"></span>&nbsp; <span id="box_timer">--:--:--</span></a></li>
+                                <li><a href="javascript:;" rel="tooltip" data-title="<?=lang_phrase('menu_time')?>" data-placement="left"><span class="glyphicon glyphicon-time"></span>&nbsp; <span id="box_timer">--:--:--</span></a></li>
 
                                 <li class="divider"></li>
 
@@ -130,7 +130,7 @@
     <div id="footer">
         <div class="container">
             <p class="text-muted col-md-4">&copy; <?=ADMIN_CLIENT?> <?=date('Y')?></p>
-			<p class="text-muted col-md-4 text-center hidden-xs hidden-sm year_moment"><?=year_moment();?></p>
+            <p class="text-muted col-md-4 text-center hidden-xs hidden-sm year_moment"><?=year_moment();?></p>
             <?php if ($this->session->userdata('logged_in') == TRUE): ?>
                 <?php if($this->session->userdata('last_login') != '0000-00-00 00:00:00'): ?>
                     <?php $this->load->helper('date'); ?>
@@ -140,9 +140,9 @@
         </div>
     </div>
 
-	<div class="modal fade modal-form" id="contact-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="text-center container"><img src="<?=site_url('assets/admin_assets/img/load_modal.gif')?>" alt="Loading modal" style="padding: 9px;"></div>
-	</div>
+    <div class="modal fade modal-form" id="contact-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="text-center container"><img src="<?=site_url('assets/admin_assets/img/load_modal.gif')?>" alt="Loading modal" style="padding: 9px;"></div>
+    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -160,10 +160,10 @@
     <script src="<?= site_url('assets/admin_assets/msdropdown/jquery.dd.min.js'); ?>"></script>
     <script src="<?= site_url('assets/admin_assets/js/admin.js?v=' . time()); ?>"></script>
     <script>
-	$(function() {
-		remember_me_init('ch_<?= url_title(ADMIN_PROJECT, '_', TRUE); ?>', 'user_<?= url_title(ADMIN_PROJECT, '_', TRUE); ?>');
-		<? if($this->session->userdata('logged_in')): ?>call_timer(localStorage.seconds);<? else: ?>localStorage.seconds = 0;<? endif; ?>
-	});
-	</script>
+    $(function() {
+        remember_me_init('ch_<?= url_title(ADMIN_PROJECT, '_', TRUE); ?>', 'user_<?= url_title(ADMIN_PROJECT, '_', TRUE); ?>');
+        <? if($this->session->userdata('logged_in')): ?>call_timer(localStorage.seconds);<? else: ?>localStorage.seconds = 0;<? endif; ?>
+    });
+    </script>
 </body>
 </html>
