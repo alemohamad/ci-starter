@@ -64,6 +64,21 @@ class Extras extends MY_Controller
         $this->view = 'error/index';
     }
 
+    public function robots()
+    {
+        $this->layout = FALSE;
+
+        switch(ENVIRONMENT) {
+            case 'development':
+            case 'testing':
+                $this->view = 'robots_txt/development';
+                break;
+            case 'production':
+                $this->view = 'robots_txt/production';
+                break;
+        }
+    }
+
 }
 
 /* End of file extras.php */

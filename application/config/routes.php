@@ -40,6 +40,7 @@
 
 $route['default_controller'] = 'home';
 $route['404_override'] = 'extras/error';
+$route['robots.txt'] = 'extras/robots';
 
 
 /* End of file routes.php */
