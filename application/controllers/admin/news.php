@@ -67,7 +67,7 @@ class News extends MY_Controller
                 's' => array('w' => 170, 'h' => 100),
                 'l' => array('w' => 410, 'h' => 370)
             );
-            $info['picture'] = upload_picture('picture', ADMIN_PROJECT_CODE, $this->file, '', $resizes);
+            $info['picture'] = upload_picture('save', 'picture', ADMIN_PROJECT_CODE, $this->file, '', $resizes);
 
             /*
             // upload and resize pictures with a zip file
@@ -124,7 +124,7 @@ class News extends MY_Controller
                 's' => array('w' => 170, 'h' => 100),
                 'l' => array('w' => 410, 'h' => 370)
             );
-            $info['picture'] = upload_picture('picture', ADMIN_PROJECT_CODE, $this->file, $this->input->post('prev_picture'), $resizes);
+            $info['picture'] = upload_picture('save', 'picture', ADMIN_PROJECT_CODE, $this->file, $this->input->post('prev_picture'), $resizes);
 
             $this->news->update($info['id'], $info);
 

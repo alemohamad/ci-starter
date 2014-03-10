@@ -60,7 +60,7 @@ class Gallery extends MY_Controller
                 's' => array('w' => 170, 'h' => 100),
                 'l' => array('w' => 410, 'h' => 370)
             );
-            $info['picture'] = upload_picture('fd-file', ADMIN_PROJECT_CODE, 'gallery', '', $resizes);
+            $info['picture'] = upload_picture('raw', 'fd-file', ADMIN_PROJECT_CODE, 'gallery', '', $resizes);
 
             /*
             // upload and resize pictures with a zip file

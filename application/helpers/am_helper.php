@@ -24,8 +24,8 @@ function object2array($object) {
 }
 
 // custom file upload code to reuse
-function upload_picture($file_name, $project, $section, $prev_file = '', $resize_sizes = '', $quality = 70, $path = './assets/uploads/', $types = 'jpg|jpeg|png', $max_size = 10000) {
-    $uploaded_file = upload_file($file_name, $project, $section, $prev_file, $path, $types, $max_size);
+function upload_picture($status, $file_name, $project, $section, $prev_file = '', $resize_sizes = '', $quality = 70, $path = './assets/uploads/', $types = 'jpg|jpeg|png', $max_size = 10000) {
+    $uploaded_file = upload_file($status, $file_name, $project, $section, $prev_file, $path, $types, $max_size);
 
     if(is_array($uploaded_file)) {
         return resize_uploaded_picture($uploaded_file, $resize_sizes, $quality);
@@ -34,7 +34,7 @@ function upload_picture($file_name, $project, $section, $prev_file = '', $resize
     return $uploaded_file;
 }
 
-function upload_file($file_name, $project, $section, $prev_file = '', $path = './assets/uploads/', $types = 'jpg|jpeg|png', $max_size = 10000) {
+function upload_file($status, $file_name, $project, $section, $prev_file = '', $path = './assets/uploads/', $types = 'jpg|jpeg|png', $max_size = 10000) {
     $CI =& get_instance();
     $CI->load->library('upload');
 
@@ -52,14 +52,27 @@ function upload_file($file_name, $project, $section, $prev_file = '', $path = '.
     $extension = explode('|', $types);
 
     $config = array();
-    $config['file_name_wo_ext'] = date('YmdHis') . '_' . $project . '_' . $section;
+    // $time = date('YmdHis');
+    $time = round(microtime(true) * 10000);
+    $config['file_name_wo_ext'] = $time . '_' . $project . '_' . $section;
     $config['file_name'] = $config['file_name_wo_ext'] . '.' . $extension[0];
     $config['upload_path'] = $path;
     $config['allowed_types'] = $types;
     $config['max_size']    = $max_size;
-    $CI->upload->initialize($config);
 
-    if (!empty($_FILES['fd-file']) and is_uploaded_file($_FILES['fd-file']['tmp_name'])) {
+    if ($status == 'raw') {
+        // Raw POST data.
+        $data = file_get_contents("php://input");
+        file_put_contents($config['upload_path'].$config['file_name'], $data);
+
+        $array_file = array();
+        $array_file['raw_name'] = $config['file_name_wo_ext'];
+        $array_file['file_path'] = $config['upload_path'];
+        $array_file['full_path'] = $config['upload_path'].$config['file_name'];
+        return $array_file;
+    } else {
+        $CI->upload->initialize($config);
+
         if($CI->upload->do_upload($file_name)) {
             $file = $CI->upload->data();
             // file_name, raw_name, file_type, full_path, file_path
@@ -67,15 +80,6 @@ function upload_file($file_name, $project, $section, $prev_file = '', $path = '.
         } else {
             // die($CI->upload->display_errors()); // show upload errors
         }
-    } else {
-        // Raw POST data.
-        $data = file_get_contents("php://input");
-        file_put_contents($config['upload_path'].$config['file_name'], $data);
-        $array_file = array();
-        $array_file['raw_name'] = $config['file_name_wo_ext'];
-        $array_file['file_path'] = $config['upload_path'];
-        $array_file['full_path'] = $config['upload_path'].$config['file_name'];
-        return $array_file;
     }
 
     return $prev_file;
@@ -127,8 +131,8 @@ function picture_path($picture_path = '', $size = 'l') {
     return substr($result, 2);
 }
 
-function upload_zip_pics($file_name, $project, $section, $prev_file = '', $resize_sizes = '', $quality = 70, $path = './assets/uploads/', $max_size = 10000) {
-    $uploaded_file = upload_file($file_name, $project, $section, $prev_file, $path, 'zip', $max_size);
+function upload_zip_pics($status, $file_name, $project, $section, $prev_file = '', $resize_sizes = '', $quality = 70, $path = './assets/uploads/', $max_size = 10000) {
+    $uploaded_file = upload_file($status, $file_name, $project, $section, $prev_file, $path, 'zip', $max_size);
 
     if(is_array($uploaded_file)) {
         $extracted_files = extract_zip($uploaded_file);
