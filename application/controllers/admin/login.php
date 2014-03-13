@@ -9,7 +9,7 @@ class Login extends MY_Controller
 
     public function index()
     {
-        if ($this->authentication->is_loggedin()) {
+        if ($this->authentication->is_loggedin('admin')) {
             redirect(site_url('admin'));
         }
 

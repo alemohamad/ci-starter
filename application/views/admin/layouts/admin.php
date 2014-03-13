@@ -13,7 +13,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="<?= site_url('assets/admin_assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
-    <?php if($this->session->userdata('theme') != 'default' && $this->session->userdata('logged_in')): ?>
+    <?php if($this->session->userdata('theme') != 'default' && $this->authentication->is_loggedin('admin')): ?>
     <link href="<?= site_url('assets/admin_assets/css/nav/bs-' . $this->session->userdata('theme') . '.css'); ?>" rel="stylesheet">
     <?php endif; ?>
 
@@ -56,7 +56,7 @@
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <?php if ($this->session->userdata('logged_in') == TRUE): ?>
+                    <?php if ($this->authentication->is_loggedin('admin')): ?>
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -66,7 +66,7 @@
                     <?php endif; ?>
                     <a class="navbar-brand" href="<?=site_url('admin')?>"><?=ADMIN_PROJECT?></a>
                 </div>
-                <?php if ($this->session->userdata('logged_in') == TRUE): ?>
+                <?php if ($this->authentication->is_loggedin('admin')): ?>
                 <div class="collapse navbar-collapse">
                     <?php if($this->session->userdata('permissions') != ''): ?>
                     <?php $admin_sections = explode(",", $this->session->userdata('permissions')); ?>
@@ -131,7 +131,7 @@
         <div class="container">
             <p class="text-muted col-md-4">&copy; <?=ADMIN_CLIENT?> <?=date('Y')?></p>
             <p class="text-muted col-md-4 text-center hidden-xs hidden-sm year_moment"><?=year_moment();?></p>
-            <?php if ($this->session->userdata('logged_in') == TRUE): ?>
+            <?php if ($this->authentication->is_loggedin('admin')): ?>
                 <?php if($this->session->userdata('last_login') != '0000-00-00 00:00:00'): ?>
                     <?php $this->load->helper('date'); ?>
                     <p class="text-muted col-md-4 text-right small hidden-xs hidden-sm"><strong><?=lang_phrase('cms_last_login')?>:</strong> <?= unix_to_human(strtotime($this->session->userdata('last_login'))); ?></p>
@@ -162,7 +162,7 @@
     <script>
     $(function() {
         remember_me_init('ch_<?= url_title(ADMIN_PROJECT, '_', TRUE); ?>', 'user_<?= url_title(ADMIN_PROJECT, '_', TRUE); ?>');
-        <? if($this->session->userdata('logged_in')): ?>call_timer(localStorage.seconds);<? else: ?>localStorage.seconds = 0;<? endif; ?>
+        <? if($this->authentication->is_loggedin('admin')): ?>call_timer(localStorage.seconds);<? else: ?>localStorage.seconds = 0;<? endif; ?>
     });
     </script>
 </body>

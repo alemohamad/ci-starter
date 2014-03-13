@@ -13,7 +13,7 @@ class Settings extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        if (!$this->authentication->is_loggedin()) {
+        if (!$this->authentication->is_loggedin('admin')) {
             $this->session->set_flashdata("alert_message", lang_phrase('alert_not_logged_in') );
             $this->session->set_flashdata("alert_type", "warning");
             redirect(site_url('admin/login'));

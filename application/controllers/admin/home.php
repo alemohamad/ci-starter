@@ -6,7 +6,7 @@ class Home extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        if (!$this->authentication->is_loggedin()) {
+        if (!$this->authentication->is_loggedin('admin')) {
             redirect(site_url('admin/login'));
         } else {
             // redirect to the first section in the user's permissons

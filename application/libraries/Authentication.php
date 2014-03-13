@@ -27,10 +27,11 @@ class Authentication {
 	 *
 	 * @access	private
 	 */
-	private $user_table;
-	private $identifier_field;
-	private $username_field;
-	private $password_field;
+	public $user_table;
+	public $identifier_field;
+	public $username_field;
+	public $password_field;
+	public $place_field = 'admin';
 
 
 	/**
@@ -204,6 +205,7 @@ class Authentication {
 
 			// Set the userdata for the current user
 			$this->ci->session->set_userdata(array(
+				'place' => $this->place_field,
 				'identifier' => $user_details->identifier,
 				'username' => $user_details->username,
 				'logged_in' => $_SERVER['REQUEST_TIME']
@@ -226,8 +228,13 @@ class Authentication {
 	 * @access	public
 	 * @return	boolean TRUE for a logged in user otherwise FALSE
 	 */
-	public function is_loggedin()
+	public function is_loggedin($place = '')
 	{
+
+        // if place is not the same as asked, return FALSE
+        if( !empty($place) && ($place != $this->ci->session->userdata('place')) ) {
+            return FALSE;
+        }
 
 		// Return true or flase based on the presence of user data
 		return (bool) $this->ci->session->userdata('identifier');
