@@ -18,3 +18,4 @@
 * [gmaps.js](https://github.com/hpneo/gmaps) (HPNeo)
 * [Chrome Extension Template](https://github.com/natemcintyre/Chrome-Extension-Template) (Nate McIntyre)
 * [Favicon Cheat Sheet](https://github.com/audreyr/favicon-cheat-sheet) (Audrey Roy)
+* [Bootstrap Markdown](https://github.com/toopay/bootstrap-markdown) (Taufan Aditya)
