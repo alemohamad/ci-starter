@@ -4,17 +4,17 @@
  *
  * Written due to image_lib not being so nice when you have to do multiple things to a single image!
  *
- * @license		MIT License
+ * @license		MIT License -
  * @author		Matthew Augier, aka Mat-Moo
  * @link		http://www.dps.uk.com http://www.matmoo.com
  * @docu		http://todo :)
  * @email		matthew@dps.uk.com
  *
  * @file		image_moo.php
- * @version		1.1.5
- * @date		2012 Oct 13
+ * @version		1.1.6
+ * @date		2014 Feb 5
  *
- * Copyright (c) 2011-2012 Matthew (Mat-Moo.com) Augier
+ * Copyright (c) 2011-2014 Matthew (Mat-Moo.com) Augier
  *
  * Requires PHP 5 and GD2!
  *
@@ -69,6 +69,7 @@
  * Cahva for posting yet another bug in the save_pa (Man I can be silly sometimes!)
  * Cole spotting the resize flaw and providing a fix
  * Nuno Mira for suggesting the new width/new size on teh ci forums
+ * HugoSolar for transparent rotate
  *
  */
 
@@ -611,7 +612,10 @@ class Image_moo
 
 		// create a temp based on new dimensions
 		$this->temp_image = imagecreatetruecolor($mw, $mh);
-
+		
+		imagealphablending($this->temp_image, false);
+		imagesavealpha($this->temp_image, true);
+		
 		// check it
 		if(!is_resource($this->temp_image))
 		{
@@ -864,10 +868,12 @@ class Image_moo
 
 		// set the colour
 		$col = $this->_html2rgb($this->background_colour);
-		$bg = imagecolorallocate($this->temp_image, $col[0], $col[1], $col[2]);
+		$bg = imagecolorallocatealpha($this->temp_image, 0, 0, 0, 127);
 
 		// rotate as needed
 		$this->temp_image = imagerotate($this->temp_image, $angle, $bg);
+		imagealphablending($this->temp_image, false);
+		imagesavealpha($this->temp_image, true);
 
 		// set sizes
 		$this->_set_new_size();
