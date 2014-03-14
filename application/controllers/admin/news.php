@@ -37,6 +37,7 @@ class News extends MY_Controller
         $this->data['delete'] = TRUE;
         $this->data['state'] = TRUE;
         $this->data['export_file'] = TRUE;
+        $this->data['show_list'] = TRUE;
         $this->data['display_fields'] = array('title', 'date', 'color_code', 'picture');
     }
 

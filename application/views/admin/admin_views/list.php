@@ -18,6 +18,8 @@
     <button class="btn btn-sm btn-success" onclick="window.location='<?= site_url('admin/' . $file . '/export'); ?>'"><span class="glyphicon glyphicon-file"></span> <?=lang_phrase('export_csv')?></button>
     <?php endif; ?>
 </p>
+
+<?php if($show_list): ?>
 <p class="col-md-3 input-group input-group-sm">
     <span class="input-group-btn">
         <button class="btn btn-info" id="filter-select"><span class="glyphicon glyphicon-filter"></span></button>
@@ -99,6 +101,7 @@
         </select>
     </div>
 </p>
+<?php endif; ?>
 
 <div class="modal fade modal-form" id="ui-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="text-center container"><img src="<?=site_url('assets/admin_assets/img/load_modal.gif')?>" alt="Loading modal" style="padding: 9px;"></div>
